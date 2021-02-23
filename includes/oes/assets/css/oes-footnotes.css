@@ -1,0 +1,20 @@
+/*----------------------------------------------------------------------------------------------------------------------
+CSS Styling for footnotes in frontend.
+----------------------------------------------------------------------------------------------------------------------*/
+
+
+ol#oes-footnotes {
+    padding-left:0;
+    list-style-position:inside;
+}
+
+ol#oes-footnotes li {
+    padding: .5em 0;
+}
+
+#oes-footnote-to-top:after {
+    content: "\f102";
+    font-family: "FontAwesome";
+    padding-left: 5px;
+    color:var(--oes-tertiary-background);
+}

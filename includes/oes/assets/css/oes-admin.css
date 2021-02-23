@@ -1,0 +1,439 @@
+/*----------------------------------------------------------------------------------------------------------------------
+CSS Styling for admin layer.
+
+TABLE OF CONTENTS
+01  General
+02  Menu Pages
+02b Display Settings
+02c Menu Page: OES Configurations
+02d Menu Page: Tools
+03  Post Type: Admin Pages
+03a Post Type: Versioning
+10  Frontend
+----------------------------------------------------------------------------------------------------------------------*/
+
+
+/* TODO @afterRefactoring: remove the following (overwrites OES Core css) */
+
+:not(.oes-role-administrator) .wp-admin .wp-heading-inline {
+    visibility: visible !important;
+}
+
+:not(.oes-role-administrator) .row-actions span.inline {
+    display: none;
+}
+
+:not(.oes-role-administrator).post-type-eo_link .row-actions .view {
+    display: none;
+}
+
+.attachment-details .setting[data-setting='caption'],
+.attachment-details .setting[data-setting='alt'],
+.attachment-details .setting[data-setting='description'] {
+    display: block !important;
+}
+
+.acf-gallery-side-data .acf-field[data-name='caption'],
+.acf-gallery-side-data .acf-field[data-name='alt'],
+.acf-gallery-side-data .acf-field[data-name='description'] {
+    display: block !important;
+}
+
+.attachment-details .media-types-required-info {
+    display: none;
+}
+
+.compat-item .compat-attachment-fields .acf-field {
+    display: block !important;
+    margin-bottom: 5px;
+}
+
+
+/* ---------------------------------------------------------------------------------------------------------------------
+-- 01 GENERAL ----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------*/
+
+
+/* ---------------------------------------------------------------------------------------------------------------------
+-- 02 MENU PAGES -------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------*/
+
+
+.dummy-admin-notices {
+    display: none
+}
+
+.wrap#settings-page {
+    /*margin: 10px 20px 0 2px;*/
+}
+
+
+/* ---------------------------------------------------------------------------------------------------------------------
+-- 02B DISPLAY SETTINGS ------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------*/
+
+h2#oes-settings {
+    margin:0;
+}
+
+.oes_settings_table#default {
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: inline-block;
+    vertical-align: top;
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.oes_settings_table#default tbody {
+    background-size: 10px 100%, 10px 100%;
+    background-attachment: scroll, scroll;
+    background-repeat: no-repeat;
+}
+
+.oes_settings_table#default th {
+    background-color: #52accc;
+    border: 1px solid #555;
+    border-collapse: collapse;
+    padding: 6px 12px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.oes_settings_table#default td {
+    background-color: #e5e5e5;
+    border: 1px solid #555;
+    border-collapse: collapse;
+    padding: 6px 12px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.oes_settings_table table th .top {
+    font-weight: bold;
+}
+
+.settings-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.submit-inline {
+    display: inline-flex;
+    margin-bottom: 5px;
+    padding-left: 1em;
+}
+
+.settings-wrapper-post-types {
+    margin-top:10px;
+}
+
+.oes-settings-submit .submit {
+    padding:0 !important;
+    margin: 10px 0 !important;
+    float: left !important;
+}
+
+.oes-settings-form-wrapper {
+    padding: 5px 10px;
+}
+
+
+/* ---------------------------------------------------------------------------------------------------------------------
+-- 02C MENU PAGE : OES CONFIGURATIONS ----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------*/
+
+
+.nav-tab-wrapper#configuration {
+    margin-bottom: 1em;
+}
+
+/* Post Types --------------------------------------------------------------------------------------------------------*/
+.post-types-table .buttons button {
+    display: inline-block;
+    vertical-align: baseline;
+    margin-left: .5em
+}
+
+.post-types-table .submit {
+    display: inline-block;
+}
+
+table#legend th {
+    white-space:nowrap;
+    text-align:left;
+    vertical-align: top;
+    padding-right:1em;
+}
+
+/* data source */
+.post-types-data-source {
+    display: inline-flex
+}
+
+.post-types-data-source input[type="submit"] {
+    margin-left: 5em;
+}
+
+.post-types-data-source tbody th {
+    vertical-align: top;
+    padding-top: 10px
+}
+
+/* relationships */
+table#option-relationship th {
+    text-align: left;
+    width: 40%;
+    font-weight: normal;
+    font-size: 13px
+}
+
+table#option-relationship #column-header {
+    font-weight: bold;
+    font-size: 16px
+}
+
+table#option-relationship .merged-cells {
+    border-bottom: 1px solid #ccd0d4;
+    border-top: 1px solid #ccd0d4;
+    background-color: #e5e5e5;
+    font-size: 16px;
+}
+
+table#option-relationship .post-type {
+    font-weight: bold;
+}
+
+/* Taxonomies --------------------------------------------------------------------------------------------------------*/
+.wp-list-table.taxonomies {
+    table-layout: auto;
+}
+
+.wp-list-table.taxonomies th {
+    font-weight: bold;
+}
+
+.wp-list-table.taxonomies th#column-header {
+    vertical-align: top;
+}
+
+.wp-list-table.taxonomies tbody th {
+    vertical-align: top;
+    border-right: 1px solid #ccd0d4;
+    border-bottom: 1px solid #ccd0d4;
+    background-color: #e5e5e5;
+}
+
+/* Theme Options -----------------------------------------------------------------------------------------------------*/
+table#oes-presentation-table th,
+table#oes-presentation-table td {
+    text-align: left;
+}
+
+
+/* ---------------------------------------------------------------------------------------------------------------------
+-- 02B ACCORDION -------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------*/
+
+
+.oes-accordion {
+    cursor: pointer;
+    text-align: left;
+    outline: none;
+    transition: 0.4s;
+    font-weight: 600;
+    font-size: 14px
+}
+
+.oes-accordion#settings {
+    width: 100%;
+    padding: .3em;
+}
+
+.oes-accordion#info {
+    padding-left: .3em;
+}
+
+.oes-accordion a,
+.oes-accordion.active,
+.oes-accordion.active a,
+.oes-accordion:hover a,
+.oes-accordion:hover:before {
+    color: #004489;
+}
+
+.oes-accordion:hover {
+    color: #004489;
+}
+
+.oes-accordion.active:after {
+    content: "\f348";
+    font: normal 20px/1 dashicons;
+    color:#426890;
+}
+
+.oes-accordion h2{
+    margin:0;
+}
+
+.oes-accordion#info:after {
+    content: "\f348";
+    font: normal 20px/1 dashicons;
+    color:#426890;
+    margin: 1em 0;
+}
+
+.oes-accordion-item-wrapper {
+    /*height: 1.5em;*/
+    padding: 5px 10px;
+    display:flex;
+    align-items:center;
+    /*padding-bottom: .5em;*/
+}
+
+.oes-accordion-panel {
+    display: none;
+    overflow: hidden;
+    padding:5px 10px;
+}
+
+.oes-accordion-body#settings {
+    margin-top:10px;
+    background-color: #e5e5e5;
+    border:1px solid #ccc
+}
+
+.oes-accordion-body#settings:hover {
+    background-color: #f1f1f1;
+}
+
+.oes-accordion-body#settings,
+.oes-accordion-body#settings .oes-accordion-item-wrapper {
+    width:100%;
+}
+
+.oes-accordion-body#info {
+    background-color: transparent;
+}
+
+
+/* ---------------------------------------------------------------------------------------------------------------------
+-- 02D MENU PAGE : TOOLS -----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------*/
+
+#configuration-tools {
+    display: flex;
+}
+
+#configuration-tools .submit {
+    padding: 0 1em 0 0;
+    margin: 0;
+}
+
+#configuration-tools input#submit {
+    background-color: transparent;
+    color: #096484;
+    border-color: #096484;
+    display: inline-flex;
+}
+
+#configuration-tools input#submit:hover {
+    background-color: #096484;
+    color: white;
+    border-color: #096484;
+}
+
+#tools-checkbox {
+    padding-top:5px;
+}
+
+/* ---------------------------------------------------------------------------------------------------------------------
+-- 03 POST TYPE: ADMIN PAGES -------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------*/
+
+
+/* modify filter and input buttons in post type list views */
+.tablenav .actions select,
+.tablenav .actions input {
+    margin: 5px 8px 5px 0 !important;
+}
+
+
+/* ---------------------------------------------------------------------------------------------------------------------
+-- 03A VERSIONING ------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------*/
+
+
+#master-version-information .right,
+#master-version-information .left {
+    display: inline-flex;
+}
+
+#master-version-information .left {
+    padding-right: 30px;
+    padding-top: 10px
+}
+
+#master-version-information .current-version {
+    font-style: italic;
+    color: grey;
+    padding-left: 2px
+}
+
+#version-information {
+    line-height: 2;
+    min-height: 25px;
+    margin-top: 10px;
+    padding: 0;
+    color: #666;
+}
+
+#version-information a {
+    padding-left: 2px;
+}
+
+.version-tip {
+    padding-bottom: 15px;
+    font-style: italic;
+    color: grey;
+}
+
+#master-version-information .version-tip,
+#translation .version-tip {
+    padding-top: 15px;
+    padding-bottom: 0;
+}
+
+.meta-box-inner {
+    color: grey;
+}
+
+#orphaned-post {
+    line-height: 2;
+    min-height: 25px;
+    margin-top: 10px;
+    padding: 0;
+    color: red;
+}
+
+
+/* ---------------------------------------------------------------------------------------------------------------------
+-- 10  FRONTEND --------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------*/
+
+
+.oes-badge {
+    margin-right: .5em;
+    display: inline-block;
+    min-width: 2em;
+    padding: .2em .7em;
+    font-size: .9em;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #626567;
+    border-radius: 1em;
+}

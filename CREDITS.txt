@@ -1,0 +1,30 @@
+
+
+/*******************************************************************************
+* Software: OES Demo                                                           *
+* Version:  0.1                                                                *
+* Date:     2021-01-01                                                         *
+* Author:   Freie Universität Berlin, Center für Digitale Systeme an der       *
+*           Universitätsbibliothek                                             *
+* License:  GPLv2 or later                                                     *
+*******************************************************************************/
+
+/*******************************************************************************
+* OES Demo is a plugin implementing the OES Core plugin :                      *
+* https://github.com/open-encyclopedia-system/oes-demo                         *
+*******************************************************************************/
+
+CREDITS From OES Core:
+
+- Ilker TODO
+- FMI TODO
+
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation;
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+Lesser General Public License for more details.
+[http://www.opensource.org/licenses/lgpl-license.php]
