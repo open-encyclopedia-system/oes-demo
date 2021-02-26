@@ -16,8 +16,7 @@
 
 CREDITS From OES Core:
 
-- Ilker TODO
-- FMI TODO
+- TODO
 
 
 This library is free software; you can redistribute it and/or
