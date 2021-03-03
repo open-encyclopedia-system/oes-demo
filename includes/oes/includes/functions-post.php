@@ -309,3 +309,279 @@ function oes_get_post_types(){
 
     return $returnPostTypes;
 }
+
+
+/**
+ * Delete or trash a post.
+ *
+ * @param string|int $postID A string containing the post ID.
+ * @param boolean|string $forceDelete A boolean indication if post is to be deleted and not trashed. Default is false.
+ *
+ * @return string|boolean|WP_Error|WP_Post Return error string or operation result.
+ */
+function oes_delete_post($postID, $forceDelete = false)
+{
+    /* check if post exists*/
+    if (!get_post($postID)) return sprintf(__('Post ID (%s) is not found.', 'oes'), $postID);
+
+    /* try to delete or trash post */
+    return $forceDelete ? wp_delete_post($postID) : wp_trash_post($postID);
+}
+
+
+/**
+ * Insert a post.
+ *
+ * @param array $parameters An array containing post arguments for wp_insert_post.
+ * @param boolean $update A boolean identifying if a post will be updated if a post with the post ID parameter
+ * already exist. Default is true.
+ *
+ * @return string|array Return array with error string or operation result.
+ */
+function oes_insert_post($parameters, $update = true)
+{
+
+    /* Validate post id ----------------------------------------------------------------------------------------------*/
+    if ($parameters['ID'] && get_post($parameters['ID']) && !$update)
+        return sprintf(__('The post with post ID (%s) already exists.'), $parameters['ID']);
+
+    /* Validate post type --------------------------------------------------------------------------------------------*/
+
+    /* exit early if no post type */
+    if (empty($parameters['post_type'])) {
+        return __('Post type  argument "post_type" is missing.', 'oes');
+    } /* exit early if post type does not exist */
+    else if (!post_type_exists($parameters['post_type'])) {
+        return sprintf(__('Post Type (%s) is not registered or inactive.'), $parameters['post_type']);
+    }
+
+    /* validate parameters -------------------------------------------------------------------------------------------*/
+    $wrongParameter = [];
+    $args = [];
+    foreach ($parameters as $key => $parameter) {
+
+        /* check if parameter is argument for wp_insert_post */
+        if (!in_array($key, ['ID', 'post_type', 'post_title', 'post_status', 'post_author', 'post_date',
+            'post_date_gmt', 'post_content', 'post_content_filtered', 'post_excerpt', 'comment_status',
+            'ping_status', 'post_password', 'post_name', 'to_ping', 'pinged', 'post_modified', 'post_modified_gmt',
+            'post_parent', 'menu_order', 'post_mime_type', 'guid', 'post_category', 'tags_input', 'tax_input',
+            'meta_input'])) $wrongParameter[] = $key;
+
+        /* add filter for post_parent */
+        else if ($key == 'post_parent') {
+            $args[$key] = apply_filters('oes_insert_post_parent', $parameter, $parameters);
+        } else $args[$key] = $parameter;
+    }
+
+    return ['post' => wp_insert_post($args, true), 'wrong_parameter' => $wrongParameter];
+}
+
+
+/**
+ * Update post meta data like ACF fields.
+ *
+ * @param string|int $postID A string containing the post ID.
+ * @param array $parameters An array containing post arguments for update_field.
+ * @param bool $add A boolean indicating if new value should be added to old value (relationship field).
+ *
+ * @return string|array Return array with error string or operation result.
+ */
+function oes_insert_post_meta($postID, $parameters, $add = false)
+{
+    /* Validate post id ----------------------------------------------------------------------------------------------*/
+    if (!get_post($postID)) return sprintf(__('The post with post ID (%s) does not exists.', 'oes'), $postID);
+    if (empty($parameters)) return sprintf(__('Parameters missing for post ID %s.', 'oes'), $postID);
+
+    /* Insert parameter ----------------------------------------------------------------------------------------------*/
+    $resultArray = [];
+    $importedFields = 0;
+    foreach ($parameters as $field => $parameter) {
+
+        /* check if acf field */
+        $fieldObject = get_field_object($field);
+        if (!$fieldObject) {
+
+            /* update post meta data */
+            $resultArray['update_result'][$field] = oes_update_post_meta($postID, $field, $parameter, false);
+        } /* update acf field */
+        else {
+
+            /* prepare and validate new value */
+            $newValue = null;
+            switch ($fieldObject['type']) {
+
+                case 'relationship' :
+
+                    /* turn value into array */
+                    $parameterArray = is_array($parameter) ? $parameter : explode(',', $parameter);
+
+                    /* check if value is added to old value */
+                    if ($add) {
+                        $oldValue = oes_get_post_meta($postID, $field);
+                        if ($oldValue && isset($oldValue[0]) && is_array($oldValue[0])) {
+                            foreach ($oldValue[0] as $singleOldValue) $parameterArray[] = $singleOldValue;
+                        }
+                    }
+
+                    /* add filter to modify parameter values */
+                    //TODO @2.0 Roadmap : document filter
+                    $parameterArray = apply_filters('oes_import_relationship_field', $parameterArray, $field, $postID);
+
+                    /* remove duplicates and empty entries */
+                    $parameterArray = array_unique($parameterArray);
+                    $parameterArray = array_filter($parameterArray);
+
+                    /* check if values */
+                    if (!array($parameterArray) || empty($parameterArray)) break;
+                    if (count($parameterArray) == 1 && empty($parameterArray[0])) break;
+
+                    /* prepare each value */
+                    foreach ($parameterArray as $singleValue) {
+
+                        if (get_post($singleValue)) $newValue[] = get_post($singleValue);
+
+                        /* Track values that don't meet criteria*/
+                        else $resultArray['error'][$field][] = $singleValue;
+                    }
+                    break;
+
+                case 'taxonomy' :
+
+                    /* add filter to modify parameter values */
+                    //TODO @2.0 Roadmap : document filter
+                    $newValue = apply_filters('oes_import_taxonomy_field', $parameter, $field, $postID);
+
+                    break;
+
+                case 'link' :
+
+                    /* turn value into array */
+                    $parameterArray = explode(',', $parameter);
+
+                    /* add filter to modify parameter values */
+                    //TODO @2.0 Roadmap : document filter
+                    $parameterArray = apply_filters('oes_import_link_field', $parameterArray, $field, $postID);
+
+                    $url = !empty($parameterArray[0]) ? $parameterArray[0] : '';
+                    $newValue = [
+                        'url' => $url,
+                        'title' => !empty($parameterArray[1]) ? $parameterArray[1] : $url,
+                        'target' => !empty($parameterArray[2]) ? $parameterArray[2] : ''
+                    ];
+
+                    break;
+
+                default :
+                    $newValue = $parameter;
+                    break;
+
+            }
+
+            /* update */
+            if ($newValue) $resultArray['update_result'][$field] = update_field($field, $newValue, $postID);
+        }
+
+        /* track results */
+        $importedFields++;
+
+    }
+
+    $resultArray['imported_fields'] = $importedFields;
+
+    return $resultArray;
+}
+
+
+/**
+ * Insert a term.
+ *
+ * @param array $parameters An array containing term arguments for wp_insert_term.
+ * @param bool $update A boolean indicating if term is to updated instead of inserted. Default is false.
+ *
+ * @return string|array Return array with error string or operation result.
+ */
+function oes_insert_term($parameters, $update = false)
+{
+    /* Validate term name for insert ---------------------------------------------------------------------------------*/
+    if (!$parameters['term'] && !$update)
+        return __('The term is missing a term name for insert.', 'oes');
+
+    /* Validate term id for update -----------------------------------------------------------------------------------*/
+//TODO    if ($parameters['term_id'] && get_term($parameters['term_id']) && $update)
+//        return sprintf(__('The term with the ID (%s) already exists.', 'oes'), $parameters['term_id']);
+
+    /* Validate taxonomy ---------------------------------------------------------------------------------------------*/
+
+    /* exit early if no taxonomy */
+    if (empty($parameters['taxonomy'])) {
+        return __('Taxonomy argument "taxonomy" is missing.', 'oes');
+    } /* exit early if taxonomy does not exist */
+    else if (!taxonomy_exists($parameters['taxonomy'])) {
+        return sprintf(__('Taxonomy (%s) is not registered or inactive.'), $parameters['taxonomy']);
+    }
+
+    /* validate parameters -------------------------------------------------------------------------------------------*/
+    $wrongParameter = [];
+    $args = [];
+    foreach ($parameters as $key => $parameter) {
+
+        /* check if parameter is argument for wp_insert_term or wp_update_term */
+        if (!in_array($key, ['alias_of', 'description', 'parent', 'slug', 'args', 'term', 'taxonomy']))
+            $wrongParameter[] = $key;
+
+        /* exclude term, taxonomy */
+        elseif (!in_array($key, ['term', 'taxonomy'])) $args[$key] = $parameter;
+    }
+
+    /* insert or update term */
+    $operationSuccessful = $update ?
+        wp_update_term($parameters['term_id'], $parameters['taxonomy'], $args) :
+        wp_insert_term($parameters['term'], $parameters['taxonomy'], $args);
+
+    return ['term' => $operationSuccessful, 'wrong_parameter' => $wrongParameter];
+}
+
+/**
+ * Update term meta data like ACF fields.
+ *
+ * @param string|int $termID A string containing the term ID.
+ * @param string $taxonomy A string containing the term taxonomy.
+ * @param array $parameters An array containing post arguments for update_field.
+ *
+ * @return string|array Return array with error string or operation result.
+ */
+function oes_insert_term_meta($termID, $taxonomy, $parameters)
+{
+    /* Validate post id ----------------------------------------------------------------------------------------------*/
+    if (!get_term($termID)) return sprintf(__('The term with term ID (%s) does not exists.', 'oes'), $termID);
+
+    /* Insert parameter ----------------------------------------------------------------------------------------------*/
+    $resultArray = [];
+    $importedFields = 0;
+    foreach ($parameters as $field => $parameter) {
+
+        /* check if acf field */
+        $fieldObject = get_field_object($field);
+        if (!$fieldObject) {
+
+            /* update post meta data */
+            $resultArray['update_result'][$field] = update_term_meta($termID, $field, $parameter);
+        } /* update acf field */
+        else {
+
+            /* TODO 2.0 Roadmap : differentiate between field types see post meta */
+
+            /* update */
+            $resultArray['update_result'][$field] = update_field($field, $parameter, $taxonomy . '_' . $termID);
+        }
+
+        /* track results */
+        $importedFields++;
+
+    }
+
+    $resultArray['imported_fields'] = $importedFields;
+
+    return $resultArray;
+
+}
