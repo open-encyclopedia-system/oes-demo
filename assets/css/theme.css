@@ -1,0 +1,281 @@
+
+/* ---------------------------------------------------------------------------------------------------------------------
+-- BLOCKS --- ----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------*/
+
+
+/* OES Card */
+
+.oes-demo-card-container .wp-block-group__inner-container {
+    display:flex;
+    justify-content: space-between;
+    padding-bottom: 3rem;
+    padding-top:1rem;
+}
+
+.oes-demo-card-container .oes-card:first-child {
+    margin-left:0;
+}
+
+.oes-demo-card-container .oes-card:last-child {
+    margin-right: 0;
+}
+
+a.oes-card-img {
+    border-bottom: 1px solid var(--oes-dark)
+}
+
+.oes-card-overlay {
+    background-color:var(--oes-primary);
+}
+
+.oes-card h2 {
+    color: var(--oes-primary);
+    text-transform: uppercase;
+}
+
+
+/* ---------------------------------------------------------------------------------------------------------------------
+-- FRONTPAGE  ----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------*/
+
+.oes-background-primary-color {
+    background-color: var(--oes-primary);
+    color: var(--oes-primary-contrast);
+}
+
+.oes-demo-frontpage-first-block {
+    padding: 3rem 0 1rem;
+    margin-bottom: 5rem;
+}
+
+.oes-demo-frontpage-first-block .wp-block-column:first-child {
+    padding-right: 3rem;
+}
+
+.oes-demo-frontpage-first-block a {
+    color: white;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+
+.oes-demo-frontpage-first-block img {
+    width:100%;
+    height: 100%;
+    float:right;
+    padding:1rem 0;
+}
+
+.oes-demo-featured-post {
+    margin-bottom: 5rem;
+}
+
+
+/* ---------------------------------------------------------------------------------------------------------------------
+-- ARTICLE  ------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------*/
+
+.oes-article-sub-line {
+    padding: 2rem 0;
+    color: var(--oes-dark);
+    font-weight:lighter;
+}
+
+.oes-article-author-by {
+    font-weight:lighter;
+    padding-right:0.625rem;
+}
+
+.oes-article-sub-line ul.oes-field-value-list,
+.oes-article-sub-line ul.oes-horizontal-list {
+    list-style-type: none;
+    display: inline;
+    padding-inline-start: 0;
+}
+
+.oes-article-sub-line ul.oes-field-value-list li {
+    display: inline;
+    padding: 0;
+    margin: 0
+}
+
+.oes-article-sub-line ul.oes-field-value-list li:after {
+    content: ', ';
+}
+
+.oes-article-sub-line ul.oes-horizontal-list li:after {
+    content: '|';
+    padding: 0 .5rem;
+}
+
+.oes-article-sub-line ul.oes-field-value-list li:last-child:after,
+.oes-article-sub-line ul.oes-horizontal-list li:last-child:after {
+    content: none;
+}
+
+.oes-article-sub-line ul.oes-field-value-list li a {
+    font-size: 17px;
+}
+
+.oes-article-versions-toggle {
+    position:relative;
+}
+
+.oes-article-versions-toggle > a:after {
+    font-family: "FontAwesome", serif;
+    content: "\f0d7";
+    padding-left: .5rem;
+}
+
+.oes-article-versions-toggle > a[aria-expanded="true"]:after {
+    content: "\f0d8";
+}
+
+ul#oes-article-versions-ul {
+    position: absolute;
+    top:1.5rem;
+    left:0;
+    padding-inline-start: 0;
+    border: 1px solid var(--oes-primary);
+    background-color: white;
+    margin: 0 -8px -5px;
+    padding:5px 8px;
+}
+
+/* article split view (with image and keywords to the right) */
+.oes-demo-article-split-view {
+    display: flex;
+}
+
+.oes-demo-article-split-view-content {
+    width: 75%;
+}
+
+.oes-demo-article-side-keywords {
+    width:25%;
+    padding-left:2rem
+}
+
+
+/* Featured Post Card (Frontpage) */
+.oes-featured-article-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 100%;
+    display:flex;
+    margin-top: 1.5rem;
+}
+
+.oes-featured-article-card img {
+    width:30%;
+    object-fit: cover;
+    border-right: 1px solid var(--oes-dark);
+}
+
+.oes-featured-article-card-body {
+    padding: 1.5rem;
+}
+
+.oes-featured-article-card-body h1.oes-content-table-header1 {
+    padding-top:0;
+    margin-top:0;
+}
+
+.oes-featured-article-card-body .btn {
+    margin-left:0;
+}
+
+/* sidebar image */
+figure.oes-expand-image .fa-expand:hover {
+    background-color: var(--oes-contrast);
+}
+
+.oes-modal-container button.oes-modal-close:hover {
+    color: var(--oes-contrast);
+}
+
+figure.oes-expand-image figcaption {
+    color: var(--oes-dark);
+}
+
+/* connected terms */
+.oes-demo-article-side-keywords a.oes-post-term {
+    color: var(--oes-contrast);
+    background-color: var(--oes-background);
+    padding: 6px 12px;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    display:inline-block;
+    word-break: break-all
+}
+
+/* further links */
+.oes-demo-external-link {
+    border: 1px solid var(--oes-primary);
+    padding: 10px;
+    margin: 40px 0 50px;
+}
+
+.oes-demo-external-link a:after {
+    content: '\f061';
+    font-family: "FontAwesome", serif;
+    float: right;
+}
+
+/* Archive */
+.oes-demo-article-archive-language {
+    text-transform: uppercase;
+    color: var(--oes-dark);
+    font-size: 0.8rem;
+    margin-left: .25rem;
+}
+
+.oes-demo-article-archive-authors-by {
+    padding-right: .5rem;
+    text-transform: uppercase;
+    color: var(--oes-dark);
+    font-size: 0.8rem;
+}
+
+
+/* ---------------------------------------------------------------------------------------------------------------------
+-- AUTHOR --------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------*/
+
+.oes-demo-author-articles-table-wrapper {
+    padding-top:.5rem;
+}
+
+.oes-demo-author-articles-table {
+    margin-bottom: 2rem;
+}
+
+
+/* ---------------------------------------------------------------------------------------------------------------------
+-- GLOSSARY ------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------*/
+
+ul.oes-field-value-list.oes-demo-glossary-connected-articles li {
+    display: block !important;
+}
+
+ul.oes-field-value-list.oes-demo-glossary-connected-articles li:after {
+    content: '' !important;
+}
+
+.oes-demo-glossary-archive-connected-articles-metainfo {
+    text-transform: uppercase;
+    color: var(--oes-dark);
+    font-size: 0.8rem;
+    margin-left: .25rem;
+}
+
+
+/* ---------------------------------------------------------------------------------------------------------------------
+-- INDEX POST ----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------*/
+
+.oes-demo-index-post-language {
+    font-size: 0.9rem;
+    color: var(--oes-dark);
+    padding-left: 5px;
+}
