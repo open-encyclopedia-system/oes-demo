@@ -101,6 +101,7 @@
       "lod_box": [
         "shortcode"
       ],
+      "editorial_tab": true,
       "label_translation_language0": "Merk dir",
       "theme_labels": {
         "archive__header": {
@@ -560,7 +561,8 @@
       "archive_on_single_page": false,
       "archive": [],
       "archive_filter": [],
-      "lod_box": []
+      "lod_box": [],
+      "editorial_tab": true
     },
     "acf_add_local_field_group": {
       "fields": [
@@ -672,7 +674,8 @@
       "archive_on_single_page": false,
       "archive": [],
       "archive_filter": [],
-      "lod_box": []
+      "lod_box": [],
+      "editorial_tab": true
     },
     "acf_add_local_field_group": {
       "fields": [
@@ -1345,6 +1348,7 @@
       "lod_box": [
         "post"
       ],
+      "editorial_tab": true,
       "theme_labels": {
         "archive__header": {
           "name": "Archiv: Untertitel (nicht Navigation!)",
@@ -1771,6 +1775,7 @@
         "alphabet"
       ],
       "lod_box": [],
+      "editorial_tab": true,
       "theme_labels": {
         "archive__header": {
           "name": "Archiv: Untertitel (nicht Navigation!)",
@@ -1953,6 +1958,7 @@
       "lod_box": [
         "post"
       ],
+      "editorial_tab": true,
       "theme_labels": {
         "single__toc__header_metadata": {
           "name": "Single: Metadata",
@@ -2261,6 +2267,7 @@
       "lod_box": [
         "post"
       ],
+      "editorial_tab": true,
       "theme_labels": {
         "single__toc__header_metadata": {
           "name": "Single: Metadata",
@@ -2625,6 +2632,7 @@
       "lod_box": [
         "post"
       ],
+      "editorial_tab": true,
       "theme_labels": {
         "single__toc__header_metadata": {
           "name": "Single: Metadata",
@@ -2812,13 +2820,13 @@
         },
         "sub_pages": [
           "demo_article_p",
-          "demo_article"
+          "demo_article",
+          "t_demo_article_type"
         ],
         "info_page": {
           "elements": [
-            "demo_article",
             "demo_article_p",
-            "t_demo_article_type"
+            "demo_article"
           ],
           "label": "Recently worked on"
         }
@@ -2830,7 +2838,8 @@
           "icon_url": "default"
         },
         "sub_pages": [
-          "t_demo_subject"
+          "t_demo_subject",
+          "t_demo_times"
         ],
         "info_page": {
           "label": "Recently worked on"
@@ -2851,7 +2860,7 @@
           {
             "name": "oes_media_author_attribution",
             "label": "Author Attribution",
-            "type": "wysiwyg",
+            "type": "textarea",
             "key": "oes_media_author_attribution",
             "instructions": "Include author attribution."
           },
@@ -2877,11 +2886,46 @@
       "credit_text": "",
       "credit_label": "caption",
       "show_in_panel": [
-        "caption",
-        "oes_media_author_attribution",
+        "alt",
+        "title",
         "oes_media_license",
-        "date"
-      ]
+        "oes_media_author_attribution",
+        "description",
+        "date",
+        "caption"
+      ],
+      "image": {
+        "title": {
+          "labels": {
+            "language0": "",
+            "language1": ""
+          }
+        },
+        "alt": {
+          "labels": {
+            "language0": "",
+            "language1": ""
+          }
+        },
+        "caption": {
+          "labels": {
+            "language0": "",
+            "language1": ""
+          }
+        },
+        "description": {
+          "labels": {
+            "language0": "",
+            "language1": ""
+          }
+        },
+        "date": {
+          "labels": {
+            "language0": "",
+            "language1": ""
+          }
+        }
+      }
     },
     "theme_index": {
       "label": "Index",
@@ -2925,18 +2969,6 @@
         "location": "Single view, notes header",
         "language1": "Endnoten",
         "language0": "Notes"
-      },
-      "search__navigation__label": {
-        "name": "Search Navigation: Label",
-        "location": "Search label in navigation",
-        "language1": "Suche",
-        "language0": "Search"
-      },
-      "search__navigation__text": {
-        "name": "Search Navigation Panel: Text",
-        "location": "Search panel triggered by navigation",
-        "language1": "Suche in der OES Demo Encyclopedia",
-        "language0": "Search the OES Demo Encyclopedia"
       },
       "search__result__label": {
         "name": "Search Result: Header",
@@ -2984,22 +3016,12 @@
     "search": {
       "postmeta_fields": {
         "page": [
-          "title",
           "content"
         ],
         "demo_article": [
           "title",
           "content",
-          "field_demo_article__title_sort",
           "field_demo_article__excerpt"
-        ],
-        "demo_contributor": [
-          "field_demo_contributor__surname",
-          "title"
-        ],
-        "demo_glossary_entry": [
-          "content",
-          "field_demo_glossary__title"
         ]
       }
     },
@@ -3042,8 +3064,8 @@
     },
     "oes_args": {
       "label_translations": {
-        "language0": "Article Type",
-        "language1": "Artikeltyp"
+        "language0": "",
+        "language1": ""
       }
     },
     "taxonomy": "demo_article_type"
@@ -3124,8 +3146,8 @@
     },
     "oes_args": {
       "label_translations": {
-        "language0": "",
-        "language1": ""
+        "language0": "Times",
+        "language1": "Zeiträume"
       }
     },
     "taxonomy": "demo_times"

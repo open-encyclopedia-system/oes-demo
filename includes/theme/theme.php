@@ -41,3 +41,22 @@ function oes_demo_theme_redirect_taxonomy($taxonomy){
     }
 }
 
+
+/* Display all languages for demo archives */
+add_action('oes/theme_redirect_index', 'oes_demo_theme_action_template_redirect', 10, 3);
+
+/**
+ * Add language before redirecting archive pages.
+ *
+ * @param string $currentURL The current url.
+ * @param string $language The current language.
+ * @param bool $switch The language switch.
+ */
+function oes_demo_theme_action_template_redirect($currentURL, $language, $switch){
+    global $oes;
+    if (!is_admin() &&
+        (is_archive() || ($currentURL === get_site_url() . '/' . ($oes->theme_index['slug'] ?? 'index') . '/'))){
+        global $language;
+        $language = 'all';
+    }
+}
