@@ -2559,7 +2559,7 @@
       "label": "Places",
       "labels": {
         "singular_name": "Place",
-        "plural": "Times"
+        "plural": "Places"
       },
       "description": "Post type to describe properties of a place, including name, authorative data etc. Also used to build an index for encyclopaedic entries.",
       "public": true,
