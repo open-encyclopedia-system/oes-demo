@@ -5,6 +5,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 use function OES\ACF\oes_get_field;
 use function OES\Figures\oes_get_modal_image;
 use function OES\get_post_dtm_parts_from_array;
+use function OES\Versioning\get_parent_id;
 
 /**
  * Class Demo_Article
@@ -39,7 +40,8 @@ if (class_exists('OES_Post')) :
         //Overwrite parent
         function set_language(string $language)
         {
-            $this->language = oes_get_post_language($this->parent_ID) ?? $language;
+            $tempParent = get_parent_id($this->object_ID);
+            if($tempParent) $this->language = oes_get_post_language($tempParent) ?? $language;
         }
 
 
@@ -191,6 +193,20 @@ if (class_exists('OES_Post')) :
                     $this->theme_labels['single__toc__header_toc'][$this->language] ?? 'Table of Contents']);
 
             return $contentArray;
+        }
+
+
+        // Overwrite parent function
+        function modify_metadata($field, $loop): array
+        {
+            /* replace cc licence with link */
+            if ($field['key'] === 'field_demo_article__licence_type')
+                $field['value-display'] = sprintf('<a href="%s" target="_blank">%s</a>',
+                    $field['value'],
+                    $field['value-display']
+                );
+
+            return $field;
         }
 
 

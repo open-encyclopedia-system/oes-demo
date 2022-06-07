@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
  * Plugin Name: OES Demo
  * Plugin URI: http://www.open-encyclopedia-system.org/
  * Description: Plugin to implement the OES Core Plugin.
- * Version: 1.0
+ * Version: 1.1
  * Author: Maren Strobl, Freie Universität Berlin, Center für Digitale Systeme an der Universitätsbibliothek
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -59,11 +59,11 @@ add_action('oes/plugins_loaded', function () {
             $oes->path_project_plugin . '/includes/datamodel.json'
         ];
 
+        /* add language options to page */
+        oes_add_language_field_to_page();
 
-        /** Add styling and scripts for admin layer --------------------------------------------------------------------
-         * This will initialize the css and js options inside the admin layer. ---------------------------------------*/
+        /** Add styling and scripts ----------------------------------------------------------------------------------*/
         $oes->assets->add_project_style('oes-demo-theme', '/assets/css/theme.css');
-        $oes->assets->add_project_script('oes-demo-theme', '/assets/js/theme.js');
 
 
         /** Include theme classes --------------------------------------------------------------------------------------

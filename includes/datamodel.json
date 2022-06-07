@@ -61,8 +61,8 @@
         "parent"
       ],
       "label_translations": {
-        "language0": "",
-        "language1": ""
+        "language0": "Article",
+        "language1": "Artikel"
       },
       "display_titles": {
         "title_display": "field_demo_article__title",
@@ -549,8 +549,8 @@
         "date_modified"
       ],
       "label_translations": {
-        "language0": "",
-        "language1": ""
+        "language0": "Article (Parent)",
+        "language1": "Artikel (Parent)"
       },
       "display_titles": {
         "title_display": "wp-title",
@@ -662,8 +662,8 @@
       },
       "admin_columns": [],
       "label_translations": {
-        "language0": "",
-        "language1": ""
+        "language0": "Bibliographic Entry",
+        "language1": "Bibliographische Eintrag"
       },
       "display_titles": {
         "title_display": "wp-title",
@@ -1322,8 +1322,8 @@
         "date_modified"
       ],
       "label_translations": {
-        "language0": "",
-        "language1": ""
+        "language0": "Contributor",
+        "language1": "Autor:in"
       },
       "display_titles": {
         "title_display": "wp-title",
@@ -1754,8 +1754,8 @@
         "date_modified"
       ],
       "label_translations": {
-        "language0": "",
-        "language1": ""
+        "language0": "Glossary Entry",
+        "language1": "Glossareintrag"
       },
       "display_titles": {
         "title_display": "wp-title",
@@ -1937,8 +1937,8 @@
         "date_modified"
       ],
       "label_translations": {
-        "language0": "",
-        "language1": ""
+        "language0": "Institution",
+        "language1": "Institution"
       },
       "display_titles": {
         "title_display": "wp-title",
@@ -2243,8 +2243,8 @@
         "date_modified"
       ],
       "label_translations": {
-        "language0": "",
-        "language1": ""
+        "language0": "Person",
+        "language1": "Person"
       },
       "display_titles": {
         "title_display": "wp-title",
@@ -2609,8 +2609,8 @@
         "date_modified"
       ],
       "label_translations": {
-        "language0": "",
-        "language1": ""
+        "language0": "Place",
+        "language1": "Ort"
       },
       "display_titles": {
         "title_display": "wp-title",
@@ -3011,6 +3011,24 @@
         "location": "Search results, result table header",
         "language1": "Vorkommnisse",
         "language0": "Occurrences"
+      },
+      "404__header": {
+        "name": "404 Page Not Found, Header",
+        "location": "Page not found, tab header",
+        "language0": "Page not found",
+        "language1": "Seite nicht gefunden"
+      },
+      "404__search_text": {
+        "name": "404 Page Not Found, Search Text",
+        "location": "Page not found, search text",
+        "language0": "Page not found",
+        "language1": "Seite nicht gefunden"
+      },
+      "404_page_content": {
+        "name": "404 Page Not Found, Content",
+        "location": "Page not found, content",
+        "language0": "",
+        "language1": ""
       }
     },
     "search": {
@@ -3064,8 +3082,8 @@
     },
     "oes_args": {
       "label_translations": {
-        "language0": "",
-        "language1": ""
+        "language0": "Article Type",
+        "language1": "Artikeltyp"
       }
     },
     "taxonomy": "demo_article_type"
@@ -3105,8 +3123,8 @@
     },
     "oes_args": {
       "label_translations": {
-        "language0": "Keywords",
-        "language1": "Schlagworte"
+        "language0": "Keyword",
+        "language1": "Schlagwort"
       }
     },
     "taxonomy": "demo_subject"
