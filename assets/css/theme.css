@@ -1,52 +1,54 @@
+/**
+* Styling class for theme. Usually this would be part of the project theme's style.css.
+*/
 
 /* ---------------------------------------------------------------------------------------------------------------------
 -- BLOCKS --- ----------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------*/
 
-
 /* OES Card */
-
-.oes-demo-card-container .wp-block-group__inner-container {
-    justify-content: space-between;
-    padding-bottom: 3rem;
-    padding-top:1rem;
+.oes-demo-card-container {
+    gap: 1rem;
 }
 
-@media (min-width: 1200px) {
-
-    .oes-demo-card-container .wp-block-group__inner-container {
-        display:flex;
-    }
-
-    .oes-demo-card-container .oes-card:first-child {
-        margin-left:0;
-    }
-
-    .oes-demo-card-container .oes-card:last-child {
-        margin-right: 0;
-    }
+.oes-card-wrapper,
+.oes-card {
+    height: 100%;
 }
 
-@media (max-width: 1200px) {
+.oes-card-img img {
+    height: 215px;
+    object-fit: cover;
+    object-position: 0 0;
+}
+
+.oes-card-header {
+    color: var(--oes-primary);
+}
+
+@media (max-width: 781px) {
+
+    .oes-demo-card-container {
+        margin-bottom: 0 !important;
+    }
+
+    .oes-card-wrapper {
+        padding-bottom: 2rem;
+    }
 
     .oes-card {
-        margin-bottom: 2rem !important;
+        flex-direction: row !important;
+    }
+
+    a.oes-card-img {
+        border-bottom: none !important;
+        border-right: 1px solid grey;
+        width: 30% !important;
+        min-width: 30% !important;
     }
 }
 
 
-a.oes-card-img {
-    border-bottom: 1px solid var(--oes-dark)
-}
-
-.oes-card-overlay {
-    background-color:var(--oes-primary);
-}
-
-.oes-card h2 {
-    color: var(--oes-primary);
-    text-transform: uppercase;
-}
 
 
 /* ---------------------------------------------------------------------------------------------------------------------
@@ -58,46 +60,111 @@ a.oes-card-img {
     color: var(--oes-primary-contrast);
 }
 
-.oes-demo-frontpage-first-block {
-    padding: 3rem 0 1rem;
-    margin-bottom: 5rem;
+.oes-background-white {
+    background-color: #fff;
+    padding: .5rem 0 2rem;
+    margin-top: 1rem;
 }
 
-.oes-demo-frontpage-first-block .wp-block-column:first-child {
-    padding-right: 3rem;
-}
-
-.oes-demo-frontpage-first-block a {
+.oes-background-primary-color a {
     color: white;
     text-decoration: underline;
     white-space: nowrap;
 }
 
-.oes-demo-frontpage-first-block img {
-    width:100%;
-    height: 100%;
-    float:right;
-    padding:1rem 0;
+.oes-background-primary-color a:hover {
+    color: var(--oes-dark);
 }
 
-.oes-demo-featured-post {
-    margin-bottom: 5rem;
+
+/* ---------------------------------------------------------------------------------------------------------------------
+-- POST  ---------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------*/
+
+.oes-page-title a {
+    color: var(--oes-primary-contrast);
 }
 
+.oes-post-indirect-header {
+    padding-bottom: 1rem;
+    color: var(--oes-darker);
+}
+
+/* ---------------------------------------------------------------------------------------------------------------------
+-- ARCHIVE  ------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------*/
+
+ul.oes-active-filter li a {
+    background-color: var(--oes-contrast) !important;
+    color: var(--oes-primary-contrast) !important;
+}
+
+ul.oes-active-filter-container-list li, ul.oes-active-filter li {
+    display: inline-block;
+    padding-bottom: .5rem;
+}
 
 /* ---------------------------------------------------------------------------------------------------------------------
 -- ARTICLE  ------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------*/
 
-.oes-article-sub-line {
-    padding: 2rem 0;
-    color: var(--oes-dark);
-    font-weight:lighter;
+/* Featured Post Card (Frontpage) */
+.oes-featured-article-card {
+    width: 100%;
+    display: flex;
+    margin-top: 1.5rem;
+    border: 1px solid rgba(0, 0, 0, .125);
+    font-size: .9rem;
 }
 
-.oes-article-author-by {
-    font-weight:lighter;
-    padding-right:0.625rem;
+.oes-featured-article-card .btn {
+    font-size: .9rem;
+}
+
+.oes-featured-article-card img {
+    width: 30%;
+    object-fit: cover;
+    border-right: 1px solid var(--oes-dark);
+}
+
+.oes-featured-article-card-body {
+    padding: 1.5rem;
+}
+
+.oes-featured-article-card-body .oes-content-table-header {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.oes-featured-article-card-body p {
+    padding: 1rem 0;
+}
+
+/* Single */
+.oes-subheader-title-container.oes-show-on-shrink .oes-page-title-text .oes-article-author-by {
+    text-transform: capitalize;
+}
+
+.oes-subheader-title-container.oes-show-on-shrink .oes-page-title-text a {
+    color: var(--oes-primary-contrast);
+}
+
+.oes-subheader-title-container.oes-show-on-shrink a:hover {
+    color: var(--oes-background)
+}
+
+.oes-demo-cover-info {
+    border-bottom: 1px solid var(--oes-background);
+    padding-bottom: 1rem;
+}
+
+.oes-demo-article-content .oes-content-table-header {
+    color: var(--oes-primary);
+}
+
+.oes-article-sub-line {
+    padding-bottom: 1rem;
+    color: var(--oes-darker);
 }
 
 .oes-article-sub-line ul.oes-field-value-list,
@@ -113,13 +180,9 @@ a.oes-card-img {
     margin: 0
 }
 
-.oes-article-sub-line ul.oes-field-value-list li:after {
-    content: ', ';
-}
-
 .oes-article-sub-line ul.oes-horizontal-list li:after {
     content: '|';
-    padding: 0 .5rem;
+    padding: 0 .25rem;
 }
 
 .oes-article-sub-line ul.oes-field-value-list li:last-child:after,
@@ -127,83 +190,64 @@ a.oes-card-img {
     content: none;
 }
 
-.oes-article-sub-line ul.oes-field-value-list li a {
-    font-size: 17px;
-}
-
-.oes-article-versions-toggle {
-    position:relative;
-}
-
-.oes-article-versions-toggle > a:after {
-    font-family: "FontAwesome", serif;
-    content: "\f0d7";
-    padding-left: .5rem;
-}
-
-.oes-article-versions-toggle > a[aria-expanded="true"]:after {
-    content: "\f0d8";
-}
-
 ul#oes-article-versions-ul {
     position: absolute;
-    top:1.5rem;
-    left:0;
+    top: 1.5rem;
+    left: 0;
     padding-inline-start: 0;
-    border: 1px solid var(--oes-primary);
+    border: 1px solid var(--oes-contrast);
     background-color: white;
     margin: 0 -8px -5px;
-    padding:5px 8px;
+    padding: 5px 8px;
 }
 
-/* article split view (with image and keywords to the right) */
-@media (min-width: 1200px) {
-    .oes-demo-article-split-view {
-        display: flex;
-    }
-
-    .oes-demo-article-split-view-content {
-        width: 75%;
-    }
-
-    .oes-demo-article-side-keywords {
-        width:25%;
-        padding-left:2rem
-    }
+.oes-reading-time-wrapper {
+    padding-bottom: 2rem;
 }
 
-
-
-
-/* Featured Post Card (Frontpage) */
-.oes-featured-article-card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 100%;
-    display:flex;
-    margin-top: 1.5rem;
+table.oes-metadata-table th {
+    white-space: nowrap;
 }
 
-.oes-featured-article-card img {
-    width:30%;
-    object-fit: cover;
-    border-right: 1px solid var(--oes-dark);
+/* further links */
+.oes-external-link {
+    border: 1px solid var(--oes-primary);
+    padding: 10px;
+    margin: 40px 0 50px;
 }
 
-.oes-featured-article-card-body {
-    padding: 1.5rem;
+/* Single: Sidebar */
+.oes-sidebar {
+    padding-left: 1rem;
 }
 
-.oes-featured-article-card-body h1.oes-content-table-header1 {
-    padding-top:0;
-    margin-top:0;
+.oes-sidebar .oes-sidebar-list-wrapper {
+    position: sticky;
+    top: 150px;
 }
 
-.oes-featured-article-card-body .btn {
-    margin-left:0;
+.oes-demo-expand-info-amount {
+    padding: 5px 10px;
+    color: var(--oes-text-black);
+    font-size: .8rem;
+    background-color: var(--oes-background);
+    border-radius: 25px;
+    margin-left: .5rem;
 }
 
-/* sidebar image */
-figure.oes-expand-image .fa-expand:hover {
+a.oes-sidebar-demo-article-trigger[aria-expanded="true"] {
+    color: var(--oes-contrast);
+}
+
+.oes-sidebar-demo-article-triggered {
+    padding: 1rem 0 2rem;
+}
+
+.oes-sidebar .oes-expand-image {
+    margin-top: 2rem;
+}
+
+figure.oes-expand-image .oes-expand-button:hover {
     background-color: var(--oes-contrast);
 }
 
@@ -213,59 +257,51 @@ figure.oes-expand-image .fa-expand:hover {
 
 figure.oes-expand-image figcaption {
     color: var(--oes-dark);
+    padding: 1rem 0;
 }
 
-/* connected terms */
-.oes-demo-article-side-keywords a.oes-post-term {
+.oes-demo-article-sidebar a.oes-post-term {
     color: var(--oes-contrast);
     background-color: var(--oes-background);
     padding: 6px 12px;
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
-    display:inline-block;
-    word-break: break-all
+    display: inline-block;
+    word-break: break-all;
+    font-size: .9rem;
 }
 
-/* further links */
-.oes-demo-external-link {
-    border: 1px solid var(--oes-primary);
-    padding: 10px;
-    margin: 40px 0 50px;
-}
-
-.oes-demo-external-link a:after {
-    content: '\f061';
-    font-family: "FontAwesome", serif;
-    float: right;
+.oes-demo-article-sidebar a.oes-post-term:hover {
+    color: var(--oes-primary-contrast);
+    background-color: var(--oes-contrast);
 }
 
 /* Archive */
-.oes-demo-article-archive-language {
-    text-transform: uppercase;
+.oes-demo-article-archive-language,
+.oes-demo-article-archive-occurrences {
     color: var(--oes-dark);
     font-size: 0.8rem;
     margin-left: .25rem;
 }
 
+.oes-demo-article-archive-occurrences {
+    color: var(--oes-contrast);
+}
+
+.oes-demo-article-archive-authors {
+    font-size: .9rem;
+}
+
 .oes-demo-article-archive-authors-by {
-    padding-right: .5rem;
-    text-transform: uppercase;
+    padding-right: .25rem;
     color: var(--oes-dark);
-    font-size: 0.8rem;
+    font-size: .9rem;
 }
 
 
 /* ---------------------------------------------------------------------------------------------------------------------
--- AUTHOR --------------------------------------------------------------------------------------------------------------
+-- CONTRIBUTOR ------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------*/
-
-.oes-demo-author-articles-table-wrapper {
-    padding-top:.5rem;
-}
-
-.oes-demo-author-articles-table {
-    margin-bottom: 2rem;
-}
 
 
 /* ---------------------------------------------------------------------------------------------------------------------
@@ -281,12 +317,10 @@ ul.oes-field-value-list.oes-demo-glossary-connected-articles li:after {
 }
 
 .oes-demo-glossary-archive-connected-articles-metainfo {
-    text-transform: uppercase;
     color: var(--oes-dark);
     font-size: 0.8rem;
     margin-left: .25rem;
 }
-
 
 /* ---------------------------------------------------------------------------------------------------------------------
 -- INDEX POST ----------------------------------------------------------------------------------------------------------
@@ -296,4 +330,36 @@ ul.oes-field-value-list.oes-demo-glossary-connected-articles li:after {
     font-size: 0.9rem;
     color: var(--oes-dark);
     padding-left: 5px;
+}
+
+.oes-demo-index-table .oes-article-author-by {
+    padding-right: 5px;
+    color: var(--oes-dark);
+}
+
+.oes-demo-index-connection.oes-post-filter-wrapper {
+    padding: 0;
+}
+
+/* ---------------------------------------------------------------------------------------------------------------------
+-- SEARCH --------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------*/
+
+#oes-sidebar .wp-block-search__button-inside {
+    padding-top: 1rem;
+}
+
+#oes-sidebar .wp-block-search__inside-wrapper {
+    border: 1px solid var(--oes-primary);
+    padding:  0;
+}
+
+#oes-sidebar .wp-block-search__button {
+    padding: 5px;
+    border: none;
+    background-color: var(--oes-primary);
+}
+
+#oes-sidebar .wp-block-search__button svg path {
+    fill: var(--oes-primary-contrast);
 }

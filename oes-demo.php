@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
  * Plugin Name: OES Demo
  * Plugin URI: http://www.open-encyclopedia-system.org/
  * Description: Plugin to implement the OES Core Plugin.
- * Version: 1.1
+ * Version: 2.2
  * Author: Maren Strobl, Freie Universität Berlin, Center für Digitale Systeme an der Universitätsbibliothek
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -54,28 +54,29 @@ add_action('oes/plugins_loaded', function () {
         /** Prepare the project ----------------------------------------------------------------------------------------
          * This will initialize the project by building the data model and the admin configurations. -----------------*/
 
-        /* include data model */
-        $oes->path_data_model = [
-            $oes->path_project_plugin . '/includes/datamodel.json'
-        ];
-
         /* add language options to page */
-        oes_add_language_field_to_page();
+        oes_add_fields_to_page();
 
         /** Add styling and scripts ----------------------------------------------------------------------------------*/
         $oes->assets->add_project_style('oes-demo-theme', '/assets/css/theme.css');
+        if(function_exists('oes_map_HTML'))
+            $oes->assets->add_project_script('oes-demo-theme', '/assets/js/oes-demo.js');
 
 
         /** Include theme classes --------------------------------------------------------------------------------------
          * Include classes that prepare the objects inside this encyclopaedia for the frontend display. This classes
          * will be included for any theme and will be executed if the theme calls 'the_content()'. -------------------*/
-        oes_include_project('/includes/theme/theme.php');
-        oes_include_project('/includes/theme/post-types/article.class.php');
-        oes_include_project('/includes/theme/post-types/contributor.class.php');
-        oes_include_project('/includes/theme/post-types/glossary_entry.class.php');
-        oes_include_project('/includes/theme/post-types/person.class.php');
-        oes_include_project('/includes/theme/post-types/institute.class.php');
-        oes_include_project('/includes/theme/post-types/place.class.php');
+        oes_include_project('/includes/theme/hooks-theme.php');
+        oes_include_project('/includes/theme/post-types/class-demo_post.php');
+        oes_include_project('/includes/theme/post-types/class-demo_article.php');
+        oes_include_project('/includes/theme/post-types/class-demo_contributor.php');
+        oes_include_project('/includes/theme/post-types/class-demo_glossary_entry.php');
+        oes_include_project('/includes/theme/post-types/class-demo_person.php');
+        oes_include_project('/includes/theme/post-types/class-demo_institution.php');
+        oes_include_project('/includes/theme/post-types/class-demo_place.php');
+        oes_include_project('/includes/theme/post-types/class-demo_event.php');
+        oes_include_project('/includes/theme/taxonomies/class-demo_taxonomy.php');
+        oes_include_project('/includes/theme/taxonomies/class-t_demo_subject.php');
 
 
         /** Hide the WordPress update notifications and obsolete menu structure --------------------------------------*/
