@@ -24,7 +24,13 @@ OES Demo depends on the OES Core Plugin:
 4. Create your OES project plugin or download and activate the OES Demo plugin.
 5. (Optional) Download and activate the OES theme.
 
-If the installation was successful you will now see the menu "OES Settings" inside the WordPress admin interface in the navigation menu on the left (as well as custom post types such as "Articles", "Contributors", "Glossary Entries", etc.). Navigate to "OES Settings" / "Data Model" and use the button "Reload from Plugin Config" to import the ACF fields (this will only work if you have admin rights).  The OES Demo and its functionalities are now available inside your WordPress installation.
+If the installation was successful you will now see the menu "OES Settings" inside the WordPress admin interface in the 
+navigation menu on the left. Navigate to "OES Tools" / "Data Model" / "Config" and use the button 
+"Reload from Plugin Config" to import the post types and the ACF fields (this will only work if you have admin rights). 
+The OES Demo and its functionalities are now available inside your WordPress installation.
+
+If you are using an OES theme you might need to refresh the permalink structure. Navigation to the WordPress settings 
+via "Settings" / "Permalinks", choose a permalink structure (we recommend to use "post name") and save the settings, even if you have made no changes.
 
 You can start configuring by exploring the OES settings (documentation coming soon) or editing the model.json inside your project plugin.
 

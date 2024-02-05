@@ -9,14 +9,15 @@ if (class_exists('Demo_Post')) :
 
     class Demo_Place extends Demo_Post
     {
+
         //Overwrite parent
         function modify_content(array $contentArray): array
         {
-            if (function_exists('oes_map_HTML'))
-                $contentArray['300_map'] = oes_map_HTML([
+            /* include map representation if OES Module is active */
+            if (function_exists('oes_map_html'))
+                $contentArray['300_map'] = oes_map_html([
                     'ids' => $this->object_ID
                 ]);
-
             return $contentArray;
         }
     }

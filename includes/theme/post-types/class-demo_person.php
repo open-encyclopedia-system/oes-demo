@@ -13,6 +13,8 @@ if (class_exists('Demo_Post')) :
         //Overwrite parent
         function modify_metadata_array(array $metaFields): array
         {
+            global $oes_language;
+
             /* add biographical data */
             $birthValue = $this->fields['field_demo_person__birth']['value'];
             $birthPlaceValue = $this->fields['field_demo_person__birth_place']['value'];
@@ -21,14 +23,14 @@ if (class_exists('Demo_Post')) :
             if (!empty($birthValue) || !empty($birthPlaceValue) || !empty($deathValue) || !empty($deathPlaceValue)) {
 
                 $biographicalData = [];
-                if($birth = $this->concatenate_date_and_place($birthValue, $birthPlaceValue))
+                if ($birth = $this->concatenate_date_and_place($birthValue, $birthPlaceValue))
                     $biographicalData[] = $birth;
-                if($death = $this->concatenate_date_and_place($deathValue, $deathPlaceValue))
+                if ($death = $this->concatenate_date_and_place($deathValue, $deathPlaceValue))
                     $biographicalData[] = $death;
 
                 if (!empty($biographicalData))
                     $metaFields[] = [
-                        'label' => $this->theme_labels['single__metadata__biographical_data'][$this->language] ??
+                        'label' => $this->theme_labels['single__metadata__biographical_data'][$oes_language] ??
                             __('Biographical Data'),
                         'value' => implode(' — ', $biographicalData)
                     ];
@@ -47,7 +49,7 @@ if (class_exists('Demo_Post')) :
         function concatenate_date_and_place(string $date, string $place): string
         {
             $return = '';
-            if (!empty($date)) $return .= strftime("%d.%m.%Y", strtotime($date));
+            if (!empty($date)) $return .= oes_convert_date_to_formatted_string($date, '', 2);
             if (!empty($place)) $return .= (!empty($return) ? ', ' : '') . $place;
             return $return;
         }

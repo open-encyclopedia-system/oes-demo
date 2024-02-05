@@ -1,13 +1,11 @@
 <?php
 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
-
 /**
  * Plugin Name: OES Demo
  * Plugin URI: http://www.open-encyclopedia-system.org/
  * Description: Plugin to implement the OES Core Plugin.
- * Version: 2.2
- * Author: Maren Strobl, Freie Universität Berlin, Center für Digitale Systeme an der Universitätsbibliothek
+ * Version: 2.3.0
+ * Author: Maren Welterlich-Strobl, Freie Universität Berlin, Center für Digitale Systeme an der Universitätsbibliothek
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  *
@@ -57,26 +55,20 @@ add_action('oes/plugins_loaded', function () {
         /* add language options to page */
         oes_add_fields_to_page();
 
-        /** Add styling and scripts ----------------------------------------------------------------------------------*/
-        $oes->assets->add_project_style('oes-demo-theme', '/assets/css/theme.css');
-        if(function_exists('oes_map_HTML'))
-            $oes->assets->add_project_script('oes-demo-theme', '/assets/js/oes-demo.js');
-
 
         /** Include theme classes --------------------------------------------------------------------------------------
          * Include classes that prepare the objects inside this encyclopaedia for the frontend display. This classes
          * will be included for any theme and will be executed if the theme calls 'the_content()'. -------------------*/
-        oes_include_project('/includes/theme/hooks-theme.php');
-        oes_include_project('/includes/theme/post-types/class-demo_post.php');
-        oes_include_project('/includes/theme/post-types/class-demo_article.php');
-        oes_include_project('/includes/theme/post-types/class-demo_contributor.php');
-        oes_include_project('/includes/theme/post-types/class-demo_glossary_entry.php');
-        oes_include_project('/includes/theme/post-types/class-demo_person.php');
-        oes_include_project('/includes/theme/post-types/class-demo_institution.php');
-        oes_include_project('/includes/theme/post-types/class-demo_place.php');
-        oes_include_project('/includes/theme/post-types/class-demo_event.php');
-        oes_include_project('/includes/theme/taxonomies/class-demo_taxonomy.php');
-        oes_include_project('/includes/theme/taxonomies/class-t_demo_subject.php');
+        oes_include_project('theme/post-types/class-demo_post.php');
+        oes_include_project('theme/post-types/class-demo_article.php');
+        oes_include_project('theme/post-types/class-demo_contributor.php');
+        oes_include_project('theme/post-types/class-demo_glossary_entry.php');
+        oes_include_project('theme/post-types/class-demo_person.php');
+        oes_include_project('theme/post-types/class-demo_institution.php');
+        oes_include_project('theme/post-types/class-demo_place.php');
+        oes_include_project('theme/post-types/class-demo_event.php');
+        oes_include_project('theme/taxonomies/class-demo_taxonomy.php');
+        oes_include_project('theme/taxonomies/class-t_demo_subject.php');
 
 
         /** Hide the WordPress update notifications and obsolete menu structure --------------------------------------*/
@@ -84,10 +76,22 @@ add_action('oes/plugins_loaded', function () {
         oes_hide_obsolete_menu_structure();
 
 
+        /** Modify timeline ------------------------------------------------------------------------------------------*/
+        oes_include_project('theme/timeline.php');
+        add_filter('oes_timeline/start_date', 'oes_demo__timeline_date', 10, 2);
+        add_filter('oes_timeline/end_date', 'oes_demo__timeline_date', 10, 2);
+
+
         /* Initialize the project ------------------------------------------------------------------------------------*/
         try {
             $oes->initialize_project();
         } catch (Exception $e) {
+            add_action('admin_notices', function () use ($e) {
+                echo '<div class="notice notice-warning is-dismissible"><p>' .
+                    __('The OES Core Plugin could not be initialized.', 'oes-demo') . '</p>' .
+                    $e->getMessage() .
+                    '</div>';
+            });
         }
     }
-}, 10);
+});
