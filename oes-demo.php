@@ -6,6 +6,7 @@
  * Description: Plugin to implement the OES Core Plugin.
  * Version: 2.3.0
  * Author: Maren Welterlich-Strobl, Freie Universität Berlin, Center für Digitale Systeme an der Universitätsbibliothek
+ * Author URI: https://www.cedis.fu-berlin.de/cedis/mitarbeiter/beschaeftigte/mstrobl.html
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  *
@@ -24,6 +25,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+
+if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
 /** --------------------------------------------------------------------------------------------------------------------
  * This function will initialize the OES Demo Plugin and link it to the OES Core Plugin.
@@ -72,7 +75,6 @@ add_action('oes/plugins_loaded', function () {
 
 
         /** Hide the WordPress update notifications and obsolete menu structure --------------------------------------*/
-        oes_hide_update_notification();
         oes_hide_obsolete_menu_structure();
 
 

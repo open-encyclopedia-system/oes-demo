@@ -14,7 +14,7 @@ We are working on a detailed user manual and a technical function reference. Sup
 ### Dependencies
 
 OES Demo depends on the OES Core Plugin:
-* OES Core, version 2.2., URL: https://github.com/open-encyclopedia-system/oes-core.
+* OES Core, version 2.3.3., URL: https://github.com/open-encyclopedia-system/oes-core.
 
 ### Installation
 
@@ -29,10 +29,12 @@ navigation menu on the left. Navigate to "OES Tools" / "Data Model" / "Config" a
 "Reload from Plugin Config" to import the post types and the ACF fields (this will only work if you have admin rights). 
 The OES Demo and its functionalities are now available inside your WordPress installation.
 
-If you are using an OES theme you might need to refresh the permalink structure. Navigation to the WordPress settings 
+If you are using an OES theme you might need to refresh the permalink structure. Navigate to the WordPress settings 
 via "Settings" / "Permalinks", choose a permalink structure (we recommend to use "post name") and save the settings, even if you have made no changes.
 
 You can start configuring by exploring the OES settings (documentation coming soon) or editing the model.json inside your project plugin.
+
+You can add the demo data by using WordPress Importer, https://de.wordpress.org/plugins/wordpress-importer/, and the file demo.xml in this repository (stored in data folder).
 
 ## Support
 
