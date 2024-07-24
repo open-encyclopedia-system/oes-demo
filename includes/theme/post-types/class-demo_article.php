@@ -139,7 +139,7 @@ if (class_exists('Demo_Post')) :
             if ($image = $this->fields['field_demo_article__image']['value'] ?? false)
                 $sidebarItems['images'] = [
                     'label' => ($this->theme_labels['single__toc__header_images'][$this->language] ?? 'Images'),
-                    'content' => oes_get_modal_image($image),
+                    'content' => \OES\Figures\oes_get_modal_image($image),
                     'amount' => 1
                 ];
 
