@@ -1,14 +1,21 @@
 <?php
 
 /**
- * Plugin Name: OES Demo
- * Plugin URI: http://www.open-encyclopedia-system.org/
- * Description: Plugin to implement the OES Core Plugin.
- * Version: 2.3.0
- * Author: Maren Welterlich-Strobl, Freie Universität Berlin, Center für Digitale Systeme an der Universitätsbibliothek
- * Author URI: https://www.cedis.fu-berlin.de/cedis/mitarbeiter/beschaeftigte/mstrobl.html
- * License: GPLv2 or later
- * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Open Encyclopedia System DEMO
+ *
+ * @wordpress-plugin
+ * Plugin Name:        OES Demo
+ * Plugin URI:         https://www.open-encyclopedia-system.org/
+ * Description:        Demonstration plugin implementing and extending the OES Core plugin.
+ * Version:            2.3.1
+ * Author:             Maren Welterlich-Strobl, Freie Universität Berlin, FUB-IT
+ * Author URI:         https://www.it.fu-berlin.de/die-fub-it/mitarbeitende/mstrobl.html
+ * Requires at least:  6.5
+ * Tested up to:       6.8.2
+ * Requires PHP:       8.1
+ * Tags:               oes, demo, example, encyclopedia, open-access, digital-humanities, academic, wiki, lexicon, education
+ * License:            GPLv2 or later
+ * License URI:        https://www.gnu.org/licenses/gpl-2.0.html
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,7 +29,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
 
@@ -78,12 +85,6 @@ add_action('oes/plugins_loaded', function () {
         oes_hide_obsolete_menu_structure();
 
 
-        /** Modify timeline ------------------------------------------------------------------------------------------*/
-        oes_include_project('theme/timeline.php');
-        add_filter('oes_timeline/start_date', 'oes_demo__timeline_date', 10, 2);
-        add_filter('oes_timeline/end_date', 'oes_demo__timeline_date', 10, 2);
-
-
         /* Initialize the project ------------------------------------------------------------------------------------*/
         try {
             $oes->initialize_project();
@@ -96,4 +97,10 @@ add_action('oes/plugins_loaded', function () {
             });
         }
     }
+});
+
+
+/* Add timeline modification -----------------------------------------------------------------------------------------*/
+add_action('oes/timeline_plugin_loaded', function(){
+    include_once __DIR__ . '/includes/theme/class-demo_timeline_event.php';
 });

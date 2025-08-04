@@ -12,47 +12,48 @@ if (class_exists('Demo_Post')) :
 
     class Demo_Glossary_Entry extends Demo_Post
     {
-
-
-        // Overwrite parent function
-        function modify_metadata($field, $loop): array
+        /** @inheritdoc */
+        public function modify_metadata($field, $loop): array
         {
+            if ($field['key'] !== 'field_demo_glossary__glossary_article') {
+                return $field;
+            }
 
-            /* add more information about connected articles  */
-            if ($field['key'] == 'field_demo_glossary__glossary_article') {
+            global $oes_language;
 
-                global $oes_language;
+            $articles = [];
 
-                /* loop through articles */
-                $articles = [];
-                foreach ($field['value'] ?? [] as $article) {
+            foreach ($field['value'] ?? [] as $article_id) {
+                $metaString = '';
 
-                    /* prepare meta information */
-                    $metaString = '';
+                // Get post language of parent post of the article
+                $language = oes_get_post_language(get_parent_id($article_id)) ?: false;
 
-                    /* get language label from parent */
-                    $language = (oes_get_post_language(get_parent_id($article)) ?: false);
+                // Include article if language matches current language or is undefined
+                if (!$language || $language === $oes_language) {
 
-                    if(!$language || $language === $oes_language) {
-
-                        /* get version information */
-                        $version = get_version_field($article) ?: false;
-                        if ($version) $metaString .= 'Version ' . $version;
-
-                        /* add meta information to archive list */
-                        $title = oes_get_display_title($article);
-                        $articles[$title . $article] = '<a href="' . get_permalink($article) . '">' . $title . '</a>' .
-                            (!empty($metaString) ?
-                                '<span> (' . $metaString . ')</span>' :
-                                '');
+                    // Get version info if available
+                    $version = get_version_field($article_id) ?: false;
+                    if ($version) {
+                        $metaString .= 'Version ' . esc_html($version);
                     }
-                }
 
-                if(!empty($articles)) {
-                    ksort($articles);
-                    $field['value-display'] = '<ul class="oes-demo-glossary-connected-articles oes-vertical-list"><li>' .
-                        implode('</li><li>', $articles) . '</li></ul>';
+                    // Get display title safely
+                    $title = oes_get_display_title($article_id);
+                    $link = '<a href="' . esc_url(get_permalink($article_id)) . '">' . esc_html($title) . '</a>';
+
+                    $articles[$title . $article_id] = $link .
+                        (!empty($metaString) ? '<span> (' . $metaString . ')</span>' : '');
                 }
+            }
+
+            if (!empty($articles)) {
+
+                // Sort articles alphabetically by key (title + ID)
+                ksort($articles);
+
+                $field['value-display'] = '<ul class="oes-demo-glossary-connected-articles oes-vertical-list"><li>' .
+                    implode('</li><li>', $articles) . '</li></ul>';
             }
 
             return $field;

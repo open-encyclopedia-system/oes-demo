@@ -7016,6 +7016,12 @@
       }
     },
     "theme_labels": {
+      "archive__filter__all_button": {
+        "language0": "All",
+        "language1": "Alle",
+        "name": "Archive Filter, All button",
+        "location": "Archive Filter, e.g. index page"
+      },
       "404__header": {
         "language0": "Page not found",
         "language1": "Seite nicht gefunden",
@@ -7110,6 +7116,18 @@
         "name": "Search Result table Header, Occurrences",
         "location": "Search results, result table header",
         "classic": 2.3
+      },
+      "search__result__occurrence": {
+        "language0": "Occurrence",
+        "language1": "Vorkommnis",
+        "name": "Search Result table Header: Occurrences (Singular)",
+        "location": "Search results, result table header"
+      },
+      "search__result__occurrences": {
+        "language0": "Occurrences",
+        "language1": "Vorkommnisse",
+        "name": "Search Result table Header: Occurrences (Plural)",
+        "location": "Search results, result table header"
       },
       "search__see_term": {
         "language0": "See also: ",
@@ -7247,7 +7265,7 @@
         "instructions": "Internal field for post status."
       },
       "field_oes_comment": {
-        "label": "Comment",
+        "label": "Remarks",
         "instructions": "Internal comment."
       }
     }
