@@ -70,8 +70,3 @@ License as published by the Free Software Foundation; either version 2 of the Li
 version.
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
 warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-
-# Changelog
-
-## 2.3.1
-- remove field_demo_event__media
