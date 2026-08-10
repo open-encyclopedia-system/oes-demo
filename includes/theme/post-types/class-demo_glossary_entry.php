@@ -21,28 +21,34 @@ if (class_exists('Demo_Post')) :
 
             global $oes_language;
 
+            $relatedArticles = $field['value'] ?? [];
+            
+            if(!is_array($relatedArticles)) {
+                return $field;
+            }
+            
             $articles = [];
-
-            foreach ($field['value'] ?? [] as $article_id) {
+            
+            foreach ($relatedArticles as $articleID) {
                 $metaString = '';
 
                 // Get post language of parent post of the article
-                $language = oes_get_post_language(get_parent_id($article_id)) ?: false;
+                $language = oes_get_post_language(get_parent_id($articleID)) ?: false;
 
                 // Include article if language matches current language or is undefined
                 if (!$language || $language === $oes_language) {
 
                     // Get version info if available
-                    $version = get_version_field($article_id) ?: false;
+                    $version = get_version_field($articleID) ?: false;
                     if ($version) {
                         $metaString .= 'Version ' . esc_html($version);
                     }
 
                     // Get display title safely
-                    $title = oes_get_display_title($article_id);
-                    $link = '<a href="' . esc_url(get_permalink($article_id)) . '">' . esc_html($title) . '</a>';
+                    $title = oes_get_display_title($articleID);
+                    $link = '<a href="' . esc_url(get_permalink($articleID)) . '">' . esc_html($title) . '</a>';
 
-                    $articles[$title . $article_id] = $link .
+                    $articles[$title . $articleID] = $link .
                         (!empty($metaString) ? '<span> (' . $metaString . ')</span>' : '');
                 }
             }

@@ -61,21 +61,10 @@ if (class_exists('Demo_Post')) :
                 </figure>';
             }
 
-            // Return the combined block HTML
+            // Return the combined block HTML TODO
             return '<div class="wp-block-group">
-    <div class="wp-block-group" style="border-top-color:var(--wp--preset--color--background);border-top-width:4px;border-left-color:var(--wp--preset--color--background);border-left-width:4px;min-height:20px"></div>
-    <div class="wp-block-columns" style="border-bottom-color:var(--wp--preset--color--background);border-bottom-width:4px;padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
-        <div class="wp-block-column" style="padding-right:var(--wp--preset--spacing--30);flex-basis:33.33%">
-            ' . $imageHTML . '
-        </div>
-        <div class="wp-block-column" style="flex-basis:66.66%">
-            <h2 class="wp-block-heading">' . $title . '</h2>
+            <h5 class="wp-block-heading">' . $title . '</h5>
             ' . $authors . ($this->fields['field_demo_article__excerpt']['value-display'] ?? '') . '
-            <div class="wp-block-buttons">
-                <div class="wp-block-button">' . $readMoreButton . '</div>
-            </div>
-        </div>
-    </div>
 </div>';
         }
 
@@ -105,7 +94,7 @@ if (class_exists('Demo_Post')) :
                 )
                 : '';
 
-            // Prepare read more button
+            // Prepare read more button TODO
             $readMoreButton = oes_get_html_anchor(
                 ($this->theme_labels['button__read_more'][$this->language] ?? 'Read More'),
                 get_permalink($this->object_ID),
@@ -121,7 +110,7 @@ if (class_exists('Demo_Post')) :
                 </div>',
                 $imageHTML,
                 oes_get_html_anchor($this->title, get_permalink($this->object_ID)),
-                $authors . ($this->fields['field_demo_article__excerpt']['value-display'] ?? '') . $readMoreButton
+                $authors . ($this->fields['field_demo_article__excerpt']['value-display'] ?? '')
             );
         }
 
@@ -194,6 +183,55 @@ if (class_exists('Demo_Post')) :
                 echo oes_print_button_html();
                 echo '</div></div>';
             }
+        }
+
+        public function get_author_info($args = []): string
+        {
+            $authorsArray = [];
+            if (is_string($args)) $authorsArray[] = $this->fields[$args]['value-display'] ?? '';
+            foreach ($args['authors'] ?? [] as $authorFieldKey) {
+                if (str_starts_with($authorFieldKey, 'parent__')) {
+                    $fieldValue = oes_get_field_display_value(
+                        substr($authorFieldKey, 8),
+                        $this->parent_ID,
+                        ['list-class' => 'oes-field-value-list']);
+                    if (!empty($fieldValue)) $authorsArray[] = $fieldValue;
+                } elseif(is_array($this->fields[$authorFieldKey]['value'] ?? [])) {
+                   /* $authorsArray[] = $this->check_if_field_not_empty($authorFieldKey) ?
+                        $this->fields[$authorFieldKey]['value-display'] :
+                        '';*/
+
+                    $singleAuthors = '';
+                    foreach ($this->fields[$authorFieldKey]['value'] ?? [] as $authorID) {
+
+                        $orcidID = oes_get_field('field_demo_contributor__orcid_id', $authorID);
+                        if(empty($orcidID)) $orcidID = '0000-1234-5678-9000';
+
+                        $singleAuthors .= sprintf('<li><div><b><a href="%s">%s</a></b></div><div><a href="https://orcid.org/%s" class="oes-orcid">https://orcid.org/%s</a></div></li>',
+                        get_permalink($authorID),
+                        oes_get_display_title($authorID),
+                            $orcidID,
+                            $orcidID,
+                        );
+                    }
+
+                    $authorsArray[] = '<ul class="oes-field-value-list" >' . $singleAuthors . '</ul>';
+
+                }
+            }
+
+            /* return early on empty data */
+            if (empty($authorsArray)) return '';
+            $authorsString = implode(', ', $authorsArray);
+            if (empty($authorsString)) return '';
+
+            /* prepare prefix */
+            $prefix = ''; //todo $this->get_label($args['labels'] ?? [], 'single__sub_line__author_by', '');
+
+            return '<div class="' . ($args['className'] ?? '') . ' oes-author-byline">' .
+                ($prefix ? '<span class="oes-author-byline-by">' . $prefix . '</span>' : '') .
+                $authorsString .
+                '</div>';
         }
 
     }
