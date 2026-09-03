@@ -7005,7 +7005,7 @@
     },
     "theme_index_pages": {
       "index0": {
-        "slug": "index",
+        "slug": "register",
         "element": [
           "demo_article"
         ],

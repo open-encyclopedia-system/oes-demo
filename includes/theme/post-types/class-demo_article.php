@@ -184,55 +184,5 @@ if (class_exists('Demo_Post')) :
                 echo '</div></div>';
             }
         }
-
-        public function get_author_info($args = []): string
-        {
-            $authorsArray = [];
-            if (is_string($args)) $authorsArray[] = $this->fields[$args]['value-display'] ?? '';
-            foreach ($args['authors'] ?? [] as $authorFieldKey) {
-                if (str_starts_with($authorFieldKey, 'parent__')) {
-                    $fieldValue = oes_get_field_display_value(
-                        substr($authorFieldKey, 8),
-                        $this->parent_ID,
-                        ['list-class' => 'oes-field-value-list']);
-                    if (!empty($fieldValue)) $authorsArray[] = $fieldValue;
-                } elseif(is_array($this->fields[$authorFieldKey]['value'] ?? [])) {
-                   /* $authorsArray[] = $this->check_if_field_not_empty($authorFieldKey) ?
-                        $this->fields[$authorFieldKey]['value-display'] :
-                        '';*/
-
-                    $singleAuthors = '';
-                    foreach ($this->fields[$authorFieldKey]['value'] ?? [] as $authorID) {
-
-                        $orcidID = oes_get_field('field_demo_contributor__orcid_id', $authorID);
-                        if(empty($orcidID)) $orcidID = '0000-1234-5678-9000';
-
-                        $singleAuthors .= sprintf('<li><div><b><a href="%s">%s</a></b></div><div><a href="https://orcid.org/%s" class="oes-orcid">https://orcid.org/%s</a></div></li>',
-                        get_permalink($authorID),
-                        oes_get_display_title($authorID),
-                            $orcidID,
-                            $orcidID,
-                        );
-                    }
-
-                    $authorsArray[] = '<ul class="oes-field-value-list" >' . $singleAuthors . '</ul>';
-
-                }
-            }
-
-            /* return early on empty data */
-            if (empty($authorsArray)) return '';
-            $authorsString = implode(', ', $authorsArray);
-            if (empty($authorsString)) return '';
-
-            /* prepare prefix */
-            $prefix = ''; //todo $this->get_label($args['labels'] ?? [], 'single__sub_line__author_by', '');
-
-            return '<div class="' . ($args['className'] ?? '') . ' oes-author-byline">' .
-                ($prefix ? '<span class="oes-author-byline-by">' . $prefix . '</span>' : '') .
-                $authorsString .
-                '</div>';
-        }
-
     }
 endif;
