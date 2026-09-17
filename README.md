@@ -1,72 +1,80 @@
-# Open Encyclopedia System Plugin
-Welcome to the Open Encyclopedia System (OES) Demo repository on GitHub.  
-OES is a modular and configurable software platform for creating, publishing, and maintaining online encyclopedias in the humanities and social sciences. It is designed to be accessible worldwide through Open Access.
+# Open Encyclopedia System — Demo Plugin
 
-For more information, please visit the [main repository](https://github.com/open-encyclopedia-system) or our [website](https://open-encyclopedia-system.org).
+This repository contains the **OES Demo** plugin: an exemplary and fictional online encyclopedia built with the
+[Open Encyclopedia System (OES)](https://github.com/open-encyclopedia-system/oes-core) framework, giving you a
+first-hand look at OES's editorial and front-end functionality without setting up your own application first.
+
+For general information about OES — what it is, its features, citation, contributing, credits, and licensing —
+see the [OES Core README](https://github.com/open-encyclopedia-system/oes-core#readme).
 
 A typical OES application consists of:
-- the **OES Core plugin**
-- a **project-specific OES plugin**, such as this OES Demo plugin
-
-The **OES Demo** plugin is an exemplary and fictional online encyclopaedia created with the OES framework to provide users a first-hand experience of OES functionalities and features.
+- the **OES Core** plugin
+- an application-specific OES plugin, such as this **OES Demo** plugin
+- an optional OES Theme, such as the **OES Block Theme**
 
 ## Dependencies
+
 The OES Demo depends on:
 
-- **OES Core**, version `2.3.3`  
-  Repository: [https://github.com/open-encyclopedia-system/oes-core](https://github.com/open-encyclopedia-system/oes-core)
-
-- **Advanced Custom Fields (ACF)**, version `6.3.4`  
-  Website: [https://www.advancedcustomfields.com](https://www.advancedcustomfields.com)
+| Component                    | Version | Source                                                           |
+|------------------------------|---------|------------------------------------------------------------------|
+| OES Core                     | `3.0.0` | [oes-core](https://github.com/open-encyclopedia-system/oes-core) |
+| Advanced Custom Fields (ACF) | `6.3.4` | [advancedcustomfields.com](https://www.advancedcustomfields.com) |
 
 ## Installation
-1. Download the OES plugin from GitHub and add it to your WordPress plugin directory.
-2. Download and activate the dependencies:
-  - **OES Core** (see above)
-  - **Advanced Custom Fields (ACF)**
-3. Activate the OES plugin.
-4. Create your own OES project plugin, or download and activate the OES Demo plugin.
-5. *(Optional)* Download and activate the OES theme.
 
-If the installation was successful, you will now see the "OES Settings" menu in the WordPress admin interface on the left.  
-Navigate to **"OES Tools" > "Data Model" > "Config"** and click **"Reload from Plugin Config"** to import post types and ACF fields (this requires admin privileges).
+To get OES running locally or on a server, follow these steps:
+
+1. **Install WordPress** on your system.
+2. **Download and activate the required plugins**:
+   - [OES Core Plugin](https://github.com/open-encyclopedia-system/oes-core)
+   - [OES Demo Plugin](https://github.com/open-encyclopedia-system/oes-demo)
+   - [Advanced Custom Fields (ACF)](https://www.advancedcustomfields.com/)
+3. (Optional) **Download and activate the** [OES Theme](https://github.com/open-encyclopedia-system/oes-block-theme)
+
+If the installation was successful, you will now see the **OES** and **OES Tools** menu in the WordPress admin sidebar.
+Navigate to **OES Tools → Data Model → Config** and click **Reload from Plugin Config** to import post types and
+ACF fields (this requires admin privileges).
 
 The OES Demo and its functionalities are now available in your WordPress installation.
 
-If you're using an OES theme, you may need to refresh the permalink structure:
-- Go to **Settings > Permalinks**
+> For a guided and more detailed setup, see the [OES Manual Installation & Einrichtung](https://manual.open-encyclopedia-system.org/) *(German)*.
+
+### Permalinks
+
+If you're using an OES Theme, refresh the permalink structure:
+- Go to **Settings → Permalinks**
 - Choose a permalink structure (we recommend **"Post name"**)
 - Save the settings — even if no changes were made.
 
-You can begin configuring by exploring the OES settings (documentation coming soon) or by editing the `model.json` file in your project plugin.
+### Importing demo content
 
-To import demo data, install the [WordPress Importer plugin](https://de.wordpress.org/plugins/wordpress-importer/) and use the `demo.xml` file located in the `data` folder of this repository.
+To import the demo data:
+1. Install the [WordPress Importer plugin](https://de.wordpress.org/plugins/wordpress-importer/).
+2. Use the `demo.xml` file located in the `data` folder of this repository.
 
-## Support
-This repository does **not** offer public support or issue tracking.  
-If you need help using the OES plugins, please contact our help desk:  
-**info@open-encyclopedia-system.org**
-
-For information about available modules, customization options, or help launching your own encyclopedia, visit:  
-[https://open-encyclopedia-system.org](https://open-encyclopedia-system.org)
+You can begin configuring by exploring the OES settings (documentation coming soon) or by editing the `model.json`
+file in this plugin.
 
 ## Documentation
-The full user and technical manual is available at:  
-[https://manual.open-encyclopedia-system.org/](https://manual.open-encyclopedia-system.org/)
 
-## Contributing
-If you are interested in contributing to OES development, please get in touch:  
+The full user and technical manual is available at:
+[OES Manual](https://manual.open-encyclopedia-system.org/) *(German)*
+
+Additional documentation for this plugin, in this repository:
+
+- [CHANGELOG.md](./CHANGELOG.md) — release history for the OES Demo plugin
+- [ROADMAP.md](./ROADMAP.md) — planned features for the OES Demo plugin
+
+## Support
+
+This repository does not offer public support or issue tracking. For help using the OES plugins, contact:
 **info@open-encyclopedia-system.org**
 
-## Credits
-Developed by **Digitale Infrastrukturen**, Freie Universität Berlin (FUB IT),  
-with support from the **German Research Foundation (DFG)**.
+For general OES information — contributing and credits — see the
+[OES Core README](https://github.com/open-encyclopedia-system/oes-core#readme).
 
-## Licencing
-Copyright (C) 2025
-Freie Universität Berlin, FUB IT, Digitale Infrastrukturen
-This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public
-License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later
-version.
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
-warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+## Licensing
+
+This software is licensed under the **GNU General Public License (GPL v2 or later)**. See [LICENSE.txt](./LICENSE.txt)
+for the full license terms, or [https://www.gnu.org/licenses/old-licenses/gpl-2.0.html](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).

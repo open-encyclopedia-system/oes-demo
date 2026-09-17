@@ -4,7 +4,6 @@
       "public": true,
       "menu_icon": "default",
       "has_archive": true,
-      "post_type": "demo_article",
       "advanced_configuration": false,
       "import_source": "",
       "import_date": "",
@@ -77,6 +76,7 @@
       "can_export": true,
       "delete_with_user": null,
       "register_meta_box_cb": null,
+      "enter_title_here": "",
       "label": "Articles",
       "capability_type": "post",
       "capabilities": [],
@@ -99,12 +99,12 @@
         "date_modified"
       ],
       "label_translations": {
-        "language0": "Article",
-        "language1": "Artikel"
+        "language0": "Artikel",
+        "language1": "Article"
       },
       "label_translations_plural": {
-        "language0": "Articles",
-        "language1": "Artikel"
+        "language0": "Artikel",
+        "language1": "Articles"
       },
       "display_titles": {
         "title_archive_display": "field_demo_article__title",
@@ -143,13 +143,13 @@
       "label": "",
       "theme_labels": [],
       "type": "single-article",
+      "schema": "ScholarlyArticle",
       "parent": "demo_article_p",
       "authors": [
         "field_demo_article__article_author"
       ],
       "creators": [
-        "field_demo_article__article_contributor",
-        "field_demo_article__article_translator"
+        "field_demo_article__article_contributor"
       ],
       "subtitle": {
         "field": "none",
@@ -170,8 +170,8 @@
           {
             "string_value": "",
             "required": "false",
-            "prefix": "&#8222;",
-            "suffix": "&#8220;, ",
+            "prefix": "„",
+            "suffix": "“, ",
             "separator": "",
             "field_key": "field_demo_article__title",
             "fallback": "none"
@@ -186,7 +186,7 @@
             "fallback": "none"
           },
           {
-            "string_value": "[oes_language_label language0='In: OES Demo. Published by Center for Digital Systems, Freie Universität Berlin, ' language1='In: OES Demo. Publiziert vom Center für Digital Systems, Freie Universität Berlin, ']",
+            "string_value": "[oes_language_label language1='In: OES Demo. Published by Center for Digital Systems, Freie Universität Berlin, ' language0='In: OES Demo. Publiziert vom Center für Digital Systems, Freie Universität Berlin, ']",
             "required": "false",
             "prefix": "",
             "suffix": "",
@@ -213,13 +213,30 @@
       "terms": [
         "taxonomy__t_demo_subject"
       ],
-      "excerpt": "none",
+      "excerpt": "field_demo_article__excerpt",
       "featured_image": "field_demo_article__image",
-      "external": false,
+      "external": [],
       "literature": [
         "field_demo_article__bib",
         "field_demo_article__further_literature"
-      ]
+      ],
+      "status": "none",
+      "doi": "field_demo_article__doi",
+      "schema_type": "ScholarlyArticle",
+      "relations": [
+        "field_demo_article__article_event",
+        "field_demo_article__article_place",
+        "field_demo_article__article_person",
+        "field_demo_article__article_institution"
+      ],
+      "related_content": [
+        "field_demo_article__article_glossary",
+        "field_demo_article__article_articles"
+      ],
+      "translators": [
+        "field_demo_article__article_translator"
+      ],
+      "editors": false
     },
     "acf_add_local_field_group": {
       "location": [
@@ -238,6 +255,7 @@
       "hide_on_screen": [],
       "description": "",
       "show_in_rest": false,
+      "display_title": "",
       "fields": [
         {
           "key": "field_oes_tab_editorial",
@@ -254,9 +272,10 @@
             "id": ""
           },
           "placement": "left",
-          "label_translation_language0": "Editorial",
           "label_translation_language1": "Editorial",
-          "endpoint": 0
+          "label_translation_language0": "Editorial",
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_oes_status",
@@ -264,7 +283,6 @@
           "name": "field_oes_status",
           "aria-label": "",
           "type": "select",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -282,14 +300,16 @@
             "admin_mode": "Admin Mode"
           },
           "default_value": "new",
+          "label_translation_language1": "Status",
           "label_translation_language0": "Status",
-          "label_translation_language1": "Status3",
           "multiple": 0,
           "allow_null": 0,
           "ui": 0,
           "ajax": 0,
           "placeholder": "",
-          "return_format": "value"
+          "return_format": "value",
+          "create_options": 0,
+          "save_options": 0
         },
         {
           "key": "field_oes_comment",
@@ -297,7 +317,6 @@
           "name": "field_oes_comment",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -306,8 +325,8 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Comment",
           "label_translation_language1": "Comment",
+          "label_translation_language0": "Comment",
           "default_value": "",
           "new_lines": "",
           "maxlength": "",
@@ -328,10 +347,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Version",
           "label_translation_language1": "Version",
+          "label_translation_language0": "Version",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_oes_post_version",
@@ -339,7 +359,6 @@
           "name": "field_oes_post_version",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": true,
           "conditional_logic": false,
@@ -350,8 +369,8 @@
           },
           "default_value": "1.0",
           "pattern": [],
-          "label_translation_language0": "Version",
           "label_translation_language1": "Version",
+          "label_translation_language0": "Version",
           "maxlength": "",
           "placeholder": "",
           "prepend": "",
@@ -363,7 +382,6 @@
           "name": "field_demo_article__title",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -373,8 +391,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Title",
-          "label_translation_language1": "Titel",
+          "label_translation_language1": "Title",
+          "label_translation_language0": "Titel",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -387,7 +405,6 @@
           "name": "field_demo_article__title_sort",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -397,8 +414,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Title (Sorting)",
-          "label_translation_language1": "Titel (Sortierung)",
+          "label_translation_language1": "Title (Sorting)",
+          "label_translation_language0": "Titel (Sortierung)",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -411,7 +428,6 @@
           "name": "field_demo_article__doi",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -421,8 +437,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "DOI",
           "label_translation_language1": "DOI",
+          "label_translation_language0": "DOI",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -435,7 +451,6 @@
           "name": "field_demo_article__published",
           "aria-label": "",
           "type": "date_picker",
-          "value": null,
           "instructions": "Date of initial publication",
           "required": false,
           "conditional_logic": false,
@@ -447,8 +462,9 @@
           "display_format": "F j, Y",
           "return_format": "d.m.Y",
           "first_day": true,
-          "label_translation_language0": "Published",
-          "label_translation_language1": "Veröffentlicht"
+          "label_translation_language1": "Published",
+          "label_translation_language0": "Veröffentlicht",
+          "default_to_current_date": 0
         },
         {
           "key": "field_demo_article__latest_date",
@@ -456,7 +472,6 @@
           "name": "field_demo_article__latest_date",
           "aria-label": "",
           "type": "date_picker",
-          "value": null,
           "instructions": "Date of latest change",
           "required": false,
           "conditional_logic": false,
@@ -468,8 +483,9 @@
           "display_format": "F j, Y",
           "return_format": "d.m.Y",
           "first_day": true,
-          "label_translation_language0": "Last Edited",
-          "label_translation_language1": "Zuletzt bearbeitet"
+          "label_translation_language1": "Last Edited",
+          "label_translation_language0": "Zuletzt bearbeitet",
+          "default_to_current_date": 0
         },
         {
           "key": "field_demo_article__tab_contributor",
@@ -485,10 +501,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Contributors",
           "label_translation_language1": "Contributors",
+          "label_translation_language0": "Contributors",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_article__article_author",
@@ -496,7 +513,6 @@
           "name": "field_demo_article__article_author",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -512,8 +528,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Authors",
-          "label_translation_language1": "Autor:innen",
+          "label_translation_language1": "Authors",
+          "label_translation_language0": "Autor:innen",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_contributor__author_article"
@@ -529,7 +545,6 @@
           "name": "field_demo_article__article_contributor",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -545,8 +560,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Additional Authors",
-          "label_translation_language1": "Weitere Autor:innen",
+          "label_translation_language1": "Additional Authors",
+          "label_translation_language0": "Weitere Autor:innen",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_contributor__contributor_article"
@@ -562,7 +577,6 @@
           "name": "field_demo_article__article_translator",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -578,8 +592,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Translator(s)",
-          "label_translation_language1": "Übersetzer:innen",
+          "label_translation_language1": "Translator(s)",
+          "label_translation_language0": "Übersetzer:innen",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_contributor__translator_article"
@@ -603,10 +617,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Related Content",
           "label_translation_language1": "Related Content",
+          "label_translation_language0": "Related Content",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_article__article_person",
@@ -614,7 +629,6 @@
           "name": "field_demo_article__article_person",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -630,8 +644,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "People",
-          "label_translation_language1": "Personen",
+          "label_translation_language1": "People",
+          "label_translation_language0": "Personen",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_person__article"
@@ -647,7 +661,6 @@
           "name": "field_demo_article__article_institution",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -663,8 +676,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Institutions",
-          "label_translation_language1": "Institutionen",
+          "label_translation_language1": "Institutions",
+          "label_translation_language0": "Institutionen",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_institution__article"
@@ -680,7 +693,6 @@
           "name": "field_demo_article__article_place",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -696,8 +708,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Places",
-          "label_translation_language1": "Orte",
+          "label_translation_language1": "Places",
+          "label_translation_language0": "Orte",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_place__article"
@@ -713,7 +725,6 @@
           "name": "field_demo_article__article_event",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -729,8 +740,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Events",
-          "label_translation_language1": "Ereignisse",
+          "label_translation_language1": "Events",
+          "label_translation_language0": "Ereignisse",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_event__article"
@@ -746,7 +757,6 @@
           "name": "field_demo_article__article_glossary",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -762,8 +772,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Glossary Entries",
-          "label_translation_language1": "Glossareinträge",
+          "label_translation_language1": "Glossary Entries",
+          "label_translation_language0": "Glossareinträge",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_glossary__glossary_article"
@@ -779,7 +789,6 @@
           "name": "field_demo_article__article_articles",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -795,8 +804,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Related Articles",
-          "label_translation_language1": "Verwandte Artikel",
+          "label_translation_language1": "Related Articles",
+          "label_translation_language0": "Verwandte Artikel",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_article__article_articles"
@@ -820,10 +829,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Cite as",
           "label_translation_language1": "Cite as",
+          "label_translation_language0": "Cite as",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_article__licence_type",
@@ -831,7 +841,6 @@
           "name": "field_demo_article__licence_type",
           "aria-label": "",
           "type": "select",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -849,15 +858,17 @@
             "https:\/\/creativecommons.org\/licenses\/by-nc-sa\/4.0\/": "Attribution-NonCommercial-ShareAlike CC BY-NC-SA (4.0)",
             "https:\/\/creativecommons.org\/licenses\/by-nc-nd\/4.0\/": "Attribution-NonCommercial-NoDerivs CC BY-NC-ND (4.0)"
           },
-          "label_translation_language0": "Creative Commons Licence Type",
-          "label_translation_language1": "Creative Commons Lizenztyp",
+          "label_translation_language1": "Creative Commons Licence Type",
+          "label_translation_language0": "Creative Commons Lizenztyp",
           "display_option": "is_link",
           "multiple": 0,
           "default_value": false,
           "ui": 0,
           "ajax": 0,
           "placeholder": "",
-          "return_format": "value"
+          "return_format": "value",
+          "create_options": 0,
+          "save_options": 0
         },
         {
           "key": "field_demo_article__cite_as",
@@ -865,7 +876,6 @@
           "name": "field_demo_article__cite_as",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -874,8 +884,8 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Cite as",
-          "label_translation_language1": "Zitierweise",
+          "label_translation_language1": "Cite as",
+          "label_translation_language0": "Zitierweise",
           "default_value": "",
           "new_lines": "",
           "maxlength": "",
@@ -896,10 +906,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Excerpt",
           "label_translation_language1": "Excerpt",
+          "label_translation_language0": "Excerpt",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_article__excerpt",
@@ -907,7 +918,6 @@
           "name": "field_demo_article__excerpt",
           "aria-label": "",
           "type": "wysiwyg",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -917,8 +927,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Excerpt",
-          "label_translation_language1": "Exzerpt",
+          "label_translation_language1": "Excerpt",
+          "label_translation_language0": "Exzerpt",
           "tabs": "all",
           "toolbar": "full",
           "media_upload": 1,
@@ -931,7 +941,6 @@
           "name": "field_demo_article__image",
           "aria-label": "",
           "type": "image",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -941,8 +950,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Featured Image",
           "label_translation_language1": "Featured Image",
+          "label_translation_language0": "Featured Image",
           "return_format": "array",
           "preview_size": "medium",
           "library": "all",
@@ -968,10 +977,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Reference List",
           "label_translation_language1": "Reference List",
+          "label_translation_language0": "Reference List",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_article__bib",
@@ -979,7 +989,6 @@
           "name": "field_demo_article__bib",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -995,8 +1004,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Bibliographical Entries",
-          "label_translation_language1": "Literaturangaben",
+          "label_translation_language1": "Bibliographical Entries",
+          "label_translation_language0": "Literaturangaben",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_bib__articles"
@@ -1012,7 +1021,6 @@
           "name": "field_demo_article__further_literature",
           "aria-label": "",
           "type": "wysiwyg",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -1022,8 +1030,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Additonal References",
-          "label_translation_language1": "Weitere Referenzen",
+          "label_translation_language1": "Additonal References",
+          "label_translation_language0": "Weitere Referenzen",
           "tabs": "all",
           "toolbar": "full",
           "media_upload": 1,
@@ -1046,8 +1054,9 @@
           },
           "placement": "top",
           "endpoint": 0,
+          "label_translation_language1": "Version Control",
           "label_translation_language0": "Version Control",
-          "label_translation_language1": "Version Control"
+          "selected": 0
         },
         {
           "key": "field_oes_versioning_parent_post_demo_article",
@@ -1055,7 +1064,6 @@
           "name": "field_oes_versioning_parent_post",
           "aria-label": "",
           "type": "post_object",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -1073,32 +1081,19 @@
           "multiple": 0,
           "ui": 1,
           "bidirectional_target": [],
-          "label_translation_language0": "Parent Post",
-          "label_translation_language1": "Parent Post"
+          "label_translation_language1": "Parent Post",
+          "label_translation_language0": "Parent Post"
         }
       ],
       "title": "Article",
-      "key": "group_demo_article",
-      "acf_add_local_field_group": {
-        "fields": {
-          "1": {
-            "label_translation_language1": "Status7",
-            "label_translation_language0": "Status7"
-          },
-          "31": {
-            "label_translation_language0": "Parent Post",
-            "label_translation_language1": "Parent Post"
-          }
-        }
-      }
+      "key": "group_demo_article"
     }
   },
   "demo_article_p": {
     "register_args": {
-      "public": true,
+      "public": false,
       "menu_icon": "default",
       "has_archive": false,
-      "post_type": "demo_article_p",
       "advanced_configuration": false,
       "import_source": "",
       "import_date": "",
@@ -1168,6 +1163,7 @@
       "can_export": true,
       "delete_with_user": null,
       "register_meta_box_cb": null,
+      "enter_title_here": "",
       "label": "Article Parents",
       "capability_type": "post",
       "capabilities": [],
@@ -1182,12 +1178,12 @@
       "pattern_name": [],
       "admin_columns": [],
       "label_translations": {
-        "language0": "Article Parent",
-        "language1": "Artikel Parent"
+        "language1": "Article Parent",
+        "language0": "Artikel Parent"
       },
       "label_translations_plural": {
-        "language0": "Articles Parents",
-        "language1": "Artikel Parents"
+        "language1": "Articles Parents",
+        "language0": "Artikel Parents"
       },
       "display_titles": {
         "title_archive_display": "wp-title",
@@ -1202,7 +1198,8 @@
       "editorial_tab": false,
       "label": "",
       "theme_labels": [],
-      "type": "single-internal",
+      "type": "other",
+      "schema": "none",
       "version": "demo_article"
     },
     "acf_add_local_field_group": {
@@ -1222,6 +1219,7 @@
       "hide_on_screen": [],
       "description": "",
       "show_in_rest": false,
+      "display_title": "",
       "fields": [
         {
           "key": "field_oes_tab_editorial",
@@ -1238,9 +1236,10 @@
             "id": ""
           },
           "placement": "left",
-          "label_translation_language0": "Editorial",
           "label_translation_language1": "Editorial",
-          "endpoint": 0
+          "label_translation_language0": "Editorial",
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_oes_status",
@@ -1248,7 +1247,6 @@
           "name": "field_oes_status",
           "aria-label": "",
           "type": "select",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -1266,14 +1264,16 @@
             "admin_mode": "Admin Mode"
           },
           "default_value": "new",
-          "label_translation_language0": "Status",
           "label_translation_language1": "Status",
+          "label_translation_language0": "Status",
           "multiple": 0,
           "allow_null": 0,
           "ui": 0,
           "ajax": 0,
           "placeholder": "",
-          "return_format": "value"
+          "return_format": "value",
+          "create_options": 0,
+          "save_options": 0
         },
         {
           "key": "field_oes_comment",
@@ -1281,7 +1281,6 @@
           "name": "field_oes_comment",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -1290,8 +1289,8 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Comment",
           "label_translation_language1": "Comment",
+          "label_translation_language0": "Comment",
           "default_value": "",
           "new_lines": "",
           "maxlength": "",
@@ -1312,10 +1311,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Data for all Versions",
           "label_translation_language1": "Data for all Versions",
+          "label_translation_language0": "Data for all Versions",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_oes_post_language",
@@ -1323,7 +1323,6 @@
           "name": "field_oes_post_language",
           "aria-label": "",
           "type": "select",
-          "value": null,
           "instructions": "",
           "required": true,
           "conditional_logic": false,
@@ -1333,18 +1332,20 @@
             "id": ""
           },
           "choices": {
-            "language0": "English",
-            "language1": "Deutsch"
+            "language0": "Deutsch",
+            "language1": "English"
           },
-          "label_translation_language0": "Language",
-          "label_translation_language1": "Sprache",
+          "label_translation_language1": "Language",
+          "label_translation_language0": "Sprache",
           "multiple": 0,
           "allow_null": 0,
           "default_value": false,
           "ui": 0,
           "ajax": 0,
           "placeholder": "",
-          "return_format": "value"
+          "return_format": "value",
+          "create_options": 0,
+          "save_options": 0
         },
         {
           "key": "oes_versioning_tab",
@@ -1362,8 +1363,9 @@
           },
           "placement": "top",
           "endpoint": 0,
+          "label_translation_language1": "Version Control",
           "label_translation_language0": "Version Control",
-          "label_translation_language1": "Version Control"
+          "selected": 0
         },
         {
           "key": "field_oes_versioning_current_post_demo_article_p",
@@ -1371,7 +1373,6 @@
           "name": "field_oes_versioning_current_post",
           "aria-label": "",
           "type": "post_object",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -1389,8 +1390,8 @@
           "multiple": 0,
           "ui": 1,
           "bidirectional_target": [],
-          "label_translation_language0": "Current Post",
-          "label_translation_language1": "Current Post"
+          "label_translation_language1": "Current Post",
+          "label_translation_language0": "Current Post"
         },
         {
           "key": "field_oes_versioning_posts_demo_article_p",
@@ -1398,7 +1399,6 @@
           "name": "field_oes_versioning_posts",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -1419,8 +1419,8 @@
           "max": 0,
           "elements": [],
           "bidirectional_target": [],
-          "label_translation_language0": "Versions",
-          "label_translation_language1": "Versions"
+          "label_translation_language1": "Versions",
+          "label_translation_language0": "Versions"
         },
         {
           "key": "field_connected_parent_demo_article_p",
@@ -1428,7 +1428,6 @@
           "name": "field_connected_parent",
           "aria-label": "",
           "type": "post_object",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -1446,28 +1445,12 @@
           "multiple": 0,
           "ui": 1,
           "bidirectional_target": [],
-          "label_translation_language0": "Connected Parent",
-          "label_translation_language1": "Connected Parent"
+          "label_translation_language1": "Connected Parent",
+          "label_translation_language0": "Connected Parent"
         }
       ],
       "title": "Article Parent",
-      "key": "group_demo_article_p",
-      "acf_add_local_field_group": {
-        "fields": {
-          "6": {
-            "label_translation_language0": "Current Post",
-            "label_translation_language1": "Current Post"
-          },
-          "7": {
-            "label_translation_language0": "Versions",
-            "label_translation_language1": "Versions"
-          },
-          "8": {
-            "label_translation_language0": "Connected Parent",
-            "label_translation_language1": "Connected Parent"
-          }
-        }
-      }
+      "key": "group_demo_article_p"
     }
   },
   "demo_bib": {
@@ -1475,7 +1458,6 @@
       "public": true,
       "menu_icon": "default",
       "has_archive": false,
-      "post_type": "demo_bib",
       "advanced_configuration": false,
       "import_source": "",
       "import_date": "",
@@ -1544,6 +1526,7 @@
       "can_export": true,
       "delete_with_user": null,
       "register_meta_box_cb": null,
+      "enter_title_here": "",
       "label": "Bibliographical Entries",
       "capability_type": "post",
       "capabilities": [],
@@ -1558,12 +1541,12 @@
       "pattern_name": [],
       "admin_columns": [],
       "label_translations": {
-        "language0": "Bibliographic Entry",
-        "language1": "Bibliographischer Eintrag"
+        "language1": "Bibliographic Entry",
+        "language0": "Bibliographischer Eintrag"
       },
       "label_translations_plural": {
-        "language0": "Bibliographic Entries",
-        "language1": "Bibliographische Einträge"
+        "language1": "Bibliographic Entries",
+        "language0": "Bibliographische Einträge"
       },
       "display_titles": {
         "title_archive_display": "wp-title",
@@ -1578,9 +1561,11 @@
       "editorial_tab": false,
       "label": "",
       "theme_labels": [],
-      "type": "single-internal",
+      "type": "other",
+      "schema": "Event",
       "language": "none",
-      "external": false
+      "external": [],
+      "schema_type": "CreativeWork"
     },
     "acf_add_local_field_group": {
       "location": [
@@ -1599,6 +1584,7 @@
       "hide_on_screen": [],
       "description": "",
       "show_in_rest": false,
+      "display_title": "",
       "fields": [
         {
           "key": "field_oes_tab_editorial",
@@ -1615,9 +1601,10 @@
             "id": ""
           },
           "placement": "left",
-          "label_translation_language0": "Editorial",
           "label_translation_language1": "Editorial",
-          "endpoint": 0
+          "label_translation_language0": "Editorial",
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_oes_status",
@@ -1625,7 +1612,6 @@
           "name": "field_oes_status",
           "aria-label": "",
           "type": "select",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -1643,14 +1629,16 @@
             "admin_mode": "Admin Mode"
           },
           "default_value": "new",
-          "label_translation_language0": "Status",
           "label_translation_language1": "Status",
+          "label_translation_language0": "Status",
           "multiple": 0,
           "allow_null": 0,
           "ui": 0,
           "ajax": 0,
           "placeholder": "",
-          "return_format": "value"
+          "return_format": "value",
+          "create_options": 0,
+          "save_options": 0
         },
         {
           "key": "field_oes_comment",
@@ -1658,7 +1646,6 @@
           "name": "field_oes_comment",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -1667,8 +1654,8 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Comment",
           "label_translation_language1": "Comment",
+          "label_translation_language0": "Comment",
           "default_value": "",
           "new_lines": "",
           "maxlength": "",
@@ -1681,7 +1668,6 @@
           "name": "field_bib_main",
           "aria-label": "",
           "type": "wysiwyg",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -1723,8 +1709,8 @@
             ]
           },
           "pattern": [],
-          "label_translation_language0": "Citation",
-          "label_translation_language1": "Zitierweise",
+          "label_translation_language1": "Citation",
+          "label_translation_language0": "Zitierweise",
           "tabs": "all",
           "toolbar": "full",
           "media_upload": 1,
@@ -1745,10 +1731,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Data (Zotero)",
           "label_translation_language1": "Data (Zotero)",
+          "label_translation_language0": "Data (Zotero)",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_bib_dummy",
@@ -1765,8 +1752,8 @@
             "id": ""
           },
           "message": "The following fields could be imported from or synced to Zotero. This feature will be available in a future release.",
-          "label_translation_language0": "",
           "label_translation_language1": "",
+          "label_translation_language0": "",
           "esc_html": 0,
           "new_lines": "wpautop"
         },
@@ -1776,7 +1763,6 @@
           "name": "field_bib_basic_item_type",
           "aria-label": "",
           "type": "select",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -1824,14 +1810,16 @@
             "videoRecording": "Video Recording",
             "webpage": "Webpage"
           },
-          "label_translation_language0": "Item type",
           "label_translation_language1": "Item type",
+          "label_translation_language0": "Item type",
           "multiple": 0,
           "allow_null": 0,
           "ui": 0,
           "ajax": 0,
           "placeholder": "",
-          "return_format": "value"
+          "return_format": "value",
+          "create_options": 0,
+          "save_options": 0
         },
         {
           "key": "field_bib_basic_website_title",
@@ -1839,7 +1827,6 @@
           "name": "field_bib_basic_website_title",
           "aria-label": "",
           "type": "url",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": [
@@ -1856,8 +1843,8 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Website Title",
-          "label_translation_language1": "Webseitenname",
+          "label_translation_language1": "Website Title",
+          "label_translation_language0": "Webseitenname",
           "default_value": "",
           "placeholder": ""
         },
@@ -1867,7 +1854,6 @@
           "name": "field_bib_basic_website_type",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": [
@@ -1885,8 +1871,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Website Type",
-          "label_translation_language1": "Webseitentyp",
+          "label_translation_language1": "Website Type",
+          "label_translation_language0": "Webseitentyp",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -1899,7 +1885,6 @@
           "name": "field_bib_basic_title",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -1909,8 +1894,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Title",
-          "label_translation_language1": "Titel",
+          "label_translation_language1": "Title",
+          "label_translation_language0": "Titel",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -1923,7 +1908,6 @@
           "name": "field_bib_details_contributor",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -1933,8 +1917,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Authors",
-          "label_translation_language1": "Autor:innen",
+          "label_translation_language1": "Authors",
+          "label_translation_language0": "Autor:innen",
           "default_value": "",
           "new_lines": "",
           "maxlength": "",
@@ -1947,7 +1931,6 @@
           "name": "field_bib_details_series",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": [
@@ -1965,8 +1948,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Series",
-          "label_translation_language1": "Reihe",
+          "label_translation_language1": "Series",
+          "label_translation_language0": "Reihe",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -1979,7 +1962,6 @@
           "name": "field_bib_details_series_nb",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": [
@@ -1997,8 +1979,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Series Number",
-          "label_translation_language1": "Reihennummer",
+          "label_translation_language1": "Series Number",
+          "label_translation_language0": "Reihennummer",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -2011,7 +1993,6 @@
           "name": "field_bib_details_volume",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": [
@@ -2029,8 +2010,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Volume",
-          "label_translation_language1": "Band",
+          "label_translation_language1": "Volume",
+          "label_translation_language0": "Band",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -2043,7 +2024,6 @@
           "name": "field_bib_details_volume_nb",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": [
@@ -2061,8 +2041,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "# of Volumes",
-          "label_translation_language1": "# an Bänden",
+          "label_translation_language1": "# of Volumes",
+          "label_translation_language0": "# an Bänden",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -2075,7 +2055,6 @@
           "name": "field_bib_details_edition",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": [
@@ -2093,8 +2072,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Edition",
           "label_translation_language1": "Edition",
+          "label_translation_language0": "Edition",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -2107,7 +2086,6 @@
           "name": "field_bib_details_place",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": [
@@ -2125,8 +2103,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Place",
-          "label_translation_language1": "Ort",
+          "label_translation_language1": "Place",
+          "label_translation_language0": "Ort",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -2139,7 +2117,6 @@
           "name": "field_bib_details_publisher",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": [
@@ -2157,8 +2134,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Publisher",
-          "label_translation_language1": "Verlag",
+          "label_translation_language1": "Publisher",
+          "label_translation_language0": "Verlag",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -2171,7 +2148,6 @@
           "name": "field_bib_details_date",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": [
@@ -2189,8 +2165,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Publish date",
-          "label_translation_language1": "Datum der Veröffentlichung",
+          "label_translation_language1": "Publish date",
+          "label_translation_language0": "Datum der Veröffentlichung",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -2203,7 +2179,6 @@
           "name": "field_bib_details_pages_nb",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": [
@@ -2221,8 +2196,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "# of Pages",
-          "label_translation_language1": "# an Seiten",
+          "label_translation_language1": "# of Pages",
+          "label_translation_language0": "# an Seiten",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -2235,7 +2210,6 @@
           "name": "field_bib_details_language",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -2245,8 +2219,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Language",
-          "label_translation_language1": "Sprache",
+          "label_translation_language1": "Language",
+          "label_translation_language0": "Sprache",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -2259,7 +2233,6 @@
           "name": "field_bib_details_isbn",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": [
@@ -2277,8 +2250,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "ISBN",
           "label_translation_language1": "ISBN",
+          "label_translation_language0": "ISBN",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -2291,7 +2264,6 @@
           "name": "field_bib_details_short_title",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -2301,8 +2273,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Short Title",
-          "label_translation_language1": "Kurztitel",
+          "label_translation_language1": "Short Title",
+          "label_translation_language0": "Kurztitel",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -2315,7 +2287,6 @@
           "name": "field_bib_details_url",
           "aria-label": "",
           "type": "url",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -2324,8 +2295,8 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "URL",
           "label_translation_language1": "URL",
+          "label_translation_language0": "URL",
           "default_value": "",
           "placeholder": ""
         },
@@ -2335,7 +2306,6 @@
           "name": "field_bib_details_accessed",
           "aria-label": "",
           "type": "date_time_picker",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -2344,11 +2314,12 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Accessed",
-          "label_translation_language1": "Zugriffen",
+          "label_translation_language1": "Accessed",
+          "label_translation_language0": "Zugriffen",
           "display_format": "d\/m\/Y g:i a",
           "return_format": "d\/m\/Y g:i a",
-          "first_day": 1
+          "first_day": 1,
+          "default_to_current_date": 0
         },
         {
           "key": "field_bib_details_archive",
@@ -2356,7 +2327,6 @@
           "name": "field_bib_details_archive",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": [
@@ -2374,8 +2344,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Archive",
-          "label_translation_language1": "Archiv",
+          "label_translation_language1": "Archive",
+          "label_translation_language0": "Archiv",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -2388,7 +2358,6 @@
           "name": "field_bib_details_loc_archive",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": [
@@ -2406,8 +2375,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Loc. in Archive",
           "label_translation_language1": "Loc. in Archive",
+          "label_translation_language0": "Loc. in Archive",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -2420,7 +2389,6 @@
           "name": "field_bib_details_library",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": [
@@ -2438,8 +2406,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Library Catalog",
           "label_translation_language1": "Library Catalog",
+          "label_translation_language0": "Library Catalog",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -2452,7 +2420,6 @@
           "name": "field_bib_details_call_number",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": [
@@ -2470,8 +2437,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Call Number",
           "label_translation_language1": "Call Number",
+          "label_translation_language0": "Call Number",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -2484,7 +2451,6 @@
           "name": "field_bib_details_rights",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -2494,8 +2460,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Rights",
-          "label_translation_language1": "Rechte",
+          "label_translation_language1": "Rights",
+          "label_translation_language0": "Rechte",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -2508,7 +2474,6 @@
           "name": "field_bib_details_extra",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -2518,8 +2483,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Extra",
           "label_translation_language1": "Extra",
+          "label_translation_language0": "Extra",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -2532,7 +2497,6 @@
           "name": "field_bib_details_date_added",
           "aria-label": "",
           "type": "date_picker",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -2541,11 +2505,12 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Date Added",
           "label_translation_language1": "Date Added",
+          "label_translation_language0": "Date Added",
           "display_format": "F j, Y",
           "return_format": "d\/m\/Y",
-          "first_day": 1
+          "first_day": 1,
+          "default_to_current_date": 0
         },
         {
           "key": "field_bib_details_date_modified",
@@ -2553,7 +2518,6 @@
           "name": "field_bib_details_date_modified",
           "aria-label": "",
           "type": "date_picker",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -2562,11 +2526,12 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Date Modified",
           "label_translation_language1": "Date Modified",
+          "label_translation_language0": "Date Modified",
           "display_format": "F j, Y",
           "return_format": "d\/m\/Y",
-          "first_day": 1
+          "first_day": 1,
+          "default_to_current_date": 0
         },
         {
           "key": "field_demo_bib__tab_related",
@@ -2582,10 +2547,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Related Content",
           "label_translation_language1": "Related Content",
+          "label_translation_language0": "Related Content",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_bib__articles",
@@ -2593,7 +2559,6 @@
           "name": "field_demo_bib__articles",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -2609,8 +2574,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Referred to in",
-          "label_translation_language1": "Erwähnt in",
+          "label_translation_language1": "Referred to in",
+          "label_translation_language0": "Erwähnt in",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_article__bib"
@@ -2630,7 +2595,6 @@
       "public": true,
       "menu_icon": "default",
       "has_archive": true,
-      "post_type": "demo_contributor",
       "advanced_configuration": false,
       "import_source": "",
       "import_date": "",
@@ -2700,6 +2664,7 @@
       "can_export": true,
       "delete_with_user": null,
       "register_meta_box_cb": null,
+      "enter_title_here": "",
       "label": "Contributors",
       "capability_type": "post",
       "capabilities": [],
@@ -2719,16 +2684,16 @@
         "date_modified"
       ],
       "label_translations": {
-        "language0": "Contributor",
-        "language1": "Autor:in"
+        "language1": "Contributor",
+        "language0": "Autor:in"
       },
       "label_translations_plural": {
-        "language0": "Contributors",
-        "language1": "Autor:innen"
+        "language1": "Contributors",
+        "language0": "Autor:innen"
       },
       "display_titles": {
         "title_archive_display": "wp-title",
-        "title_sorting_display": "wp-title",
+        "title_sorting_display": "field_demo_contributor__name_sort",
         "title_display": "wp-title"
       },
       "metadata": [
@@ -2746,17 +2711,20 @@
       "archive_filter": [
         "alphabet"
       ],
-      "lod": true,
+      "lod": false,
       "editorial_tab": false,
       "label": "",
       "theme_labels": [],
       "type": "single-contributor",
+      "schema": "Person",
       "vita": "field_demo_contributor__vita",
       "publications": [
         "field_demo_contributor__publications_other"
       ],
       "language": "none",
-      "external": false
+      "external": [],
+      "orcid": "field_demo_contributor__orcid_id",
+      "schema_type": "Person"
     },
     "acf_add_local_field_group": {
       "location": [
@@ -2775,6 +2743,7 @@
       "hide_on_screen": [],
       "description": "",
       "show_in_rest": false,
+      "display_title": "",
       "fields": [
         {
           "key": "field_oes_tab_editorial",
@@ -2791,9 +2760,10 @@
             "id": ""
           },
           "placement": "left",
-          "label_translation_language0": "Editorial",
           "label_translation_language1": "Editorial",
-          "endpoint": 0
+          "label_translation_language0": "Editorial",
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_oes_status",
@@ -2801,7 +2771,6 @@
           "name": "field_oes_status",
           "aria-label": "",
           "type": "select",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -2819,14 +2788,16 @@
             "admin_mode": "Admin Mode"
           },
           "default_value": "new",
-          "label_translation_language0": "Status",
           "label_translation_language1": "Status",
+          "label_translation_language0": "Status",
           "multiple": 0,
           "allow_null": 0,
           "ui": 0,
           "ajax": 0,
           "placeholder": "",
-          "return_format": "value"
+          "return_format": "value",
+          "create_options": 0,
+          "save_options": 0
         },
         {
           "key": "field_oes_comment",
@@ -2834,7 +2805,6 @@
           "name": "field_oes_comment",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -2843,8 +2813,8 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Comment",
           "label_translation_language1": "Comment",
+          "label_translation_language0": "Comment",
           "default_value": "",
           "new_lines": "",
           "maxlength": "",
@@ -2865,10 +2835,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Name",
           "label_translation_language1": "Name",
+          "label_translation_language0": "Name",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_contributor__surname",
@@ -2876,7 +2847,6 @@
           "name": "field_demo_contributor__surname",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": true,
           "conditional_logic": false,
@@ -2886,8 +2856,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Surname",
-          "label_translation_language1": "Nachname",
+          "label_translation_language1": "Surname",
+          "label_translation_language0": "Nachname",
           "gnd_properties": "hidden",
           "geonames_properties": "hidden",
           "default_value": "",
@@ -2902,7 +2872,6 @@
           "name": "field_demo_contributor__firstname",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -2912,8 +2881,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "First name",
-          "label_translation_language1": "Vorname",
+          "label_translation_language1": "First name",
+          "label_translation_language0": "Vorname",
           "gnd_properties": "hidden",
           "geonames_properties": "hidden",
           "default_value": "",
@@ -2928,7 +2897,6 @@
           "name": "field_demo_contributor__acad_title",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -2938,8 +2906,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Academic title",
-          "label_translation_language1": "Akademischer Titel",
+          "label_translation_language1": "Academic title",
+          "label_translation_language0": "Akademischer Titel",
           "gnd_properties": "hidden",
           "geonames_properties": "hidden",
           "default_value": "",
@@ -2954,7 +2922,6 @@
           "name": "field_demo_contributor__name_sort",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -2975,8 +2942,8 @@
             "separator": ", "
           },
           "pattern": [],
-          "label_translation_language0": "Name (Sorting)",
-          "label_translation_language1": "Name (Sortierung)",
+          "label_translation_language1": "Name (Sorting)",
+          "label_translation_language0": "Name (Sortierung)",
           "gnd_properties": "hidden",
           "geonames_properties": "hidden",
           "default_value": "",
@@ -2999,10 +2966,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "LOD",
           "label_translation_language1": "LOD",
+          "label_translation_language0": "LOD",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_contributor__orcid_id",
@@ -3010,7 +2978,6 @@
           "name": "field_demo_contributor__orcid_id",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3020,8 +2987,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "ORCID ID",
           "label_translation_language1": "ORCID ID",
+          "label_translation_language0": "ORCID ID",
           "gnd_properties": "hidden",
           "geonames_properties": "hidden",
           "display_option": "is_link",
@@ -3037,7 +3004,6 @@
           "name": "field_demo_contributor__gnd_id",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3047,8 +3013,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "GND ID",
           "label_translation_language1": "GND ID",
+          "label_translation_language0": "GND ID",
           "gnd_properties": [
             "gndIdentifier"
           ],
@@ -3066,7 +3032,6 @@
           "name": "field_demo_contributor__gnd_name",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3075,8 +3040,8 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "GND Entry",
-          "label_translation_language1": "GND Normeintrag",
+          "label_translation_language1": "GND Entry",
+          "label_translation_language0": "GND Normeintrag",
           "pattern": [],
           "gnd_properties": [
             "preferredNameForThePerson"
@@ -3094,7 +3059,6 @@
           "name": "field_demo_contributor__variant_name",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3103,8 +3067,8 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Name Variants",
-          "label_translation_language1": "Namensvarianten",
+          "label_translation_language1": "Name Variants",
+          "label_translation_language0": "Namensvarianten",
           "pattern": [],
           "gnd_properties": "hidden",
           "geonames_properties": "hidden",
@@ -3120,7 +3084,6 @@
           "name": "field_demo_contributor__profession_or_occupation",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3129,8 +3092,8 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Professions and Occupations",
-          "label_translation_language1": "Beruf(e)",
+          "label_translation_language1": "Professions and Occupations",
+          "label_translation_language0": "Beruf(e)",
           "pattern": [],
           "gnd_properties": "hidden",
           "geonames_properties": "hidden",
@@ -3146,7 +3109,6 @@
           "name": "field__lod_timestamp",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3156,8 +3118,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Timestamp (LOD)",
-          "label_translation_language1": "Zeitstempel (LOD)",
+          "label_translation_language1": "Timestamp (LOD)",
+          "label_translation_language0": "Zeitstempel (LOD)",
           "gnd_properties": [
             "base-timestamp"
           ],
@@ -3182,10 +3144,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Contact",
           "label_translation_language1": "Contact",
+          "label_translation_language0": "Contact",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_contributor__mail",
@@ -3193,7 +3156,6 @@
           "name": "field_demo_contributor__mail",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3203,8 +3165,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Mail",
-          "label_translation_language1": "E-Mail",
+          "label_translation_language1": "Mail",
+          "label_translation_language0": "E-Mail",
           "gnd_properties": "hidden",
           "geonames_properties": "hidden",
           "default_value": "",
@@ -3219,7 +3181,6 @@
           "name": "field_demo_contributor__website",
           "aria-label": "",
           "type": "url",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3228,8 +3189,8 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Website",
-          "label_translation_language1": "Webseite",
+          "label_translation_language1": "Website",
+          "label_translation_language0": "Webseite",
           "gnd_properties": "hidden",
           "geonames_properties": "hidden",
           "default_value": "",
@@ -3249,10 +3210,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Vita",
           "label_translation_language1": "Vita",
+          "label_translation_language0": "Vita",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_contributor__vita",
@@ -3260,7 +3222,6 @@
           "name": "field_demo_contributor__vita",
           "aria-label": "",
           "type": "wysiwyg",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3270,8 +3231,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Vita",
-          "label_translation_language1": "Lebenslauf",
+          "label_translation_language1": "Vita",
+          "label_translation_language0": "Lebenslauf",
           "gnd_properties": "hidden",
           "language_dependent": true,
           "geonames_properties": "hidden",
@@ -3287,7 +3248,6 @@
           "name": "field_demo_contributor__affiliation",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3297,8 +3257,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Current Affiliation",
-          "label_translation_language1": "Aktuelle Institution",
+          "label_translation_language1": "Current Affiliation",
+          "label_translation_language0": "Aktuelle Institution",
           "gnd_properties": "hidden",
           "geonames_properties": "hidden",
           "default_value": "",
@@ -3321,10 +3281,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Publications",
           "label_translation_language1": "Publications",
+          "label_translation_language0": "Publications",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_contributor__author_article",
@@ -3332,7 +3293,6 @@
           "name": "field_demo_contributor__author_article",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3348,8 +3308,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Articles (as author)",
-          "label_translation_language1": "Artikel (als Autor:in)",
+          "label_translation_language1": "Articles (as author)",
+          "label_translation_language0": "Artikel (als Autor:in)",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_article__article_author"
@@ -3365,7 +3325,6 @@
           "name": "field_demo_contributor__contributor_article",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3381,8 +3340,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Articles (as additional author)",
-          "label_translation_language1": "Artikel (als Mitwirkende:r)",
+          "label_translation_language1": "Articles (as additional author)",
+          "label_translation_language0": "Artikel (als Mitwirkende:r)",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_article__article_contributor"
@@ -3398,7 +3357,6 @@
           "name": "field_demo_contributor__translator_article",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3414,8 +3372,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Articles (as translator)",
-          "label_translation_language1": "Artikel (als Übersetzer:in)",
+          "label_translation_language1": "Articles (as translator)",
+          "label_translation_language0": "Artikel (als Übersetzer:in)",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_article__article_translator"
@@ -3431,7 +3389,6 @@
           "name": "field_demo_contributor__publications_other",
           "aria-label": "",
           "type": "wysiwyg",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3441,8 +3398,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Other publications",
-          "label_translation_language1": "Weitere Veröffentlichungen",
+          "label_translation_language1": "Other publications",
+          "label_translation_language0": "Weitere Veröffentlichungen",
           "gnd_properties": "hidden",
           "geonames_properties": "hidden",
           "tabs": "all",
@@ -3461,7 +3418,6 @@
       "public": true,
       "menu_icon": "default",
       "has_archive": true,
-      "post_type": "demo_event",
       "advanced_configuration": false,
       "import_source": "",
       "import_date": "",
@@ -3533,6 +3489,7 @@
       "can_export": true,
       "delete_with_user": null,
       "register_meta_box_cb": null,
+      "enter_title_here": "",
       "label": "Event",
       "capability_type": "post",
       "capabilities": [],
@@ -3553,12 +3510,12 @@
         "field_oes_status"
       ],
       "label_translations": {
-        "language0": "Event",
-        "language1": "Ereignis"
+        "language1": "Event",
+        "language0": "Ereignis"
       },
       "label_translations_plural": {
-        "language0": "Events",
-        "language1": "Ereignisse"
+        "language1": "Events",
+        "language0": "Ereignisse"
       },
       "display_titles": {
         "title_archive_display": "field_demo_event__name",
@@ -3576,11 +3533,19 @@
         "alphabet",
         "field_demo_event__type"
       ],
-      "lod": true,
+      "lod": false,
       "editorial_tab": false,
       "label": "",
       "theme_labels": [],
-      "type": "single-index"
+      "type": "single-index",
+      "schema": "Event",
+      "schema_type": "Event",
+      "language": "none",
+      "external": [],
+      "from": "field_demo_event__time_start",
+      "to": "field_demo_event__time_end",
+      "startDate": "field_demo_event__time_start",
+      "endDate": "field_demo_event__time_end"
     },
     "acf_add_local_field_group": {
       "location": [
@@ -3599,6 +3564,7 @@
       "hide_on_screen": [],
       "description": "",
       "show_in_rest": false,
+      "display_title": "",
       "fields": [
         {
           "key": "field_oes_tab_editorial",
@@ -3615,9 +3581,10 @@
             "id": ""
           },
           "placement": "left",
-          "label_translation_language0": "Editorial",
           "label_translation_language1": "Editorial",
-          "endpoint": 0
+          "label_translation_language0": "Editorial",
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_oes_status",
@@ -3625,7 +3592,6 @@
           "name": "field_oes_status",
           "aria-label": "",
           "type": "select",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3643,14 +3609,16 @@
             "admin_mode": "Admin Mode"
           },
           "default_value": "new",
-          "label_translation_language0": "Status",
           "label_translation_language1": "Status",
+          "label_translation_language0": "Status",
           "multiple": 0,
           "allow_null": 0,
           "ui": 0,
           "ajax": 0,
           "placeholder": "",
-          "return_format": "value"
+          "return_format": "value",
+          "create_options": 0,
+          "save_options": 0
         },
         {
           "key": "field_oes_comment",
@@ -3658,7 +3626,6 @@
           "name": "field_oes_comment",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3667,8 +3634,8 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Comment",
           "label_translation_language1": "Comment",
+          "label_translation_language0": "Comment",
           "default_value": "",
           "new_lines": "",
           "maxlength": "",
@@ -3689,10 +3656,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Data",
           "label_translation_language1": "Data",
+          "label_translation_language0": "Data",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_event__type",
@@ -3700,7 +3668,6 @@
           "name": "field_demo_event__type",
           "aria-label": "",
           "type": "taxonomy",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3715,8 +3682,8 @@
           "field_type": "select",
           "save_terms": true,
           "gnd_properties": "hidden",
-          "label_translation_language0": "Event Type",
-          "label_translation_language1": "Ereignistyp",
+          "label_translation_language1": "Event Type",
+          "label_translation_language0": "Ereignistyp",
           "geonames_properties": "hidden",
           "multiple": 0,
           "return_format": "id",
@@ -3729,7 +3696,6 @@
           "name": "field_demo_event__name",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3739,8 +3705,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Name",
           "label_translation_language1": "Name",
+          "label_translation_language0": "Name",
           "gnd_properties": "hidden",
           "language_dependent": true,
           "geonames_properties": "hidden",
@@ -3756,7 +3722,6 @@
           "name": "field_demo_event__time_start",
           "aria-label": "",
           "type": "date_picker",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3765,11 +3730,12 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Start date",
-          "label_translation_language1": "Startdatum",
+          "label_translation_language1": "Start date",
+          "label_translation_language0": "Startdatum",
           "display_format": "F j, Y",
           "return_format": "d\/m\/Y",
-          "first_day": 1
+          "first_day": 1,
+          "default_to_current_date": 0
         },
         {
           "key": "field_demo_event__time_start_label",
@@ -3777,7 +3743,6 @@
           "name": "field_demo_event__time_start_label",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3786,8 +3751,8 @@
             "class": "oes-language-dependent-field",
             "id": ""
           },
-          "label_translation_language0": "Start date",
-          "label_translation_language1": "Startdatum",
+          "label_translation_language1": "Start date",
+          "label_translation_language0": "Startdatum",
           "language_dependent": true,
           "geonames_properties": "hidden",
           "gnd_properties": "hidden",
@@ -3803,7 +3768,6 @@
           "name": "field_demo_event__time_end",
           "aria-label": "",
           "type": "date_picker",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3812,11 +3776,12 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "End date",
-          "label_translation_language1": "Enddatum",
+          "label_translation_language1": "End date",
+          "label_translation_language0": "Enddatum",
           "display_format": "F j, Y",
           "return_format": "d\/m\/Y",
-          "first_day": 1
+          "first_day": 1,
+          "default_to_current_date": 0
         },
         {
           "key": "field_demo_event__time_end_label",
@@ -3824,7 +3789,6 @@
           "name": "field_demo_event__time_end_label",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3833,8 +3797,8 @@
             "class": "oes-language-dependent-field",
             "id": ""
           },
-          "label_translation_language0": "End date",
-          "label_translation_language1": "Enddatum",
+          "label_translation_language1": "End date",
+          "label_translation_language0": "Enddatum",
           "language_dependent": true,
           "geonames_properties": "hidden",
           "gnd_properties": "hidden",
@@ -3850,7 +3814,6 @@
           "name": "field_demo_event__alternative_names",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3860,8 +3823,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Alternative Name(s)",
-          "label_translation_language1": "Namenvariante(n)",
+          "label_translation_language1": "Alternative Name(s)",
+          "label_translation_language0": "Namenvariante(n)",
           "gnd_properties": "hidden",
           "geonames_properties": "hidden",
           "default_value": "",
@@ -3884,10 +3847,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Description",
           "label_translation_language1": "Description",
+          "label_translation_language0": "Description",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_event__description",
@@ -3895,7 +3859,6 @@
           "name": "field_demo_event__description",
           "aria-label": "",
           "type": "wysiwyg",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3904,8 +3867,8 @@
             "class": "oes-language-dependent-field",
             "id": ""
           },
-          "label_translation_language0": "Description",
-          "label_translation_language1": "Beschreibung",
+          "label_translation_language1": "Description",
+          "label_translation_language0": "Beschreibung",
           "language_dependent": true,
           "geonames_properties": "hidden",
           "gnd_properties": "hidden",
@@ -3929,10 +3892,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Media",
           "label_translation_language1": "Media",
+          "label_translation_language0": "Media",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_event__media",
@@ -3940,7 +3904,6 @@
           "name": "field_demo_event__media",
           "aria-label": "",
           "type": "image",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3949,8 +3912,8 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Media",
-          "label_translation_language1": "Medien",
+          "label_translation_language1": "Media",
+          "label_translation_language0": "Medien",
           "return_format": "array",
           "preview_size": "medium",
           "library": "all",
@@ -3976,10 +3939,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Sources",
           "label_translation_language1": "Sources",
+          "label_translation_language0": "Sources",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_event__source",
@@ -3987,7 +3951,6 @@
           "name": "field_demo_event__source",
           "aria-label": "",
           "type": "wysiwyg",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -3996,8 +3959,8 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Sources",
-          "label_translation_language1": "Quellen",
+          "label_translation_language1": "Sources",
+          "label_translation_language0": "Quellen",
           "geonames_properties": "hidden",
           "gnd_properties": "hidden",
           "tabs": "all",
@@ -4020,10 +3983,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "LOD",
           "label_translation_language1": "LOD",
+          "label_translation_language0": "LOD",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_event__gnd_id",
@@ -4031,7 +3995,6 @@
           "name": "field_demo_event__gnd_id",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -4041,8 +4004,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "GND ID",
           "label_translation_language1": "GND ID",
+          "label_translation_language0": "GND ID",
           "gnd_properties": [
             "gndIdentifier"
           ],
@@ -4060,7 +4023,6 @@
           "name": "field_demo_event__gnd_name",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -4070,8 +4032,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "GND Entry",
-          "label_translation_language1": "GND Normeintrag",
+          "label_translation_language1": "GND Entry",
+          "label_translation_language0": "GND Normeintrag",
           "gnd_properties": "hidden",
           "geonames_properties": "hidden",
           "default_value": "",
@@ -4086,7 +4048,6 @@
           "name": "field__lod_timestamp",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -4096,8 +4057,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Timestamp (LOD)",
-          "label_translation_language1": "Zeitstempel (LOD)",
+          "label_translation_language1": "Timestamp (LOD)",
+          "label_translation_language0": "Zeitstempel (LOD)",
           "gnd_properties": [
             "base-timestamp"
           ],
@@ -4122,10 +4083,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Related Content",
           "label_translation_language1": "Related Content",
+          "label_translation_language0": "Related Content",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_event__event",
@@ -4133,7 +4095,6 @@
           "name": "field_demo_event__event",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -4149,8 +4110,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Related Events",
-          "label_translation_language1": "Verknüpfte Ereignisse",
+          "label_translation_language1": "Related Events",
+          "label_translation_language0": "Verknüpfte Ereignisse",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_event__event"
@@ -4166,7 +4127,6 @@
           "name": "field_demo_event__place",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -4182,8 +4142,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Related Places",
-          "label_translation_language1": "Verknüpfte Orte",
+          "label_translation_language1": "Related Places",
+          "label_translation_language0": "Verknüpfte Orte",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_place__event"
@@ -4199,7 +4159,6 @@
           "name": "field_demo_event__person",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -4215,8 +4174,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Related Persons",
-          "label_translation_language1": "Verknüpfte Personen",
+          "label_translation_language1": "Related Persons",
+          "label_translation_language0": "Verknüpfte Personen",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_person__event"
@@ -4232,7 +4191,6 @@
           "name": "field_demo_event__article",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -4248,8 +4206,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Referred to in",
-          "label_translation_language1": "Erwähnt in",
+          "label_translation_language1": "Referred to in",
+          "label_translation_language0": "Erwähnt in",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_article__article_event"
@@ -4269,7 +4227,6 @@
       "public": true,
       "menu_icon": "default",
       "has_archive": true,
-      "post_type": "demo_glossary_entry",
       "advanced_configuration": false,
       "import_source": "",
       "import_date": "",
@@ -4340,6 +4297,7 @@
       "can_export": true,
       "delete_with_user": null,
       "register_meta_box_cb": null,
+      "enter_title_here": "",
       "label": "Glossary Entries",
       "capability_type": "post",
       "capabilities": [],
@@ -4362,12 +4320,12 @@
         "field_oes_status"
       ],
       "label_translations": {
-        "language0": "Glossary Entry",
-        "language1": "Glossareintrag"
+        "language1": "Glossary Entry",
+        "language0": "Glossareintrag"
       },
       "label_translations_plural": {
-        "language0": "Glossary Entries",
-        "language1": "Glossareinträge"
+        "language1": "Glossary Entries",
+        "language0": "Glossareinträge"
       },
       "display_titles": {
         "title_archive_display": "wp-title",
@@ -4388,11 +4346,14 @@
       "archive_filter": [
         "alphabet"
       ],
-      "lod": true,
+      "lod": false,
       "editorial_tab": false,
       "label": "",
       "theme_labels": [],
-      "type": "single-article"
+      "type": "single-article",
+      "schema": "CreativeWork",
+      "schema_type": "CreativeWork",
+      "parent": "none"
     },
     "acf_add_local_field_group": {
       "location": [
@@ -4411,6 +4372,7 @@
       "hide_on_screen": [],
       "description": "",
       "show_in_rest": false,
+      "display_title": "",
       "fields": [
         {
           "key": "field_oes_tab_editorial",
@@ -4427,9 +4389,10 @@
             "id": ""
           },
           "placement": "left",
-          "label_translation_language0": "Editorial",
           "label_translation_language1": "Editorial",
-          "endpoint": 0
+          "label_translation_language0": "Editorial",
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_oes_status",
@@ -4437,7 +4400,6 @@
           "name": "field_oes_status",
           "aria-label": "",
           "type": "select",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -4455,14 +4417,16 @@
             "admin_mode": "Admin Mode"
           },
           "default_value": "new",
-          "label_translation_language0": "Status",
           "label_translation_language1": "Status",
+          "label_translation_language0": "Status",
           "multiple": 0,
           "allow_null": 0,
           "ui": 0,
           "ajax": 0,
           "placeholder": "",
-          "return_format": "value"
+          "return_format": "value",
+          "create_options": 0,
+          "save_options": 0
         },
         {
           "key": "field_oes_comment",
@@ -4470,7 +4434,6 @@
           "name": "field_oes_comment",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -4479,8 +4442,8 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Comment",
           "label_translation_language1": "Comment",
+          "label_translation_language0": "Comment",
           "default_value": "",
           "new_lines": "",
           "maxlength": "",
@@ -4501,10 +4464,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Language",
           "label_translation_language1": "Language",
+          "label_translation_language0": "Language",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_oes_post_language",
@@ -4512,7 +4476,6 @@
           "name": "field_oes_post_language",
           "aria-label": "",
           "type": "select",
-          "value": null,
           "instructions": "",
           "required": true,
           "conditional_logic": false,
@@ -4522,18 +4485,20 @@
             "id": ""
           },
           "choices": {
-            "language0": "English",
-            "language1": "Deutsch"
+            "language0": "Deutsch",
+            "language1": "English"
           },
-          "label_translation_language0": "Language",
-          "label_translation_language1": "Sprache",
+          "label_translation_language1": "Language",
+          "label_translation_language0": "Sprache",
           "multiple": 0,
           "allow_null": 0,
           "default_value": false,
           "ui": 0,
           "ajax": 0,
           "placeholder": "",
-          "return_format": "value"
+          "return_format": "value",
+          "create_options": 0,
+          "save_options": 0
         },
         {
           "key": "field_demo_glossary_entry__translations",
@@ -4541,7 +4506,6 @@
           "name": "field_demo_glossary_entry__translations",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -4557,8 +4521,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Translations",
-          "label_translation_language1": "Übersetzungen",
+          "label_translation_language1": "Translations",
+          "label_translation_language0": "Übersetzungen",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_glossary_entry__translations"
@@ -4582,10 +4546,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Data",
           "label_translation_language1": "Data",
+          "label_translation_language0": "Data",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_glossary__title",
@@ -4593,7 +4558,6 @@
           "name": "field_demo_glossary__title",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -4603,8 +4567,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Title",
-          "label_translation_language1": "Titel",
+          "label_translation_language1": "Title",
+          "label_translation_language0": "Titel",
           "default_value": "",
           "maxlength": "",
           "placeholder": "",
@@ -4617,7 +4581,6 @@
           "name": "field_demo_glossary__published",
           "aria-label": "",
           "type": "date_picker",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -4626,11 +4589,12 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Published",
-          "label_translation_language1": "Veröffentlicht",
+          "label_translation_language1": "Published",
+          "label_translation_language0": "Veröffentlicht",
           "display_format": "F j, Y",
           "return_format": "d\/m\/Y",
-          "first_day": 1
+          "first_day": 1,
+          "default_to_current_date": 0
         },
         {
           "key": "field_demo_glossary__last_edited",
@@ -4638,7 +4602,6 @@
           "name": "field_demo_glossary__last_edited",
           "aria-label": "",
           "type": "date_picker",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -4647,11 +4610,12 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Last Edited",
-          "label_translation_language1": "Zuletzt bearbeitet",
+          "label_translation_language1": "Last Edited",
+          "label_translation_language0": "Zuletzt bearbeitet",
           "display_format": "F j, Y",
           "return_format": "d\/m\/Y",
-          "first_day": 1
+          "first_day": 1,
+          "default_to_current_date": 0
         },
         {
           "key": "field_demo_glossary__contributors_tab",
@@ -4667,10 +4631,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Contributors",
           "label_translation_language1": "Contributors",
+          "label_translation_language0": "Contributors",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_glossary__author",
@@ -4678,7 +4643,6 @@
           "name": "field_demo_glossary__author",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -4694,8 +4658,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Authors",
-          "label_translation_language1": "Autor:innen",
+          "label_translation_language1": "Authors",
+          "label_translation_language0": "Autor:innen",
           "taxonomy": [],
           "min": 0,
           "max": 0,
@@ -4716,10 +4680,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Related Content",
           "label_translation_language1": "Related Content",
+          "label_translation_language0": "Related Content",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_glossary__glossary_article",
@@ -4727,7 +4692,6 @@
           "name": "field_demo_glossary__glossary_article",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -4743,8 +4707,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Related Articles",
-          "label_translation_language1": "Verwandte Artikel",
+          "label_translation_language1": "Related Articles",
+          "label_translation_language0": "Verwandte Artikel",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_article__article_glossary"
@@ -4760,7 +4724,6 @@
           "name": "field_demo_glossary__person",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -4776,8 +4739,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Related Person",
-          "label_translation_language1": "Verwandte Personen",
+          "label_translation_language1": "Related Person",
+          "label_translation_language0": "Verwandte Personen",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_person__glossary"
@@ -4786,6 +4749,30 @@
           "min": 0,
           "max": 0,
           "elements": []
+        },
+        {
+          "name": "oes_versioning_tab",
+          "label": "Version Control",
+          "type": "tab",
+          "key": "oes_versioning_tab",
+          "label_translation_language0": "Version Control",
+          "label_translation_language1": "Version Control"
+        },
+        {
+          "name": "field_oes_versioning_parent_post",
+          "label": "Parent Post",
+          "type": "post_object",
+          "key": "field_oes_versioning_parent_post_demo_glossary_entry",
+          "post_type": [
+            "none"
+          ],
+          "return_format": "id",
+          "allow_null": true,
+          "wrapper": {
+            "class": "oes-acf-hidden-field"
+          },
+          "label_translation_language0": "Parent Post",
+          "label_translation_language1": "Parent Post"
         }
       ],
       "title": "Glossary Entry",
@@ -4797,7 +4784,6 @@
       "public": true,
       "menu_icon": "default",
       "has_archive": true,
-      "post_type": "demo_institution",
       "advanced_configuration": false,
       "import_source": "",
       "import_date": "",
@@ -4867,6 +4853,7 @@
       "can_export": true,
       "delete_with_user": null,
       "register_meta_box_cb": null,
+      "enter_title_here": "",
       "label": "Institutions",
       "capability_type": "post",
       "capabilities": [],
@@ -4886,12 +4873,12 @@
         "date_modified"
       ],
       "label_translations": {
-        "language0": "Institution",
-        "language1": "Institution"
+        "language1": "Institution",
+        "language0": "Institution"
       },
       "label_translations_plural": {
-        "language0": "Institutions",
-        "language1": "Institutionen"
+        "language1": "Institutions",
+        "language0": "Institutionen"
       },
       "display_titles": {
         "title_archive_display": "wp-title",
@@ -4908,11 +4895,15 @@
       "archive_filter": [
         "alphabet"
       ],
-      "lod": true,
+      "lod": false,
       "editorial_tab": false,
       "label": "",
       "theme_labels": [],
-      "type": "single-index"
+      "type": "single-index",
+      "schema": "ScholarlyArticle",
+      "schema_type": "Organization",
+      "language": "none",
+      "external": []
     },
     "acf_add_local_field_group": {
       "location": [
@@ -4931,6 +4922,7 @@
       "hide_on_screen": [],
       "description": "",
       "show_in_rest": false,
+      "display_title": "",
       "fields": [
         {
           "key": "field_oes_tab_editorial",
@@ -4947,9 +4939,10 @@
             "id": ""
           },
           "placement": "left",
-          "label_translation_language0": "Editorial",
           "label_translation_language1": "Editorial",
-          "endpoint": 0
+          "label_translation_language0": "Editorial",
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_oes_status",
@@ -4957,7 +4950,6 @@
           "name": "field_oes_status",
           "aria-label": "",
           "type": "select",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -4975,14 +4967,16 @@
             "admin_mode": "Admin Mode"
           },
           "default_value": "new",
-          "label_translation_language0": "Status",
           "label_translation_language1": "Status",
+          "label_translation_language0": "Status",
           "multiple": 0,
           "allow_null": 0,
           "ui": 0,
           "ajax": 0,
           "placeholder": "",
-          "return_format": "value"
+          "return_format": "value",
+          "create_options": 0,
+          "save_options": 0
         },
         {
           "key": "field_oes_comment",
@@ -4990,7 +4984,6 @@
           "name": "field_oes_comment",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -4999,8 +4992,8 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Comment",
           "label_translation_language1": "Comment",
+          "label_translation_language0": "Comment",
           "default_value": "",
           "new_lines": "",
           "maxlength": "",
@@ -5021,10 +5014,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Data",
           "label_translation_language1": "Data",
+          "label_translation_language0": "Data",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_institution__url",
@@ -5032,7 +5026,6 @@
           "name": "field_demo_institution__url",
           "aria-label": "",
           "type": "url",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5041,8 +5034,8 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "URL",
           "label_translation_language1": "URL",
+          "label_translation_language0": "URL",
           "gnd_properties": "hidden",
           "geonames_properties": "hidden",
           "default_value": "",
@@ -5054,7 +5047,6 @@
           "name": "field_demo_institution__abbreviated_name",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5064,8 +5056,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Abbreviated Name",
-          "label_translation_language1": "Abkürzung",
+          "label_translation_language1": "Abbreviated Name",
+          "label_translation_language0": "Abkürzung",
           "gnd_properties": [
             "abbreviatedNameForTheCorporateBody"
           ],
@@ -5082,7 +5074,6 @@
           "name": "field_demo_institution__geographic_area_code",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5092,8 +5083,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Geographic Area code",
           "label_translation_language1": "Geographic Area code",
+          "label_translation_language0": "Geographic Area code",
           "gnd_properties": "hidden",
           "geonames_properties": "hidden",
           "default_value": "",
@@ -5108,7 +5099,6 @@
           "name": "field_demo_institution__hierarchical_superior",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5118,8 +5108,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Hierarchical Superior",
-          "label_translation_language1": "Übergeordnete Institution",
+          "label_translation_language1": "Hierarchical Superior",
+          "label_translation_language0": "Übergeordnete Institution",
           "gnd_properties": "hidden",
           "geonames_properties": "hidden",
           "default_value": "",
@@ -5134,7 +5124,6 @@
           "name": "field_demo_institution__alternative_names",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5144,8 +5133,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Alternative Name(s)",
-          "label_translation_language1": "Namensvarianten",
+          "label_translation_language1": "Alternative Name(s)",
+          "label_translation_language0": "Namensvarianten",
           "gnd_properties": "hidden",
           "geonames_properties": "hidden",
           "default_value": "",
@@ -5169,9 +5158,10 @@
             "id": ""
           },
           "placement": "left",
-          "label_translation_language0": "Data",
           "label_translation_language1": "Data",
-          "endpoint": 0
+          "label_translation_language0": "Data",
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_institution__place_of_business",
@@ -5179,7 +5169,6 @@
           "name": "field_demo_institution__place_of_business",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5189,8 +5178,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Place of Business",
-          "label_translation_language1": "Geschäftsort",
+          "label_translation_language1": "Place of Business",
+          "label_translation_language0": "Geschäftsort",
           "gnd_properties": "hidden",
           "language_dependent": true,
           "geonames_properties": "hidden",
@@ -5214,10 +5203,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "LOD",
           "label_translation_language1": "LOD",
+          "label_translation_language0": "LOD",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_institution__gnd_id",
@@ -5225,7 +5215,6 @@
           "name": "field_demo_institution__gnd_id",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5235,8 +5224,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "GND ID",
           "label_translation_language1": "GND ID",
+          "label_translation_language0": "GND ID",
           "gnd_properties": [
             "gndIdentifier"
           ],
@@ -5254,7 +5243,6 @@
           "name": "field_demo_institution__gnd_name",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5264,8 +5252,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "GND Entry",
-          "label_translation_language1": "GND Normeintrag",
+          "label_translation_language1": "GND Entry",
+          "label_translation_language0": "GND Normeintrag",
           "gnd_properties": [
             "preferredNameForTheCorporateBody"
           ],
@@ -5282,7 +5270,6 @@
           "name": "field__lod_timestamp",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5292,8 +5279,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Timestamp (LOD)",
-          "label_translation_language1": "Zeitstempel (LOD)",
+          "label_translation_language1": "Timestamp (LOD)",
+          "label_translation_language0": "Zeitstempel (LOD)",
           "gnd_properties": [
             "base-timestamp"
           ],
@@ -5318,10 +5305,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Related Content",
           "label_translation_language1": "Related Content",
+          "label_translation_language0": "Related Content",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_institution__article",
@@ -5329,7 +5317,6 @@
           "name": "field_demo_institution__article",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5345,8 +5332,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Referred to in",
-          "label_translation_language1": "Erwähnt in",
+          "label_translation_language1": "Referred to in",
+          "label_translation_language0": "Erwähnt in",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_article__article_institution"
@@ -5366,7 +5353,6 @@
       "public": true,
       "menu_icon": "default",
       "has_archive": true,
-      "post_type": "demo_person",
       "advanced_configuration": false,
       "import_source": "",
       "import_date": "",
@@ -5436,6 +5422,7 @@
       "can_export": true,
       "delete_with_user": null,
       "register_meta_box_cb": null,
+      "enter_title_here": "",
       "label": "People",
       "capability_type": "post",
       "capabilities": [],
@@ -5497,12 +5484,12 @@
         "date_modified"
       ],
       "label_translations": {
-        "language0": "Person",
-        "language1": "Person"
+        "language1": "Person",
+        "language0": "Person"
       },
       "label_translations_plural": {
-        "language0": "Persons",
-        "language1": "Personen"
+        "language1": "Persons",
+        "language0": "Personen"
       },
       "display_titles": {
         "title_archive_display": "field_demo_person__preferred_name",
@@ -5515,25 +5502,21 @@
         "field_demo_person__gnd_name",
         "field_demo_person__gnd_id",
         "field_demo_person__country",
-        "field_demo_person__profession_or_occupation"
+        "field_demo_person__profession_or_occupation",
+        "field_demo_person__biographical_data"
       ],
       "archive_on_single_page": false,
       "archive": [],
       "archive_filter": [
         "alphabet"
       ],
-      "lod": true,
+      "lod": false,
       "editorial_tab": false,
       "label": "",
-      "theme_labels": {
-        "single__metadata__biographical_data": {
-          "name": "Single: Metadata, Biographical Data",
-          "location": "Single view, metadata",
-          "language0": "Biographical Data",
-          "language1": "Lebensdaten"
-        }
-      },
-      "type": "single-index"
+      "theme_labels": [],
+      "type": "single-index",
+      "schema": "Person",
+      "schema_type": "Person"
     },
     "acf_add_local_field_group": {
       "location": [
@@ -5552,6 +5535,7 @@
       "hide_on_screen": [],
       "description": "",
       "show_in_rest": false,
+      "display_title": "",
       "fields": [
         {
           "key": "field_oes_tab_editorial",
@@ -5568,9 +5552,10 @@
             "id": ""
           },
           "placement": "left",
-          "label_translation_language0": "Editorial",
           "label_translation_language1": "Editorial",
-          "endpoint": 0
+          "label_translation_language0": "Editorial",
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_oes_status",
@@ -5578,7 +5563,6 @@
           "name": "field_oes_status",
           "aria-label": "",
           "type": "select",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5596,14 +5580,16 @@
             "admin_mode": "Admin Mode"
           },
           "default_value": "new",
-          "label_translation_language0": "Status",
           "label_translation_language1": "Status",
+          "label_translation_language0": "Status",
           "multiple": 0,
           "allow_null": 0,
           "ui": 0,
           "ajax": 0,
           "placeholder": "",
-          "return_format": "value"
+          "return_format": "value",
+          "create_options": 0,
+          "save_options": 0
         },
         {
           "key": "field_oes_comment",
@@ -5611,7 +5597,6 @@
           "name": "field_oes_comment",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5620,8 +5605,8 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Comment",
           "label_translation_language1": "Comment",
+          "label_translation_language0": "Comment",
           "default_value": "",
           "new_lines": "",
           "maxlength": "",
@@ -5642,10 +5627,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Name",
           "label_translation_language1": "Name",
+          "label_translation_language0": "Name",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_person__surname",
@@ -5653,7 +5639,6 @@
           "name": "field_demo_person__surname",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5666,8 +5651,8 @@
           "gnd_properties": [
             "surname"
           ],
-          "label_translation_language0": "Surname",
-          "label_translation_language1": "Nachname",
+          "label_translation_language1": "Surname",
+          "label_translation_language0": "Nachname",
           "language_dependent": true,
           "geonames_properties": "hidden",
           "default_value": "",
@@ -5682,7 +5667,6 @@
           "name": "field_demo_person__first_name",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5692,8 +5676,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "First Name",
-          "label_translation_language1": "Vorname",
+          "label_translation_language1": "First Name",
+          "label_translation_language0": "Vorname",
           "language_dependent": true,
           "gnd_properties": [
             "forename"
@@ -5711,7 +5695,6 @@
           "name": "field_demo_person__preferred_name",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5725,8 +5708,8 @@
             "preferredNameForThePerson",
             "preferredName"
           ],
-          "label_translation_language0": "Preferred Name",
-          "label_translation_language1": "Bevorzugter Name",
+          "label_translation_language1": "Preferred Name",
+          "label_translation_language0": "Bevorzugter Name",
           "language_dependent": true,
           "geonames_properties": "hidden",
           "default_value": "",
@@ -5741,7 +5724,6 @@
           "name": "field_demo_person__acad_title",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5754,8 +5736,8 @@
           "gnd_properties": [
             "academicDegree"
           ],
-          "label_translation_language0": "Academic title",
-          "label_translation_language1": "Akademischer Titel",
+          "label_translation_language1": "Academic title",
+          "label_translation_language0": "Akademischer Titel",
           "language_dependent": true,
           "geonames_properties": "hidden",
           "default_value": "",
@@ -5770,7 +5752,6 @@
           "name": "field_demo_person__alternative_names",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5780,8 +5761,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Alternative Name(s)",
-          "label_translation_language1": "Namensvarianten",
+          "label_translation_language1": "Alternative Name(s)",
+          "label_translation_language0": "Namensvarianten",
           "gnd_properties": "hidden",
           "geonames_properties": "hidden",
           "default_value": "",
@@ -5804,10 +5785,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Biographical data",
           "label_translation_language1": "Biographical data",
+          "label_translation_language0": "Biographical data",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_person__country",
@@ -5815,7 +5797,6 @@
           "name": "field_demo_person__country",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5825,8 +5806,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Country",
-          "label_translation_language1": "Land",
+          "label_translation_language1": "Country",
+          "label_translation_language0": "Land",
           "language_dependent": true,
           "gnd_properties": "hidden",
           "geonames_properties": "hidden",
@@ -5842,7 +5823,6 @@
           "name": "field_demo_person__birth",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5855,8 +5835,8 @@
           "gnd_properties": [
             "dateOfBirth"
           ],
-          "label_translation_language0": "Date of Birth",
-          "label_translation_language1": "Geburtsdatum",
+          "label_translation_language1": "Date of Birth",
+          "label_translation_language0": "Geburtsdatum",
           "geonames_properties": "hidden",
           "default_value": "",
           "maxlength": "",
@@ -5870,7 +5850,6 @@
           "name": "field_demo_person__birth_place",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5883,8 +5862,8 @@
           "gnd_properties": [
             "placeOfBirth"
           ],
-          "label_translation_language0": "Place of birth",
-          "label_translation_language1": "Geburtsort",
+          "label_translation_language1": "Place of birth",
+          "label_translation_language0": "Geburtsort",
           "language_dependent": true,
           "geonames_properties": "hidden",
           "default_value": "",
@@ -5899,7 +5878,6 @@
           "name": "field_demo_person__death",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5912,8 +5890,8 @@
           "gnd_properties": [
             "dateOfDeath"
           ],
-          "label_translation_language0": "Date of Death",
-          "label_translation_language1": "Sterbedatum",
+          "label_translation_language1": "Date of Death",
+          "label_translation_language0": "Sterbedatum",
           "geonames_properties": "hidden",
           "default_value": "",
           "maxlength": "",
@@ -5927,7 +5905,6 @@
           "name": "field_demo_person__death_place",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5940,8 +5917,8 @@
           "gnd_properties": [
             "placeOfDeath"
           ],
-          "label_translation_language0": "Place of death",
-          "label_translation_language1": "Sterbeort",
+          "label_translation_language1": "Place of death",
+          "label_translation_language0": "Sterbeort",
           "language_dependent": true,
           "geonames_properties": "hidden",
           "default_value": "",
@@ -5951,12 +5928,74 @@
           "append": ""
         },
         {
+          "key": "field_demo_person__biographical_data",
+          "label": "Biographical Data",
+          "name": "field_demo_person__biographical_data",
+          "aria-label": "",
+          "type": "text",
+          "instructions": "",
+          "required": false,
+          "readonly": true,
+          "conditional_logic": false,
+          "wrapper": {
+            "width": "",
+            "class": "oes-language-dependent-field",
+            "id": ""
+          },
+          "label_translation_language0": "Lebensdaten",
+          "label_translation_language1": "Biographical Data",
+          "language_dependent": true,
+          "pattern": [
+            {
+              "string_value": "",
+              "required": "false",
+              "prefix": "",
+              "suffix": "",
+              "separator": "",
+              "field_key": "field_demo_person__birth",
+              "fallback": "none"
+            },
+            {
+              "string_value": "",
+              "required": "false",
+              "prefix": ", ",
+              "suffix": "",
+              "separator": "",
+              "field_key": "field_demo_person__birth_place",
+              "fallback": "none",
+              "language_dependent": true
+            },
+            {
+              "string_value": "",
+              "required": "false",
+              "prefix": " — ",
+              "suffix": "",
+              "separator": "",
+              "field_key": "field_demo_person__death",
+              "fallback": "none"
+            },
+            {
+              "string_value": "",
+              "required": "false",
+              "prefix": ", ",
+              "suffix": "",
+              "separator": "",
+              "field_key": "field_demo_person__death_place",
+              "fallback": "none",
+              "language_dependent": true
+            }
+          ],
+          "gnd_properties": "hidden",
+          "geonames_properties": "hidden",
+          "default_value": "",
+          "placeholder": ""
+        },
+        {
           "key": "field_demo_person__profession_or_occupation",
           "label": "Professions and Occupations",
           "name": "field_demo_person__profession_or_occupation",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -5965,8 +6004,8 @@
             "class": "oes-language-dependent-field",
             "id": ""
           },
-          "label_translation_language0": "Professions and Occupations",
-          "label_translation_language1": "Beruf(e)",
+          "label_translation_language1": "Professions and Occupations",
+          "label_translation_language0": "Beruf(e)",
           "language_dependent": true,
           "pattern": [],
           "gnd_properties": [
@@ -5993,10 +6032,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "LOD",
           "label_translation_language1": "LOD",
+          "label_translation_language0": "LOD",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_person__gnd_id",
@@ -6004,7 +6044,6 @@
           "name": "field_demo_person__gnd_id",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -6017,8 +6056,8 @@
           "gnd_properties": [
             "gndIdentifier"
           ],
-          "label_translation_language0": "GND ID",
           "label_translation_language1": "GND ID",
+          "label_translation_language0": "GND ID",
           "geonames_properties": "hidden",
           "default_value": "",
           "display_option": "gnd_shortcode",
@@ -6033,7 +6072,6 @@
           "name": "field_demo_person__gnd_name",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -6046,8 +6084,8 @@
           "gnd_properties": [
             "preferredName"
           ],
-          "label_translation_language0": "GND Entry",
-          "label_translation_language1": "GND Normeintrag",
+          "label_translation_language1": "GND Entry",
+          "label_translation_language0": "GND Normeintrag",
           "geonames_properties": "hidden",
           "default_value": "",
           "maxlength": "",
@@ -6061,7 +6099,6 @@
           "name": "field__lod_timestamp",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -6074,8 +6111,8 @@
           "gnd_properties": [
             "base-timestamp"
           ],
-          "label_translation_language0": "Timestamp (LOD)",
-          "label_translation_language1": "Zeitstempel (LOD)",
+          "label_translation_language1": "Timestamp (LOD)",
+          "label_translation_language0": "Zeitstempel (LOD)",
           "geonames_properties": "hidden",
           "default_value": "",
           "new_lines": "",
@@ -6097,10 +6134,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Related Content",
           "label_translation_language1": "Related Content",
+          "label_translation_language0": "Related Content",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_person__article",
@@ -6108,7 +6146,6 @@
           "name": "field_demo_person__article",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -6124,8 +6161,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Referred to in",
-          "label_translation_language1": "Erwähnt in",
+          "label_translation_language1": "Referred to in",
+          "label_translation_language0": "Erwähnt in",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_article__article_person"
@@ -6141,7 +6178,6 @@
           "name": "field_demo_person__glossary",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -6157,8 +6193,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Referred to in Glossary",
-          "label_translation_language1": "Erwähnt in Glossar",
+          "label_translation_language1": "Referred to in Glossary",
+          "label_translation_language0": "Erwähnt in Glossar",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_glossary__person"
@@ -6174,7 +6210,6 @@
           "name": "field_demo_person__event",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -6190,8 +6225,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Related Events",
-          "label_translation_language1": "Verknüpfte Ereignisse",
+          "label_translation_language1": "Related Events",
+          "label_translation_language0": "Verknüpfte Ereignisse",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_event__person"
@@ -6211,7 +6246,6 @@
       "public": true,
       "menu_icon": "default",
       "has_archive": true,
-      "post_type": "demo_place",
       "advanced_configuration": false,
       "import_source": "",
       "import_date": "",
@@ -6281,6 +6315,7 @@
       "can_export": true,
       "delete_with_user": null,
       "register_meta_box_cb": null,
+      "enter_title_here": "",
       "label": "Places",
       "capability_type": "post",
       "capabilities": [],
@@ -6304,12 +6339,12 @@
         "date_modified"
       ],
       "label_translations": {
-        "language0": "Place",
-        "language1": "Ort"
+        "language1": "Place",
+        "language0": "Ort"
       },
       "label_translations_plural": {
-        "language0": "Places",
-        "language1": "Orte"
+        "language1": "Places",
+        "language0": "Orte"
       },
       "display_titles": {
         "title_archive_display": "field_demo_place__name",
@@ -6333,11 +6368,13 @@
       "label": "",
       "theme_labels": [],
       "type": "single-index",
+      "schema": "none",
       "language": "none",
       "external": [
         "field_demo_place__geonames",
         "field_demo_place__gnd_id"
-      ]
+      ],
+      "schema_type": "Place"
     },
     "acf_add_local_field_group": {
       "location": [
@@ -6353,9 +6390,10 @@
       "style": "default",
       "label_placement": "top",
       "instruction_placement": "label",
-      "hide_on_screen": [],
+      "hide_on_screen": "",
       "description": "",
-      "show_in_rest": false,
+      "show_in_rest": 0,
+      "display_title": "",
       "fields": [
         {
           "key": "field_oes_tab_editorial",
@@ -6372,9 +6410,10 @@
             "id": ""
           },
           "placement": "left",
-          "label_translation_language0": "Editorial",
           "label_translation_language1": "Editorial",
-          "endpoint": 0
+          "label_translation_language0": "Editorial",
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_oes_status",
@@ -6382,7 +6421,6 @@
           "name": "field_oes_status",
           "aria-label": "",
           "type": "select",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -6400,14 +6438,16 @@
             "admin_mode": "Admin Mode"
           },
           "default_value": "new",
-          "label_translation_language0": "Status",
           "label_translation_language1": "Status",
+          "label_translation_language0": "Status",
           "multiple": 0,
           "allow_null": 0,
           "ui": 0,
           "ajax": 0,
           "placeholder": "",
-          "return_format": "value"
+          "return_format": "value",
+          "create_options": 0,
+          "save_options": 0
         },
         {
           "key": "field_oes_comment",
@@ -6415,7 +6455,6 @@
           "name": "field_oes_comment",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -6424,8 +6463,8 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Comment",
           "label_translation_language1": "Comment",
+          "label_translation_language0": "Comment",
           "default_value": "",
           "new_lines": "",
           "maxlength": "",
@@ -6446,10 +6485,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Data",
           "label_translation_language1": "Data",
+          "label_translation_language0": "Data",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_place__name",
@@ -6457,7 +6497,6 @@
           "name": "field_demo_place__name",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -6467,8 +6506,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Name",
           "label_translation_language1": "Name",
+          "label_translation_language0": "Name",
           "language_dependent": true,
           "geonames_properties": "hidden",
           "gnd_properties": "hidden",
@@ -6484,7 +6523,6 @@
           "name": "field_demo_place__country",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -6494,8 +6532,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Country",
-          "label_translation_language1": "Land",
+          "label_translation_language1": "Country",
+          "label_translation_language0": "Land",
           "gnd_properties": "hidden",
           "language_dependent": true,
           "geonames_properties": [
@@ -6513,7 +6551,6 @@
           "name": "field_demo_place__latitude",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -6523,8 +6560,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Latitude",
-          "label_translation_language1": "Breitengrad",
+          "label_translation_language1": "Latitude",
+          "label_translation_language0": "Breitengrad",
           "gnd_properties": "hidden",
           "geonames_properties": [
             "lat"
@@ -6541,7 +6578,6 @@
           "name": "field_demo_place__longitude",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -6551,8 +6587,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Longitude",
-          "label_translation_language1": "Längengrad",
+          "label_translation_language1": "Longitude",
+          "label_translation_language0": "Längengrad",
           "gnd_properties": "hidden",
           "geonames_properties": [
             "lng"
@@ -6569,7 +6605,6 @@
           "name": "field_demo_place__alternative_names",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -6579,8 +6614,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Alternative Name(s)",
-          "label_translation_language1": "Namenvariante(n)",
+          "label_translation_language1": "Alternative Name(s)",
+          "label_translation_language0": "Namenvariante(n)",
           "gnd_properties": "hidden",
           "geonames_properties": "hidden",
           "default_value": "",
@@ -6603,10 +6638,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "LOD",
           "label_translation_language1": "LOD",
+          "label_translation_language0": "LOD",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_place__gnd_id",
@@ -6614,7 +6650,6 @@
           "name": "field_demo_place__gnd_id",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -6624,8 +6659,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "GND ID",
           "label_translation_language1": "GND ID",
+          "label_translation_language0": "GND ID",
           "gnd_properties": [
             "gndIdentifier"
           ],
@@ -6643,7 +6678,6 @@
           "name": "field_demo_place__gnd_name",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -6653,8 +6687,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "GND Entry",
-          "label_translation_language1": "GND Normeintrag",
+          "label_translation_language1": "GND Entry",
+          "label_translation_language0": "GND Normeintrag",
           "gnd_properties": [
             "preferredNameForThePlaceOrGeographicName",
             "preferredName"
@@ -6672,7 +6706,6 @@
           "name": "field_demo_place__geonames",
           "aria-label": "",
           "type": "text",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -6682,8 +6715,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "GeoNames ID",
           "label_translation_language1": "GeoNames ID",
+          "label_translation_language0": "GeoNames ID",
           "gnd_properties": "hidden",
           "geonames_properties": [
             "geonameId"
@@ -6702,7 +6735,6 @@
           "name": "field__lod_timestamp",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -6712,8 +6744,8 @@
             "id": ""
           },
           "pattern": [],
-          "label_translation_language0": "Timestamp (LOD)",
-          "label_translation_language1": "Zeitstempel (LOD)",
+          "label_translation_language1": "Timestamp (LOD)",
+          "label_translation_language0": "Zeitstempel (LOD)",
           "gnd_properties": [
             "base-timestamp"
           ],
@@ -6740,10 +6772,11 @@
             "class": "",
             "id": ""
           },
-          "label_translation_language0": "Related Content",
           "label_translation_language1": "Related Content",
+          "label_translation_language0": "Related Content",
           "placement": "top",
-          "endpoint": 0
+          "endpoint": 0,
+          "selected": 0
         },
         {
           "key": "field_demo_place__event",
@@ -6751,7 +6784,6 @@
           "name": "field_demo_place__event",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -6767,8 +6799,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Related Events",
-          "label_translation_language1": "Verknüpfte Ereignisse",
+          "label_translation_language1": "Related Events",
+          "label_translation_language0": "Verknüpfte Ereignisse",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_event__place"
@@ -6784,7 +6816,6 @@
           "name": "field_demo_place__article",
           "aria-label": "",
           "type": "relationship",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -6800,8 +6831,8 @@
           "filters": [
             "search"
           ],
-          "label_translation_language0": "Referred to in",
-          "label_translation_language1": "Erwähnt in",
+          "label_translation_language1": "Referred to in",
+          "label_translation_language0": "Erwähnt in",
           "bidirectional": 1,
           "bidirectional_target": [
             "field_demo_article__article_place"
@@ -6830,43 +6861,43 @@
     ],
     "image": {
       "title": {
-        "language0": "Title",
-        "language1": "Titel",
+        "language1": "Title",
+        "language0": "Titel",
         "labels": {
-          "language0": "",
-          "language1": ""
+          "language1": "",
+          "language0": ""
         }
       },
       "alt": {
-        "language0": "Alternative Title",
-        "language1": "Alternativer Titel",
+        "language1": "Alternative Title",
+        "language0": "Alternativer Titel",
         "labels": {
-          "language0": "",
-          "language1": ""
+          "language1": "",
+          "language0": ""
         }
       },
       "caption": {
-        "language0": "Caption",
-        "language1": "Überschrift",
+        "language1": "Caption",
+        "language0": "Überschrift",
         "labels": {
-          "language0": "",
-          "language1": ""
+          "language1": "",
+          "language0": ""
         }
       },
       "description": {
-        "language0": "Description",
-        "language1": "Beschreibung",
+        "language1": "Description",
+        "language0": "Beschreibung",
         "labels": {
-          "language0": "",
-          "language1": ""
+          "language1": "",
+          "language0": ""
         }
       },
       "date": {
-        "language0": "Publication Date",
-        "language1": "Publikationsdatum",
+        "language1": "Publication Date",
+        "language0": "Publikationsdatum",
         "labels": {
-          "language0": "",
-          "language1": ""
+          "language1": "",
+          "language0": ""
         }
       }
     },
@@ -6887,7 +6918,7 @@
       "hide_on_screen": [],
       "description": "",
       "show_in_rest": false,
-      "post_type": "attachment",
+      "display_title": "",
       "fields": [
         {
           "key": "oes_media_author_attribution",
@@ -6895,7 +6926,6 @@
           "name": "oes_media_author_attribution",
           "aria-label": "",
           "type": "textarea",
-          "value": null,
           "instructions": "Include author attribution.",
           "required": false,
           "conditional_logic": false,
@@ -6904,11 +6934,11 @@
             "class": "oes-language-dependent-field",
             "id": ""
           },
-          "language0": "Author Attribution",
-          "language1": "Urheberschaft",
+          "language1": "Author Attribution",
+          "language0": "Urheberschaft",
           "language_dependent": true,
-          "label_translation_language0": "Author Attribution",
           "label_translation_language1": "Author Attribution",
+          "label_translation_language0": "Author Attribution",
           "default_value": "",
           "new_lines": "",
           "maxlength": "",
@@ -6921,7 +6951,6 @@
           "name": "oes_media_license",
           "aria-label": "",
           "type": "link",
-          "value": null,
           "instructions": "",
           "required": false,
           "conditional_logic": false,
@@ -6930,11 +6959,11 @@
             "class": "oes-language-dependent-field",
             "id": ""
           },
-          "language0": "Media Licence",
-          "language1": "Medienlizenz",
+          "language1": "Media Licence",
+          "language0": "Medienlizenz",
           "language_dependent": true,
-          "label_translation_language0": "Media License",
           "label_translation_language1": "Media License",
+          "label_translation_language0": "Media License",
           "return_format": "array"
         }
       ],
@@ -6963,20 +6992,20 @@
         "page_parameters": {
           "menu_title": "[Articles]",
           "position": "20",
-          "icon_url": "default"
+          "icon_url": "single-article"
         }
       }
     },
     "languages": {
       "language0": {
-        "label": "English",
-        "abb": "ENG",
-        "locale": "en_EN"
-      },
-      "language1": {
         "label": "Deutsch",
         "abb": "DEU",
         "locale": "de_DE"
+      },
+      "language1": {
+        "label": "English",
+        "abb": "ENG",
+        "locale": "en_BE"
       }
     },
     "theme_index_pages": {
@@ -6992,233 +7021,32 @@
           "demo_institution",
           "t_demo_subject"
         ],
-        "label": {
-          "language0": "Index",
-          "language1": "Register"
-        },
         "archive_filter": [
           "alphabet"
-        ]
-      },
-      "index1": {
-        "slug": "hidden",
-        "element": [
-          "demo_article"
-        ],
-        "objects": [
-          "demo_contributor"
         ],
         "label": {
-          "language0": "",
-          "language1": ""
-        },
-        "archive_filter": "hidden"
+          "language0": "Register",
+          "language1": "Index"
+        }
       }
     },
     "theme_labels": {
-      "archive__filter__all_button": {
-        "language0": "All",
-        "language1": "Alle",
-        "name": "Archive Filter, All button",
-        "location": "Archive Filter, e.g. index page"
-      },
-      "404__header": {
-        "language0": "Page not found",
-        "language1": "Seite nicht gefunden",
-        "name": "404 Page Not Found, Header",
-        "location": "Page not found, tab header",
-        "classic": 2.3
-      },
-      "404__search_text": {
-        "language0": "Page not found",
-        "language1": "Seite nicht gefunden",
-        "name": "404 Page Not Found, Search Text",
-        "location": "Page not found, search text",
-        "classic": 2.3
-      },
-      "404_page_content": {
-        "language0": "",
-        "language1": "",
-        "name": "404 Page Not Found, Content",
-        "location": "Page not found, content",
-        "classic": 2.3
-      },
-      "archive__entries": {
-        "language0": "Entries",
-        "language1": "Einträge",
-        "name": "Archive Result Page, Entries Count Label (Plural)",
-        "location": "Archive page",
-        "classic": 2.3
-      },
-      "archive__entry": {
-        "language0": "Entry",
-        "language1": "Eintrag",
-        "name": "Archive Result Page, Entries Count Label (Singular)",
-        "location": "Archive page",
-        "classic": 2.3
-      },
-      "button__print": {
-        "language0": "Print",
-        "language1": "Drucken",
-        "name": "Print Button",
-        "location": "-"
-      },
       "button__read_more": {
         "language0": "Read More",
-        "language1": "Weiterlesen",
         "name": "Read More Button",
         "location": "-"
       },
-      "no_results_found": {
-        "language0": "No entries found for this filter combination.",
-        "language1": "Keine Ergebnisse für diese Filtekombination",
-        "name": "No entries found for filter combination.",
-        "location": "e.g. archive and search",
-        "classic": 2.3
-      },
-      "search__navigation__text": {
-        "language0": "Search the OES Encyclopedia",
-        "language1": "Suche in OES Demo Encyclopedia",
-        "name": "Search Panel, Text",
-        "location": "Search Panel, above the search field",
-        "classic": 2.3
-      },
-      "search__no_results": {
-        "language0": "No results.",
-        "language1": "Keine Ergebnisse.",
-        "name": "Search Results Page, No results",
-        "location": "Search results page, no results found",
-        "classic": 2.3
-      },
-      "search__result__count_plural": {
-        "language0": "Results",
-        "language1": "Ergebnisse",
-        "name": "Search Result Page, Entries Count Label (Plural)",
-        "location": "Search results page",
-        "classic": 2.3
-      },
-      "search__result__count_singular": {
-        "language0": "Result",
-        "language1": "Ergebnis",
-        "name": "Search Result Page, Entries Count Label (Singular)",
-        "location": "Search results page",
-        "classic": 2.3
-      },
-      "search__result__label": {
-        "language0": "Search",
-        "language1": "Suche",
-        "name": "Search Page Label",
-        "location": "Search result page, titel"
-      },
-      "search__result_table__header_occurrences": {
-        "language0": "Occurrences",
-        "language1": "Vorkommnisse",
-        "name": "Search Result table Header, Occurrences",
-        "location": "Search results, result table header",
-        "classic": 2.3
-      },
-      "search__result__occurrence": {
-        "language0": "Occurrence",
-        "language1": "Vorkommnis",
-        "name": "Search Result table Header: Occurrences (Singular)",
-        "location": "Search results, result table header"
-      },
-      "search__result__occurrences": {
-        "language0": "Occurrences",
-        "language1": "Vorkommnisse",
-        "name": "Search Result table Header: Occurrences (Plural)",
-        "location": "Search results, result table header"
-      },
-      "search__see_term": {
-        "language0": "See also: ",
-        "language1": "Siehe auch: ",
-        "name": "Search Result Page, See also term",
-        "location": "Search results page",
-        "classic": 2.3
-      },
-      "sidebar__archive_header__refine_search": {
-        "language0": "Refine search",
-        "language1": "Suche verfeinern",
-        "name": "Archive sidebar header label",
-        "location": "archive sidebar",
-        "classic": 2.3
-      },
-      "sidebar__archive_header__responsive_expand": {
-        "language0": "Refine Search",
-        "language1": "Suche verfeinern",
-        "name": "Sidebar archive header refine search for responsive",
-        "location": "Archive Sidebar",
-        "classic": 2.3
-      },
-      "single__sub_line__author_by": {
-        "language0": "by",
-        "language1": "von",
-        "name": "Sub line, author by label",
-        "location": "Single view, subline",
-        "classic": 2.3
-      },
-      "single__sub_line__translation": {
-        "language0": "Different language version available: ",
-        "language1": "Anderes Sprache: ",
-        "name": "Sub line, other language version available",
-        "location": "Single view, subline",
-        "classic": 2.3
-      },
-      "single__toc__header_citation": {
-        "language0": "Citation",
-        "language1": "Zitierweise",
-        "name": "Header: Citation",
-        "location": "Single view, citation header",
-        "classic": 2.3
-      },
-      "single__toc__header_metadata": {
-        "language0": "Metadata",
-        "language1": "Metadaten",
-        "name": "Header: Metadata",
-        "location": "Single view, metadata header",
-        "classic": 2.3
-      },
-      "single__toc__header_notes": {
-        "language0": "Notes",
-        "language1": "Endnoten",
-        "name": "Header: Notes",
-        "location": "Single view, notes header",
-        "classic": 2.3
-      },
-      "single__toc__header_toc": {
-        "language0": "Table of Contents",
-        "language1": "Inhaltsverzeichnis",
-        "name": "Header: Table of Contents",
-        "location": "Single view, table of contents header",
-        "classic": 2.3
-      },
-      "single__toc__index": {
-        "language0": "Referred to in",
-        "language1": "Erwähnt in",
-        "name": "Single (Index header)",
-        "location": "Single view, related objects",
-        "classic": 2.3
-      },
-      "single__toc__index_contributor": {
-        "language0": "Published Articles",
-        "language1": "Publizierte Artikel",
-        "name": "Single (Index header, Contributor)",
-        "location": "Single view, related objects for contributor type",
-        "classic": 2.3
-      },
-      "single__toc__index_language_header": {
-        "language0": "Articles in other language:",
-        "language1": "Artikel in andere Sprache: ",
-        "name": "Single (Index header, language differentiation)",
-        "location": "Single view, related objects",
-        "classic": 2.3
+      "button__print": {
+        "language0": "Print",
+        "name": "Print Button",
+        "location": "-"
       }
     },
     "search": {
       "max_preview_paragraphs": "2",
       "type_label": {
-        "language0": "Types",
-        "language1": "Typen"
+        "language1": "Types",
+        "language0": "Typen"
       },
       "postmeta_fields": {
         "page": [
@@ -7265,7 +7093,7 @@
         "instructions": "Internal field for post status."
       },
       "field_oes_comment": {
-        "label": "Remarks",
+        "label": "Comment",
         "instructions": "Internal comment."
       }
     }
@@ -7351,12 +7179,12 @@
       "pattern_name": [],
       "admin_columns": [],
       "label_translations": {
-        "language0": "Article Type",
-        "language1": "Artikeltyp"
+        "language1": "Article Type",
+        "language0": "Artikeltyp"
       },
       "label_translations_plural": {
-        "language0": "Article Types",
-        "language1": "Artikeltypen"
+        "language1": "Article Types",
+        "language0": "Artikeltypen"
       },
       "display_titles": {
         "title_display": "wp-title"
@@ -7368,17 +7196,11 @@
       "lod": false,
       "editorial_tab": true,
       "label": "",
-      "theme_labels": {
-        "archive__header": {
-          "name": "Archive: sub title",
-          "location": "Archive view, Header",
-          "language0": "t_demo_article_type (Archive: sub title)",
-          "language1": "t_demo_article_type (Archive: sub title)"
-        }
-      },
+      "theme_labels": [],
       "type": "single-internal",
       "language_dependent": false,
-      "redirect": "demo_article"
+      "redirect": "demo_article",
+      "schema": "none"
     }
   },
   "t_demo_event_type": {
@@ -7460,12 +7282,12 @@
       "pattern_name": [],
       "admin_columns": [],
       "label_translations": {
-        "language0": "Event Type",
-        "language1": "Ereignistyp"
+        "language1": "Event Type",
+        "language0": "Ereignistyp"
       },
       "label_translations_plural": {
-        "language0": "Event Types",
-        "language1": "Ereignistypen"
+        "language1": "Event Types",
+        "language0": "Ereignistypen"
       },
       "display_titles": [],
       "metadata": [],
@@ -7475,17 +7297,11 @@
       "lod": false,
       "editorial_tab": true,
       "label": "",
-      "theme_labels": {
-        "archive__header": {
-          "name": "Archive: sub title",
-          "location": "Archive view, Header",
-          "language0": "t_demo_event_type (Archive: sub title)",
-          "language1": "t_demo_event_type (Archive: sub title)"
-        }
-      },
+      "theme_labels": [],
       "type": "single-internal",
       "language_dependent": false,
-      "redirect": "demo_event"
+      "redirect": "demo_event",
+      "schema": "none"
     }
   },
   "t_demo_subject": {
@@ -7556,7 +7372,7 @@
         "with_front": "1",
         "rewrite_hierarchical": "0"
       },
-      "query_var": "taxonomy_key",
+      "query_var": true,
       "query_var_name": "",
       "default_term": {
         "default_term_enabled": "0"
@@ -7573,12 +7389,12 @@
       "pattern_name": [],
       "admin_columns": [],
       "label_translations": {
-        "language0": "Keyword",
-        "language1": "Schlagwort"
+        "language1": "Keyword",
+        "language0": "Schlagwort"
       },
       "label_translations_plural": {
-        "language0": "Keywords",
-        "language1": "Schlagworte"
+        "language1": "Keywords",
+        "language0": "Schlagworte"
       },
       "display_titles": {
         "title_display": "wp-title"
@@ -7592,17 +7408,12 @@
       "lod": false,
       "editorial_tab": true,
       "label": "",
-      "theme_labels": {
-        "archive__header": {
-          "name": "Archive: sub title",
-          "location": "Archive view, Header",
-          "language0": "t_demo_subject (Archive: sub title)",
-          "language1": "t_demo_subject (Archive: sub title)"
-        }
-      },
+      "theme_labels": [],
       "type": "single-index",
       "language_dependent": true,
-      "redirect": "none"
+      "redirect": "none",
+      "schema": "none",
+      "schema_type": "DefinedTerm"
     }
   }
 }

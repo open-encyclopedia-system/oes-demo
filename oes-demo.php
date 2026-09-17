@@ -7,12 +7,13 @@
  * Plugin Name:        OES Demo
  * Plugin URI:         https://www.open-encyclopedia-system.org/
  * Description:        Demonstration plugin implementing and extending the OES Core plugin.
- * Version:            2.3.1
- * Author:             Maren Welterlich-Strobl, Freie Universität Berlin, FUB-IT
- * Author URI:         https://www.it.fu-berlin.de/die-fub-it/mitarbeitende/mstrobl.html
+ * Version:            3.0.0
+ * Author:             Maren Welterlich-Strobl, Freie Universität Berlin, FUB-IT, Digitale Forschungsinfrastrukturen
+ * Author URI:         https://www.fu-berlin.de/
  * Requires at least:  6.5
- * Tested up to:       6.8.2
+ * Tested up to:       7.1
  * Requires PHP:       8.1
+ * Requires plugins:   oes-core
  * Tags:               oes, demo, example, encyclopedia, open-access, digital-humanities, academic, wiki, lexicon, education
  * License:            GPLv2 or later
  * License URI:        https://www.gnu.org/licenses/gpl-2.0.html
@@ -32,7 +33,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
 /** --------------------------------------------------------------------------------------------------------------------
@@ -41,66 +41,5 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
  * @throws Exception
  */
 add_action('oes/plugins_loaded', function () {
-
-    /* check if OES Core Plugin is activated */
-    if (!function_exists('OES')) {
-        add_action('admin_notices', function () {
-            echo '<div class="notice notice-warning is-dismissible"><p>' .
-                __('The OES Core Plugin is not active.', 'oes-demo') . '</p></div>';
-        });
-    } else {
-
-
-        /** Initialize OES ---------------------------------------------------------------------------------------------
-         * This will initialize the OES Core Plugin functionalities and returns the global OES variable. -------------*/
-        $oes = OES(__DIR__);
-
-        /* exit early if OES Plugin was not completely initialized */
-        if (!$oes->initialized) return;
-
-
-        /** Prepare the project ----------------------------------------------------------------------------------------
-         * This will initialize the project by building the data model and the admin configurations. -----------------*/
-
-        /* add language options to page */
-        oes_add_fields_to_page();
-
-
-        /** Include theme classes --------------------------------------------------------------------------------------
-         * Include classes that prepare the objects inside this encyclopaedia for the frontend display. This classes
-         * will be included for any theme and will be executed if the theme calls 'the_content()'. -------------------*/
-        oes_include_project('theme/post-types/class-demo_post.php');
-        oes_include_project('theme/post-types/class-demo_article.php');
-        oes_include_project('theme/post-types/class-demo_contributor.php');
-        oes_include_project('theme/post-types/class-demo_glossary_entry.php');
-        oes_include_project('theme/post-types/class-demo_person.php');
-        oes_include_project('theme/post-types/class-demo_institution.php');
-        oes_include_project('theme/post-types/class-demo_place.php');
-        oes_include_project('theme/post-types/class-demo_event.php');
-        oes_include_project('theme/taxonomies/class-demo_taxonomy.php');
-        oes_include_project('theme/taxonomies/class-t_demo_subject.php');
-
-
-        /** Hide the WordPress update notifications and obsolete menu structure --------------------------------------*/
-        oes_hide_obsolete_menu_structure();
-
-
-        /* Initialize the project ------------------------------------------------------------------------------------*/
-        try {
-            $oes->initialize_project();
-        } catch (Exception $e) {
-            add_action('admin_notices', function () use ($e) {
-                echo '<div class="notice notice-warning is-dismissible"><p>' .
-                    __('The OES Core Plugin could not be initialized.', 'oes-demo') . '</p>' .
-                    $e->getMessage() .
-                    '</div>';
-            });
-        }
-    }
-});
-
-
-/* Add timeline modification -----------------------------------------------------------------------------------------*/
-add_action('oes/timeline_plugin_loaded', function(){
-    include_once __DIR__ . '/includes/theme/class-demo_timeline_event.php';
+    OES(__DIR__);
 });
