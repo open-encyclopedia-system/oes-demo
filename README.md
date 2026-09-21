@@ -4,6 +4,10 @@ This repository contains the **OES Demo** plugin: an exemplary and fictional onl
 [Open Encyclopedia System (OES)](https://github.com/open-encyclopedia-system/oes-core) framework, giving you a
 first-hand look at OES's editorial and front-end functionality without setting up your own application first.
 
+[![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/open-encyclopedia-system/oes-demo/graphs/commit-activity)
+[![AI-DECLARATION: assist](https://img.shields.io/badge/䷼%20AI--DECLARATION-assist-fef9c3?labelColor=fef9c3)](./AI-DECLARATION.md)
+
 For general information about OES — what it is, its features, citation, contributing, credits, and licensing —
 see the [OES Core README](https://github.com/open-encyclopedia-system/oes-core#readme).
 
@@ -16,10 +20,10 @@ A typical OES application consists of:
 
 The OES Demo depends on:
 
-| Component                    | Version | Source                                                           |
-|------------------------------|---------|------------------------------------------------------------------|
-| OES Core                     | `3.0.0` | [oes-core](https://github.com/open-encyclopedia-system/oes-core) |
-| Advanced Custom Fields (ACF) | `6.3.4` | [advancedcustomfields.com](https://www.advancedcustomfields.com) |
+| Component                    | Version   | Source                                                           |
+|------------------------------|-----------|------------------------------------------------------------------|
+| OES Core                     | `≥ 3.0.0` | [oes-core](https://github.com/open-encyclopedia-system/oes-core) |
+| Advanced Custom Fields (ACF) | `≥ 6.3.4` | [advancedcustomfields.com](https://www.advancedcustomfields.com) |
 
 ## Installation
 
@@ -77,4 +81,4 @@ For general OES information — contributing and credits — see the
 ## Licensing
 
 This software is licensed under the **GNU General Public License (GPL v2 or later)**. See [LICENSE.txt](./LICENSE.txt)
-for the full license terms, or [https://www.gnu.org/licenses/old-licenses/gpl-2.0.html](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
+for the full license terms, or [https://www.gnu.org/licenses/gpl-2.0.html](https://www.gnu.org/licenses/gpl-2.0.html).

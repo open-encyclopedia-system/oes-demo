@@ -19,7 +19,7 @@
 
 - Plugin initialization now defers to OES Core's initialization API rather than bootstrapping independently.
 - Switch languages: primary language is now German, secondary English
-- 
+
 ### Removed
 
 - Removed post single and archive processing code now provided by blocks and shortcodes in OES Core `3.0`.
