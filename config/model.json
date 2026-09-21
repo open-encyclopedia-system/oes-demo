@@ -1,6 +1,9 @@
 {
   "demo_article": {
     "register_args": {
+      "public": true,
+      "menu_icon": "default",
+      "has_archive": true,
       "advanced_configuration": false,
       "import_source": "",
       "import_date": "",
@@ -41,7 +44,6 @@
         "singular_name": "Article"
       },
       "description": "An article is the main post type in OES. It is used for the individual content entries or articles of the encyclopedia or reference work (i.e. lemmas)",
-      "public": true,
       "hierarchical": false,
       "exclude_from_search": false,
       "publicly_queryable": true,
@@ -55,7 +57,6 @@
       "rest_namespace": "wp\/v2",
       "rest_controller_class": "WP_REST_Blocks_Controller",
       "menu_position": null,
-      "menu_icon": "default",
       "rename_capabilities": false,
       "singular_capability_name": "post",
       "plural_capability_name": "posts",
@@ -66,7 +67,6 @@
       "taxonomies": [
         "t_demo_subject"
       ],
-      "has_archive": true,
       "has_archive_slug": "",
       "rewrite": {
         "slug": "articles"
@@ -99,12 +99,12 @@
         "date_modified"
       ],
       "label_translations": {
-        "language1": "Article",
-        "language0": "Artikel"
+        "language0": "Artikel",
+        "language1": "Article"
       },
       "label_translations_plural": {
-        "language1": "Articles",
-        "language0": "Artikel"
+        "language0": "Artikel",
+        "language1": "Articles"
       },
       "display_titles": {
         "title_archive_display": "field_demo_article__title",
@@ -143,13 +143,13 @@
       "label": "",
       "theme_labels": [],
       "type": "single-article",
+      "schema": "ScholarlyArticle",
       "parent": "demo_article_p",
       "authors": [
         "field_demo_article__article_author"
       ],
       "creators": [
-        "field_demo_article__article_contributor",
-        "field_demo_article__article_translator"
+        "field_demo_article__article_contributor"
       ],
       "subtitle": {
         "field": "none",
@@ -170,8 +170,8 @@
           {
             "string_value": "",
             "required": "false",
-            "prefix": "&#8222;",
-            "suffix": "&#8220;, ",
+            "prefix": "„",
+            "suffix": "“, ",
             "separator": "",
             "field_key": "field_demo_article__title",
             "fallback": "none"
@@ -186,7 +186,7 @@
             "fallback": "none"
           },
           {
-            "string_value": "[oes_language_label language0='In: OES Demo. Published by Center for Digital Systems, Freie Universität Berlin, ' language1='In: OES Demo. Publiziert vom Center für Digital Systems, Freie Universität Berlin, ']",
+            "string_value": "[oes_language_label language1='In: OES Demo. Published by Center for Digital Systems, Freie Universität Berlin, ' language0='In: OES Demo. Publiziert vom Center für Digital Systems, Freie Universität Berlin, ']",
             "required": "false",
             "prefix": "",
             "suffix": "",
@@ -213,13 +213,30 @@
       "terms": [
         "taxonomy__t_demo_subject"
       ],
-      "excerpt": "none",
+      "excerpt": "field_demo_article__excerpt",
       "featured_image": "field_demo_article__image",
       "external": [],
       "literature": [
         "field_demo_article__bib",
         "field_demo_article__further_literature"
-      ]
+      ],
+      "status": "none",
+      "doi": "field_demo_article__doi",
+      "schema_type": "ScholarlyArticle",
+      "relations": [
+        "field_demo_article__article_event",
+        "field_demo_article__article_place",
+        "field_demo_article__article_person",
+        "field_demo_article__article_institution"
+      ],
+      "related_content": [
+        "field_demo_article__article_glossary",
+        "field_demo_article__article_articles"
+      ],
+      "translators": [
+        "field_demo_article__article_translator"
+      ],
+      "editors": false
     },
     "acf_add_local_field_group": {
       "location": [
@@ -239,18 +256,6 @@
       "description": "",
       "show_in_rest": false,
       "display_title": "",
-      "acf_add_local_field_group": {
-        "fields": {
-          "1": {
-            "label_translation_language0": "Status7",
-            "label_translation_language1": "Status7"
-          },
-          "31": {
-            "label_translation_language1": "Parent Post",
-            "label_translation_language0": "Parent Post"
-          }
-        }
-      },
       "fields": [
         {
           "key": "field_oes_tab_editorial",
@@ -296,7 +301,7 @@
           },
           "default_value": "new",
           "label_translation_language1": "Status",
-          "label_translation_language0": "Status3",
+          "label_translation_language0": "Status",
           "multiple": 0,
           "allow_null": 0,
           "ui": 0,
@@ -1086,6 +1091,9 @@
   },
   "demo_article_p": {
     "register_args": {
+      "public": false,
+      "menu_icon": "default",
+      "has_archive": false,
       "advanced_configuration": false,
       "import_source": "",
       "import_date": "",
@@ -1126,7 +1134,6 @@
         "singular_name": "Article Parent"
       },
       "description": "Parent post type to demo_article that stores metadata for all versions of an demo_article object.",
-      "public": false,
       "hierarchical": false,
       "exclude_from_search": true,
       "publicly_queryable": true,
@@ -1140,7 +1147,6 @@
       "rest_namespace": "wp\/v2",
       "rest_controller_class": "WP_REST_Blocks_Controller",
       "menu_position": null,
-      "menu_icon": "default",
       "rename_capabilities": false,
       "singular_capability_name": "post",
       "plural_capability_name": "posts",
@@ -1150,7 +1156,6 @@
       "taxonomies": [
         "t_demo_article_type"
       ],
-      "has_archive": false,
       "has_archive_slug": "",
       "rewrite": false,
       "query_var": true,
@@ -1193,7 +1198,8 @@
       "editorial_tab": false,
       "label": "",
       "theme_labels": [],
-      "type": "single-internal",
+      "type": "other",
+      "schema": "none",
       "version": "demo_article"
     },
     "acf_add_local_field_group": {
@@ -1214,22 +1220,6 @@
       "description": "",
       "show_in_rest": false,
       "display_title": "",
-      "acf_add_local_field_group": {
-        "fields": {
-          "6": {
-            "label_translation_language1": "Current Post",
-            "label_translation_language0": "Current Post"
-          },
-          "7": {
-            "label_translation_language1": "Versions",
-            "label_translation_language0": "Versions"
-          },
-          "8": {
-            "label_translation_language1": "Connected Parent",
-            "label_translation_language0": "Connected Parent"
-          }
-        }
-      },
       "fields": [
         {
           "key": "field_oes_tab_editorial",
@@ -1342,8 +1332,8 @@
             "id": ""
           },
           "choices": {
-            "language1": "English",
-            "language0": "Deutsch"
+            "language0": "Deutsch",
+            "language1": "English"
           },
           "label_translation_language1": "Language",
           "label_translation_language0": "Sprache",
@@ -1465,6 +1455,9 @@
   },
   "demo_bib": {
     "register_args": {
+      "public": true,
+      "menu_icon": "default",
+      "has_archive": false,
       "advanced_configuration": false,
       "import_source": "",
       "import_date": "",
@@ -1505,7 +1498,6 @@
         "singular_name": "Bibliographic Entry"
       },
       "description": "A bibliography is a list of works on a subject or by an contributor that were used or consulted to write a research paper, book or article. A single work is referred to as bibliographic entry.",
-      "public": true,
       "hierarchical": true,
       "exclude_from_search": false,
       "publicly_queryable": true,
@@ -1519,7 +1511,6 @@
       "rest_namespace": "wp\/v2",
       "rest_controller_class": "WP_REST_Blocks_Controller",
       "menu_position": 24,
-      "menu_icon": "default",
       "rename_capabilities": false,
       "singular_capability_name": "post",
       "plural_capability_name": "posts",
@@ -1528,7 +1519,6 @@
         "page-attributes"
       ],
       "taxonomies": [],
-      "has_archive": false,
       "has_archive_slug": "",
       "rewrite": false,
       "query_var": true,
@@ -1571,9 +1561,11 @@
       "editorial_tab": false,
       "label": "",
       "theme_labels": [],
-      "type": "single-internal",
+      "type": "other",
+      "schema": "Event",
       "language": "none",
-      "external": []
+      "external": [],
+      "schema_type": "CreativeWork"
     },
     "acf_add_local_field_group": {
       "location": [
@@ -2600,6 +2592,9 @@
   },
   "demo_contributor": {
     "register_args": {
+      "public": true,
+      "menu_icon": "default",
+      "has_archive": true,
       "advanced_configuration": false,
       "import_source": "",
       "import_date": "",
@@ -2640,7 +2635,6 @@
         "singular_name": "Contributor"
       },
       "description": "A contributor is a person contributing to the encyclopedia: an author (someone writing articles, glossary entries etc.), a co-author, an editor (responsible for editing and publishing the content), a translator, etc..",
-      "public": true,
       "hierarchical": false,
       "exclude_from_search": false,
       "publicly_queryable": true,
@@ -2654,7 +2648,6 @@
       "rest_namespace": "wp\/v2",
       "rest_controller_class": "WP_REST_Blocks_Controller",
       "menu_position": 23,
-      "menu_icon": "default",
       "rename_capabilities": false,
       "singular_capability_name": "post",
       "plural_capability_name": "posts",
@@ -2662,7 +2655,6 @@
         "title"
       ],
       "taxonomies": [],
-      "has_archive": true,
       "has_archive_slug": "",
       "rewrite": {
         "slug": "contributors"
@@ -2701,7 +2693,7 @@
       },
       "display_titles": {
         "title_archive_display": "wp-title",
-        "title_sorting_display": "wp-title",
+        "title_sorting_display": "field_demo_contributor__name_sort",
         "title_display": "wp-title"
       },
       "metadata": [
@@ -2719,17 +2711,20 @@
       "archive_filter": [
         "alphabet"
       ],
-      "lod": true,
+      "lod": false,
       "editorial_tab": false,
       "label": "",
       "theme_labels": [],
       "type": "single-contributor",
+      "schema": "Person",
       "vita": "field_demo_contributor__vita",
       "publications": [
         "field_demo_contributor__publications_other"
       ],
       "language": "none",
-      "external": []
+      "external": [],
+      "orcid": "field_demo_contributor__orcid_id",
+      "schema_type": "Person"
     },
     "acf_add_local_field_group": {
       "location": [
@@ -3420,6 +3415,9 @@
   },
   "demo_event": {
     "register_args": {
+      "public": true,
+      "menu_icon": "default",
+      "has_archive": true,
       "advanced_configuration": false,
       "import_source": "",
       "import_date": "",
@@ -3460,7 +3458,6 @@
         "singular_name": "Event"
       },
       "description": "Post type to describe properties of an event, including name, authorative data etc. Also used to build an index for encyclopaedic entries.",
-      "public": true,
       "hierarchical": false,
       "exclude_from_search": false,
       "publicly_queryable": true,
@@ -3474,7 +3471,6 @@
       "rest_namespace": "wp\/v2",
       "rest_controller_class": "WP_REST_Blocks_Controller",
       "menu_position": null,
-      "menu_icon": "default",
       "rename_capabilities": false,
       "singular_capability_name": "post",
       "plural_capability_name": "posts",
@@ -3484,7 +3480,6 @@
       "taxonomies": [
         "t_demo_event_type"
       ],
-      "has_archive": true,
       "has_archive_slug": "",
       "rewrite": {
         "slug": "events"
@@ -3538,11 +3533,19 @@
         "alphabet",
         "field_demo_event__type"
       ],
-      "lod": true,
+      "lod": false,
       "editorial_tab": false,
       "label": "",
       "theme_labels": [],
-      "type": "single-index"
+      "type": "single-index",
+      "schema": "Event",
+      "schema_type": "Event",
+      "language": "none",
+      "external": [],
+      "from": "field_demo_event__time_start",
+      "to": "field_demo_event__time_end",
+      "startDate": "field_demo_event__time_start",
+      "endDate": "field_demo_event__time_end"
     },
     "acf_add_local_field_group": {
       "location": [
@@ -4221,6 +4224,9 @@
   },
   "demo_glossary_entry": {
     "register_args": {
+      "public": true,
+      "menu_icon": "default",
+      "has_archive": true,
       "advanced_configuration": false,
       "import_source": "",
       "import_date": "",
@@ -4261,7 +4267,6 @@
         "singular_name": "Glossary Entry"
       },
       "description": "A glossary entry is part of a glossary, i.e. an alphabetical list of difficult, technical, or foreign words in a text along with explanations of their meanings.",
-      "public": true,
       "hierarchical": false,
       "exclude_from_search": false,
       "publicly_queryable": true,
@@ -4275,7 +4280,6 @@
       "rest_namespace": "wp\/v2",
       "rest_controller_class": "WP_REST_Blocks_Controller",
       "menu_position": 22,
-      "menu_icon": "default",
       "rename_capabilities": false,
       "singular_capability_name": "post",
       "plural_capability_name": "posts",
@@ -4284,7 +4288,6 @@
         "editor"
       ],
       "taxonomies": [],
-      "has_archive": true,
       "has_archive_slug": "",
       "rewrite": {
         "slug": "glossary"
@@ -4343,11 +4346,14 @@
       "archive_filter": [
         "alphabet"
       ],
-      "lod": true,
+      "lod": false,
       "editorial_tab": false,
       "label": "",
       "theme_labels": [],
-      "type": "single-article"
+      "type": "single-article",
+      "schema": "CreativeWork",
+      "schema_type": "CreativeWork",
+      "parent": "none"
     },
     "acf_add_local_field_group": {
       "location": [
@@ -4479,8 +4485,8 @@
             "id": ""
           },
           "choices": {
-            "language1": "English",
-            "language0": "Deutsch"
+            "language0": "Deutsch",
+            "language1": "English"
           },
           "label_translation_language1": "Language",
           "label_translation_language0": "Sprache",
@@ -4743,6 +4749,30 @@
           "min": 0,
           "max": 0,
           "elements": []
+        },
+        {
+          "name": "oes_versioning_tab",
+          "label": "Version Control",
+          "type": "tab",
+          "key": "oes_versioning_tab",
+          "label_translation_language0": "Version Control",
+          "label_translation_language1": "Version Control"
+        },
+        {
+          "name": "field_oes_versioning_parent_post",
+          "label": "Parent Post",
+          "type": "post_object",
+          "key": "field_oes_versioning_parent_post_demo_glossary_entry",
+          "post_type": [
+            "none"
+          ],
+          "return_format": "id",
+          "allow_null": true,
+          "wrapper": {
+            "class": "oes-acf-hidden-field"
+          },
+          "label_translation_language0": "Parent Post",
+          "label_translation_language1": "Parent Post"
         }
       ],
       "title": "Glossary Entry",
@@ -4751,6 +4781,9 @@
   },
   "demo_institution": {
     "register_args": {
+      "public": true,
+      "menu_icon": "default",
+      "has_archive": true,
       "advanced_configuration": false,
       "import_source": "",
       "import_date": "",
@@ -4791,7 +4824,6 @@
         "singular_name": "Institution"
       },
       "description": "Post type to describe properties of an institution. Also used to build an index for encyclopaedic entries.",
-      "public": true,
       "hierarchical": false,
       "exclude_from_search": false,
       "publicly_queryable": true,
@@ -4805,7 +4837,6 @@
       "rest_namespace": "wp\/v2",
       "rest_controller_class": "WP_REST_Blocks_Controller",
       "menu_position": null,
-      "menu_icon": "default",
       "rename_capabilities": false,
       "singular_capability_name": "post",
       "plural_capability_name": "posts",
@@ -4813,7 +4844,6 @@
         "title"
       ],
       "taxonomies": [],
-      "has_archive": true,
       "has_archive_slug": "",
       "rewrite": {
         "slug": "institutions"
@@ -4865,11 +4895,15 @@
       "archive_filter": [
         "alphabet"
       ],
-      "lod": true,
+      "lod": false,
       "editorial_tab": false,
       "label": "",
       "theme_labels": [],
-      "type": "single-index"
+      "type": "single-index",
+      "schema": "ScholarlyArticle",
+      "schema_type": "Organization",
+      "language": "none",
+      "external": []
     },
     "acf_add_local_field_group": {
       "location": [
@@ -5316,6 +5350,9 @@
   },
   "demo_person": {
     "register_args": {
+      "public": true,
+      "menu_icon": "default",
+      "has_archive": true,
       "advanced_configuration": false,
       "import_source": "",
       "import_date": "",
@@ -5356,7 +5393,6 @@
         "singular_name": "Person"
       },
       "description": "Post type to describe the properties of a person, including name, authorative data etc. Also used to build an index for encyclopaedic entries.",
-      "public": true,
       "hierarchical": false,
       "exclude_from_search": false,
       "publicly_queryable": true,
@@ -5370,7 +5406,6 @@
       "rest_namespace": "wp\/v2",
       "rest_controller_class": "WP_REST_Blocks_Controller",
       "menu_position": null,
-      "menu_icon": "default",
       "rename_capabilities": false,
       "singular_capability_name": "post",
       "plural_capability_name": "posts",
@@ -5378,7 +5413,6 @@
         "title"
       ],
       "taxonomies": [],
-      "has_archive": true,
       "has_archive_slug": "",
       "rewrite": {
         "slug": "people"
@@ -5468,25 +5502,21 @@
         "field_demo_person__gnd_name",
         "field_demo_person__gnd_id",
         "field_demo_person__country",
-        "field_demo_person__profession_or_occupation"
+        "field_demo_person__profession_or_occupation",
+        "field_demo_person__biographical_data"
       ],
       "archive_on_single_page": false,
       "archive": [],
       "archive_filter": [
         "alphabet"
       ],
-      "lod": true,
+      "lod": false,
       "editorial_tab": false,
       "label": "",
-      "theme_labels": {
-        "single__metadata__biographical_data": {
-          "name": "Single: Metadata, Biographical Data",
-          "location": "Single view, metadata",
-          "language1": "Biographical Data",
-          "language0": "Lebensdaten"
-        }
-      },
-      "type": "single-index"
+      "theme_labels": [],
+      "type": "single-index",
+      "schema": "Person",
+      "schema_type": "Person"
     },
     "acf_add_local_field_group": {
       "location": [
@@ -5898,6 +5928,69 @@
           "append": ""
         },
         {
+          "key": "field_demo_person__biographical_data",
+          "label": "Biographical Data",
+          "name": "field_demo_person__biographical_data",
+          "aria-label": "",
+          "type": "text",
+          "instructions": "",
+          "required": false,
+          "readonly": true,
+          "conditional_logic": false,
+          "wrapper": {
+            "width": "",
+            "class": "oes-language-dependent-field",
+            "id": ""
+          },
+          "label_translation_language0": "Lebensdaten",
+          "label_translation_language1": "Biographical Data",
+          "language_dependent": true,
+          "pattern": [
+            {
+              "string_value": "",
+              "required": "false",
+              "prefix": "",
+              "suffix": "",
+              "separator": "",
+              "field_key": "field_demo_person__birth",
+              "fallback": "none"
+            },
+            {
+              "string_value": "",
+              "required": "false",
+              "prefix": ", ",
+              "suffix": "",
+              "separator": "",
+              "field_key": "field_demo_person__birth_place",
+              "fallback": "none",
+              "language_dependent": true
+            },
+            {
+              "string_value": "",
+              "required": "false",
+              "prefix": " — ",
+              "suffix": "",
+              "separator": "",
+              "field_key": "field_demo_person__death",
+              "fallback": "none"
+            },
+            {
+              "string_value": "",
+              "required": "false",
+              "prefix": ", ",
+              "suffix": "",
+              "separator": "",
+              "field_key": "field_demo_person__death_place",
+              "fallback": "none",
+              "language_dependent": true
+            }
+          ],
+          "gnd_properties": "hidden",
+          "geonames_properties": "hidden",
+          "default_value": "",
+          "placeholder": ""
+        },
+        {
           "key": "field_demo_person__profession_or_occupation",
           "label": "Professions and Occupations",
           "name": "field_demo_person__profession_or_occupation",
@@ -6150,6 +6243,9 @@
   },
   "demo_place": {
     "register_args": {
+      "public": true,
+      "menu_icon": "default",
+      "has_archive": true,
       "advanced_configuration": false,
       "import_source": "",
       "import_date": "",
@@ -6190,7 +6286,6 @@
         "singular_name": "Place"
       },
       "description": "Post type to describe properties of a place, including name, authorative data etc. Also used to build an index for encyclopaedic entries.",
-      "public": true,
       "hierarchical": false,
       "exclude_from_search": false,
       "publicly_queryable": true,
@@ -6204,7 +6299,6 @@
       "rest_namespace": "wp\/v2",
       "rest_controller_class": "WP_REST_Blocks_Controller",
       "menu_position": null,
-      "menu_icon": "default",
       "rename_capabilities": false,
       "singular_capability_name": "post",
       "plural_capability_name": "posts",
@@ -6212,7 +6306,6 @@
         "title"
       ],
       "taxonomies": [],
-      "has_archive": true,
       "has_archive_slug": "",
       "rewrite": {
         "slug": "places"
@@ -6275,11 +6368,13 @@
       "label": "",
       "theme_labels": [],
       "type": "single-index",
+      "schema": "none",
       "language": "none",
       "external": [
         "field_demo_place__geonames",
         "field_demo_place__gnd_id"
-      ]
+      ],
+      "schema_type": "Place"
     },
     "acf_add_local_field_group": {
       "location": [
@@ -6319,96 +6414,6 @@
           "label_translation_language0": "Editorial",
           "endpoint": 0,
           "selected": 0
-        },
-        {
-          "key": "field_demo_place__better123",
-          "label": "better123",
-          "name": "field_demo_place__better123",
-          "aria-label": "",
-          "type": "repeater",
-          "instructions": "",
-          "required": 0,
-          "conditional_logic": 0,
-          "wrapper": {
-            "width": "",
-            "class": "",
-            "id": ""
-          },
-          "layout": "table",
-          "pagination": 0,
-          "min": 0,
-          "max": 0,
-          "collapsed": "",
-          "button_label": "Add Row",
-          "display_option": "none",
-          "display_prefix": "",
-          "language_dependent": 0,
-          "label_translation_language1": "",
-          "label_translation_language0": "",
-          "rows_per_page": 20,
-          "sub_fields": [
-            {
-              "key": "field_demo_place__dfsfadf",
-              "label": "dfsfadf",
-              "name": "field_demo_place__dfsfadf",
-              "aria-label": "",
-              "type": "text",
-              "instructions": "",
-              "required": 0,
-              "conditional_logic": 0,
-              "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-              },
-              "default_value": "",
-              "maxlength": "",
-              "allow_in_bindings": 0,
-              "placeholder": "",
-              "prepend": "",
-              "append": "",
-              "display_option": "none",
-              "display_prefix": "",
-              "language_dependent": 0,
-              "label_translation_language1": "",
-              "label_translation_language0": ""
-            },
-            {
-              "key": "field_demo_place__asdfsaf",
-              "label": "asdfsaf",
-              "name": "field_demo_place__asdfsaf",
-              "aria-label": "",
-              "type": "relationship",
-              "instructions": "",
-              "required": 0,
-              "conditional_logic": 0,
-              "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-              },
-              "post_type": "",
-              "post_status": "",
-              "taxonomy": "",
-              "filters": [
-                "search",
-                "post_type",
-                "taxonomy"
-              ],
-              "return_format": "object",
-              "min": "",
-              "max": "",
-              "allow_in_bindings": 0,
-              "elements": "",
-              "bidirectional": 0,
-              "display_option": "none",
-              "display_prefix": "",
-              "language_dependent": 0,
-              "label_translation_language1": "",
-              "label_translation_language0": "",
-              "bidirectional_target": []
-            }
-          ]
         },
         {
           "key": "field_oes_status",
@@ -6992,20 +6997,20 @@
       }
     },
     "languages": {
-      "language1": {
-        "label": "English",
-        "abb": "ENG",
-        "locale": "en_EN"
-      },
       "language0": {
         "label": "Deutsch",
         "abb": "DEU",
         "locale": "de_DE"
+      },
+      "language1": {
+        "label": "English",
+        "abb": "ENG",
+        "locale": "en_BE"
       }
     },
     "theme_index_pages": {
       "index0": {
-        "slug": "register",
+        "slug": "index",
         "element": [
           "demo_article"
         ],
@@ -7016,226 +7021,25 @@
           "demo_institution",
           "t_demo_subject"
         ],
-        "label": {
-          "language1": "Index",
-          "language0": "Register"
-        },
         "archive_filter": [
           "alphabet"
-        ]
-      },
-      "index1": {
-        "slug": "hidden",
-        "element": [
-          "demo_article"
-        ],
-        "objects": [
-          "demo_contributor"
         ],
         "label": {
-          "language1": "",
-          "language0": ""
-        },
-        "archive_filter": "hidden"
+          "language0": "Register",
+          "language1": "Index"
+        }
       }
     },
     "theme_labels": {
       "button__read_more": {
-        "language1": "Read More",
-        "language0": "Weiterlesen",
+        "language0": "Read More",
         "name": "Read More Button",
         "location": "-"
       },
       "button__print": {
-        "language1": "Print",
-        "language0": "Drucken",
+        "language0": "Print",
         "name": "Print Button",
         "location": "-"
-      },
-      "archive__filter__all_button": {
-        "language1": "All",
-        "language0": "Alle",
-        "name": "Archive Filter, All button",
-        "location": "Archive Filter, e.g. index page"
-      },
-      "404__header": {
-        "language1": "Page not found",
-        "language0": "Seite nicht gefunden",
-        "name": "404 Page Not Found, Header",
-        "location": "Page not found, tab header",
-        "classic": 2.3
-      },
-      "404__search_text": {
-        "language1": "Page not found",
-        "language0": "Seite nicht gefunden",
-        "name": "404 Page Not Found, Search Text",
-        "location": "Page not found, search text",
-        "classic": 2.3
-      },
-      "404_page_content": {
-        "language1": "",
-        "language0": "",
-        "name": "404 Page Not Found, Content",
-        "location": "Page not found, content",
-        "classic": 2.3
-      },
-      "archive__entries": {
-        "language1": "Entries",
-        "language0": "Einträge",
-        "name": "Archive Result Page, Entries Count Label (Plural)",
-        "location": "Archive page",
-        "classic": 2.3
-      },
-      "archive__entry": {
-        "language1": "Entry",
-        "language0": "Eintrag",
-        "name": "Archive Result Page, Entries Count Label (Singular)",
-        "location": "Archive page",
-        "classic": 2.3
-      },
-      "no_results_found": {
-        "language1": "No entries found for this filter combination.",
-        "language0": "Keine Ergebnisse für diese Filtekombination",
-        "name": "No entries found for filter combination.",
-        "location": "e.g. archive and search",
-        "classic": 2.3
-      },
-      "search__navigation__text": {
-        "language1": "Search the OES Encyclopedia",
-        "language0": "Suche in OES Demo Encyclopedia",
-        "name": "Search Panel, Text",
-        "location": "Search Panel, above the search field",
-        "classic": 2.3
-      },
-      "search__no_results": {
-        "language1": "No results.",
-        "language0": "Keine Ergebnisse.",
-        "name": "Search Results Page, No results",
-        "location": "Search results page, no results found",
-        "classic": 2.3
-      },
-      "search__result__count_plural": {
-        "language1": "Results",
-        "language0": "Ergebnisse",
-        "name": "Search Result Page, Entries Count Label (Plural)",
-        "location": "Search results page",
-        "classic": 2.3
-      },
-      "search__result__count_singular": {
-        "language1": "Result",
-        "language0": "Ergebnis",
-        "name": "Search Result Page, Entries Count Label (Singular)",
-        "location": "Search results page",
-        "classic": 2.3
-      },
-      "search__result__label": {
-        "language1": "Search",
-        "language0": "Suche",
-        "name": "Search Page Label",
-        "location": "Search result page, titel"
-      },
-      "search__result_table__header_occurrences": {
-        "language1": "Occurrences",
-        "language0": "Vorkommnisse",
-        "name": "Search Result table Header, Occurrences",
-        "location": "Search results, result table header",
-        "classic": 2.3
-      },
-      "search__result__occurrence": {
-        "language1": "Occurrence",
-        "language0": "Vorkommnis",
-        "name": "Search Result table Header: Occurrences (Singular)",
-        "location": "Search results, result table header"
-      },
-      "search__result__occurrences": {
-        "language1": "Occurrences",
-        "language0": "Vorkommnisse",
-        "name": "Search Result table Header: Occurrences (Plural)",
-        "location": "Search results, result table header"
-      },
-      "search__see_term": {
-        "language1": "See also: ",
-        "language0": "Siehe auch: ",
-        "name": "Search Result Page, See also term",
-        "location": "Search results page",
-        "classic": 2.3
-      },
-      "sidebar__archive_header__refine_search": {
-        "language1": "Refine search",
-        "language0": "Suche verfeinern",
-        "name": "Archive sidebar header label",
-        "location": "archive sidebar",
-        "classic": 2.3
-      },
-      "sidebar__archive_header__responsive_expand": {
-        "language1": "Refine Search",
-        "language0": "Suche verfeinern",
-        "name": "Sidebar archive header refine search for responsive",
-        "location": "Archive Sidebar",
-        "classic": 2.3
-      },
-      "single__sub_line__author_by": {
-        "language1": "by",
-        "language0": "von",
-        "name": "Sub line, author by label",
-        "location": "Single view, subline",
-        "classic": 2.3
-      },
-      "single__sub_line__translation": {
-        "language1": "Different language version available: ",
-        "language0": "Anderes Sprache: ",
-        "name": "Sub line, other language version available",
-        "location": "Single view, subline",
-        "classic": 2.3
-      },
-      "single__toc__header_citation": {
-        "language1": "Citation",
-        "language0": "Zitierweise",
-        "name": "Header: Citation",
-        "location": "Single view, citation header",
-        "classic": 2.3
-      },
-      "single__toc__header_metadata": {
-        "language1": "Metadata",
-        "language0": "Metadaten",
-        "name": "Header: Metadata",
-        "location": "Single view, metadata header",
-        "classic": 2.3
-      },
-      "single__toc__header_notes": {
-        "language1": "Notes",
-        "language0": "Endnoten",
-        "name": "Header: Notes",
-        "location": "Single view, notes header",
-        "classic": 2.3
-      },
-      "single__toc__header_toc": {
-        "language1": "Table of Contents",
-        "language0": "Inhaltsverzeichnis",
-        "name": "Header: Table of Contents",
-        "location": "Single view, table of contents header",
-        "classic": 2.3
-      },
-      "single__toc__index": {
-        "language1": "Referred to in",
-        "language0": "Erwähnt in",
-        "name": "Single (Index header)",
-        "location": "Single view, related objects",
-        "classic": 2.3
-      },
-      "single__toc__index_contributor": {
-        "language1": "Published Articles",
-        "language0": "Publizierte Artikel",
-        "name": "Single (Index header, Contributor)",
-        "location": "Single view, related objects for contributor type",
-        "classic": 2.3
-      },
-      "single__toc__index_language_header": {
-        "language1": "Articles in other language:",
-        "language0": "Artikel in andere Sprache: ",
-        "name": "Single (Index header, language differentiation)",
-        "location": "Single view, related objects",
-        "classic": 2.3
       }
     },
     "search": {
@@ -7297,6 +7101,7 @@
   "t_demo_article_type": {
     "taxonomy": "t_demo_article_type",
     "register_args": {
+      "public": true,
       "taxonomy": "t_demo_article_type",
       "object_type": [
         "demo_article_p"
@@ -7343,7 +7148,6 @@
         "delete_terms": "manage_categories",
         "assign_terms": "edit_posts"
       },
-      "public": true,
       "publicly_queryable": null,
       "hierarchical": false,
       "show_ui": null,
@@ -7392,22 +7196,17 @@
       "lod": false,
       "editorial_tab": true,
       "label": "",
-      "theme_labels": {
-        "archive__header": {
-          "name": "Archive: sub title",
-          "location": "Archive view, Header",
-          "language1": "t_demo_article_type (Archive: sub title)",
-          "language0": "t_demo_article_type (Archive: sub title)"
-        }
-      },
+      "theme_labels": [],
       "type": "single-internal",
       "language_dependent": false,
-      "redirect": "demo_article"
+      "redirect": "demo_article",
+      "schema": "none"
     }
   },
   "t_demo_event_type": {
     "taxonomy": "t_demo_event_type",
     "register_args": {
+      "public": true,
       "taxonomy": "t_demo_event_type",
       "object_type": [],
       "advanced_configuration": 0,
@@ -7452,7 +7251,6 @@
         "delete_terms": "manage_categories",
         "assign_terms": "edit_posts"
       },
-      "public": true,
       "publicly_queryable": null,
       "hierarchical": false,
       "show_ui": null,
@@ -7499,22 +7297,17 @@
       "lod": false,
       "editorial_tab": true,
       "label": "",
-      "theme_labels": {
-        "archive__header": {
-          "name": "Archive: sub title",
-          "location": "Archive view, Header",
-          "language1": "t_demo_event_type (Archive: sub title)",
-          "language0": "t_demo_event_type (Archive: sub title)"
-        }
-      },
+      "theme_labels": [],
       "type": "single-internal",
       "language_dependent": false,
-      "redirect": "demo_event"
+      "redirect": "demo_event",
+      "schema": "none"
     }
   },
   "t_demo_subject": {
     "taxonomy": "t_demo_subject",
     "register_args": {
+      "public": 1,
       "taxonomy": "t_demo_subject",
       "object_type": [
         "demo_article"
@@ -7561,7 +7354,6 @@
         "delete_terms": "manage_categories",
         "assign_terms": "edit_posts"
       },
-      "public": 1,
       "publicly_queryable": 0,
       "hierarchical": 1,
       "show_ui": 1,
@@ -7616,17 +7408,12 @@
       "lod": false,
       "editorial_tab": true,
       "label": "",
-      "theme_labels": {
-        "archive__header": {
-          "name": "Archive: sub title",
-          "location": "Archive view, Header",
-          "language1": "t_demo_subject (Archive: sub title)",
-          "language0": "t_demo_subject (Archive: sub title)"
-        }
-      },
+      "theme_labels": [],
       "type": "single-index",
       "language_dependent": true,
-      "redirect": "none"
+      "redirect": "none",
+      "schema": "none",
+      "schema_type": "DefinedTerm"
     }
   }
 }
