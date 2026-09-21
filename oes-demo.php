@@ -13,8 +13,6 @@
  * Requires at least:  6.5
  * Tested up to:       7.1
  * Requires PHP:       8.1
- * Requires plugins:   oes-core
- * Tags:               oes, demo, example, encyclopedia, open-access, digital-humanities, academic, wiki, lexicon, education
  * License:            GPLv2 or later
  * License URI:        https://www.gnu.org/licenses/gpl-2.0.html
  *
